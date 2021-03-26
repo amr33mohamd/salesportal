@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="221.79" height="127.023" viewBox="0 0 221.79 127.023">
+  <g id="circle" transform="translate(-1069.125 -819.234)">
+    <g id="info_chart" data-name="info chart" transform="translate(1228.2 841.357)">
+      <g id="data1" transform="translate(1.695 0.382)">
+        <text id="Data_1" data-name="Data 1" transform="translate(32.02 11)" fill="#727173" font-size="10" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Data 1</tspan></text>
+        <rect id="Prostokąt_15" data-name="Prostokąt 15" width="12" height="11" transform="translate(0 3.261)" fill="#0d3745"/>
+      </g>
+      <g id="data2" transform="translate(1.695 22.494)">
+        <text id="Data_2" data-name="Data 2" transform="translate(32.02 11)" fill="#727173" font-size="10" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Data 2</tspan></text>
+        <rect id="Prostokąt_15-2" data-name="Prostokąt 15" width="12" height="12" transform="translate(0 0.94)" fill="#f1e8e6"/>
+      </g>
+      <g id="data3" transform="translate(1.695 44.605)">
+        <text id="Data_3" data-name="Data 3" transform="translate(32.02 11)" fill="#727173" font-size="10" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Data 3</tspan></text>
+        <rect id="Prostokąt_15-3" data-name="Prostokąt 15" width="12" height="12" transform="translate(0 1.618)" fill="#543c52"/>
+      </g>
+      <g id="data4" transform="translate(1.695 66.717)">
+        <text id="Data_4" data-name="Data 4" transform="translate(32.02 11)" fill="#727173" font-size="10" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Data 4</tspan></text>
+        <rect id="Prostokąt_15-4" data-name="Prostokąt 15" width="12" height="12" transform="translate(0 2.297)" fill="#edd2cb"/>
+      </g>
+    </g>
+    <g id="chart" transform="translate(1069.125 819.234)">
+      <path id="Prostokąt_16_kopia_3" data-name="Prostokąt 16 kopia 3" d="M0,63.511A63.567,63.567,0,0,1,77.99,1.658L62.357,63.511l-60.11,16.8A63.593,63.593,0,0,1,0,63.511Z" transform="translate(0)" fill="#edd2cb"/>
+      <path id="Prostokąt_16_kopia_2" data-name="Prostokąt 16 kopia 2" d="M0,16.72,59.807,0,32.544,55.66A63.672,63.672,0,0,1,0,16.72Z" transform="translate(2.55 64.666)" fill="#543c52"/>
+      <path id="Prostokąt_16_kopia" data-name="Prostokąt 16 kopia" d="M0,61.475,14.862,0a63.537,63.537,0,0,1,47.5,61.475A63.217,63.217,0,0,1,51.94,96.339Z" transform="translate(64.666 2.037)" fill="#0d3745"/>
+      <path id="Prostokąt_16" data-name="Prostokąt 16" d="M0,56.117,27.486,0,79.908,34.712A63.441,63.441,0,0,1,27.486,62.357,63.261,63.261,0,0,1,0,56.117Z" transform="translate(36.025 64.666)" fill="#f1e8e6"/>
+    </g>
+  </g>
+</svg>

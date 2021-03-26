@@ -1,0 +1,307 @@
+@import './variables.scss';
+
+/* 
+    body 
+*/
+body {
+    background-color: $off-white-color !important;
+    font-family: $font-family-poppins !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+/* 
+    links 
+*/
+a {
+    color: $link-color;
+}
+
+/* 
+    card all page 
+*/
+.card-box {
+    background: $white-color 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 6px $black-color-30;
+    border-radius: 5px;
+    opacity: 1;
+    width: 100%;
+}
+
+/* 
+    default height 
+*/
+.height-300 {
+    height: 500px;
+    overflow-x: auto;
+}
+
+/* 
+    Page-Title Breadcrumb
+*/
+.page-title-breadcrumb {
+    .page-title {
+        text-align: left;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0px;
+        color: $dark-primary-color;
+        opacity: 1;
+    }
+    .breadcrumb-box {
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            li {
+                float: left;
+                text-align: right;
+                font-size: 14px;
+                font-weight: 400;
+                letter-spacing: 0px;
+                color: $dark-primary-color;
+                opacity: 0.6;
+                &::before {
+                    content: "/";
+                    margin: 0 5px;
+                }
+                &:first-child {
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* 
+    All button css
+*/
+.btn-primary-admin {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $primary-color;
+    border: none;
+    border-radius: 3px;
+    float: left;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background: $red-color !important;
+        color: $white-color !important;
+    }
+}
+.btn-danger-admin {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $red-color;
+    border: none;
+    border-radius: 3px;
+    float: left;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background: $primary-color !important;
+        color: $white-color !important;
+    }
+}
+.btn-add-field {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $primary-color;
+    border: none;
+    border-radius: 3px;
+    float: left;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background: $red-color !important;
+        color: $white-color !important;
+    }
+}
+.btn-admin-danger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $red-color;
+    color: $white-color;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 16px;
+    float: left;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background-color: $primary-color !important;
+        color: $white-color !important;
+        img {
+            -webkit-filter: invert(100%); /* Safari/Chrome */
+            filter: invert(100%);
+        }
+    }
+}
+.btn-admin-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $primary-color;
+    color: $white-color;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 16px;
+    float: left;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background: $red-color !important;
+        color: $white-color !important;
+        img {
+            -webkit-filter: invert(100%); /* Safari/Chrome */
+            filter: invert(100%);
+        }
+    }
+}
+.btn-admin-default {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $setting-tab-active !important;
+    color: $black-color;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 16px;
+    float: left;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background: $primary-color !important;
+        color: $white-color !important;
+        img {
+            -webkit-filter: invert(100%); /* Safari/Chrome */
+            filter: invert(100%);
+        }
+    }
+}
+.activities-btn {
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $setting-tab-active;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    span {
+        color: $black-color;
+        line-height: 30px;
+    }
+    .activities-btn-icon {
+        cursor: pointer;
+    }
+    &.active {
+        span {
+            background: $primary-color;
+            color: $white-color;
+            line-height: 30px;
+            display: block;
+        }
+    }
+    &:hover {
+        span {
+            background: $primary-color !important;
+            color: $white-color !important;
+            display: block;
+        }
+    }
+}
+
+/* 
+    All progress bar css
+*/
+
+.progress {
+    padding: 3px;
+    border-radius: 3px;
+    .progress-bar {
+        border-radius: 3px;
+        background-color: $primary-color;
+    }
+}
+
+a {
+    &:hover {
+        text-decoration: none !important;
+        color: inherit !important;
+    }               
+}
+:focus{
+    outline: none !important;                
+}
+
+/* 
+    Text css
+*/
+.font-12 {
+    font-size: 12px !important;
+    line-height: 17px !important;
+}
+.font-15 {
+    font-size: 15px;
+    line-height: 20px;
+}
+.default-color {
+    color: $black-color !important;
+    opacity: 0.3;
+}
+.red-color {
+    color: $red-color !important;
+}
+
+/* 
+    Opacity css
+*/
+.opacity-30 {
+    opacity: 0.3;
+}
+/* 
+    scrollbar css
+*/
+::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: $light-gray;
+}
+
+::-webkit-scrollbar
+{
+	width: 8px;
+    height: 8px;
+	background-color: $light-gray;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: $primary-color;
+}
+.btn-primary {
+    color: #fff;
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+}

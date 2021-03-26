@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="88" height="59" viewBox="0 0 88 59">
+  <g id="line" transform="translate(-686.818 305.714)">
+    <path id="Path_46" data-name="Path 46" d="M773-285.359l-22.678,29.315-19.912-17.7-26,30.422" transform="translate(-8.838 -10.479)" fill="none" stroke="#0d3745" stroke-width="2"/>
+    <g id="Ellipse_6" data-name="Ellipse 6" transform="translate(759.818 -305.714)" fill="#fff" stroke="#0d3745" stroke-width="2">
+      <ellipse cx="7.5" cy="7" rx="7.5" ry="7" stroke="none"/>
+      <ellipse cx="7.5" cy="7" rx="6.5" ry="6" fill="none"/>
+    </g>
+    <g id="Ellipse_7" data-name="Ellipse 7" transform="translate(735.818 -270.714)" fill="#fff" stroke="#0d3745" stroke-width="2">
+      <ellipse cx="7.5" cy="7" rx="7.5" ry="7" stroke="none"/>
+      <ellipse cx="7.5" cy="7" rx="6.5" ry="6" fill="none"/>
+    </g>
+    <g id="Ellipse_8" data-name="Ellipse 8" transform="translate(713.818 -294.714)" fill="#fff" stroke="#0d3745" stroke-width="2">
+      <circle cx="7.5" cy="7.5" r="7.5" stroke="none"/>
+      <circle cx="7.5" cy="7.5" r="6.5" fill="none"/>
+    </g>
+    <g id="Ellipse_9" data-name="Ellipse 9" transform="translate(686.818 -260.714)" fill="#fff" stroke="#0d3745" stroke-width="2">
+      <ellipse cx="7.5" cy="7" rx="7.5" ry="7" stroke="none"/>
+      <ellipse cx="7.5" cy="7" rx="6.5" ry="6" fill="none"/>
+    </g>
+  </g>
+</svg>

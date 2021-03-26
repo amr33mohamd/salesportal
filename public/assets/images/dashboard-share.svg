@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="45" height="48" viewBox="0 0 45 48">
+  <g id="dashboard-share" transform="translate(-590 -409)">
+    <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(622 409)" fill="#fff" stroke="#0d3745" stroke-width="1.5">
+      <circle cx="6.5" cy="6.5" r="6.5" stroke="none"/>
+      <circle cx="6.5" cy="6.5" r="5.75" fill="none"/>
+    </g>
+    <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(590 427)" fill="#fff" stroke="#0d3745" stroke-width="1.5">
+      <circle cx="6.5" cy="6.5" r="6.5" stroke="none"/>
+      <circle cx="6.5" cy="6.5" r="5.75" fill="none"/>
+    </g>
+    <g id="Ellipse_5" data-name="Ellipse 5" transform="translate(621 444)" fill="#fff" stroke="#0d3745" stroke-width="1.5">
+      <circle cx="6.5" cy="6.5" r="6.5" stroke="none"/>
+      <circle cx="6.5" cy="6.5" r="5.75" fill="none"/>
+    </g>
+    <line id="Line_5" data-name="Line 5" x1="21" y2="13" transform="translate(602.5 418.5)" fill="none" stroke="#0d3745" stroke-width="1.5"/>
+    <line id="Line_6" data-name="Line 6" x2="20" y2="13" transform="translate(601.5 436.5)" fill="none" stroke="#0d3745" stroke-width="1.5"/>
+  </g>
+</svg>

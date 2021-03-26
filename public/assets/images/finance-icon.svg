@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24.005" height="21.605" viewBox="0 0 24.005 21.605">
+  <g id="finance-icon" transform="translate(-16 -40)" opacity="0.5">
+    <path id="Path_127" data-name="Path 127" d="M80,149.2a.4.4,0,0,0,.4.4h4.8a.4.4,0,0,0,.4-.4v-4.8a.4.4,0,0,0-.4-.4H80.4a.4.4,0,0,0-.4.4Zm.8-.4v-2.4h.8v1.2a.4.4,0,0,0,.683.283l.517-.517.517.517A.4.4,0,0,0,84,147.6v-1.2h.8v2.4Zm1.6-4h.8v1.835l-.117-.117a.4.4,0,0,0-.566,0l-.117.117Zm2.4.8H84v-.8h.8Zm-3.2-.8v.8h-.8v-.8Z" transform="translate(-60.799 -98.799)"/>
+    <path id="Path_128" data-name="Path 128" d="M240,111.6a1.2,1.2,0,1,0,1.6-1.131v-.938a1.2,1.2,0,0,0,0-2.263v-.938a1.2,1.2,0,1,0-.8,0v.938a1.2,1.2,0,0,0,0,2.263v.938A1.2,1.2,0,0,0,240,111.6Zm1.2.4a.4.4,0,1,1,.4-.4A.4.4,0,0,1,241.2,112Zm0-7.2a.4.4,0,1,1-.4.4A.4.4,0,0,1,241.2,104.8Zm0,3.2a.4.4,0,1,1-.4.4A.4.4,0,0,1,241.2,108Z" transform="translate(-212.796 -60.796)"/>
+    <path id="Path_129" data-name="Path 129" d="M304.4,120.8h4a.4.4,0,0,0,0-.8h-4a.4.4,0,1,0,0,.8Z" transform="translate(-273.597 -75.999)"/>
+    <path id="Path_130" data-name="Path 130" d="M416.4,120.8h.8a.4.4,0,0,0,0-.8h-.8a.4.4,0,1,0,0,.8Z" transform="translate(-379.996 -75.999)"/>
+    <path id="Path_131" data-name="Path 131" d="M304.4,184.8h4a.4.4,0,1,0,0-.8h-4a.4.4,0,1,0,0,.8Z" transform="translate(-273.597 -136.798)"/>
+    <path id="Path_132" data-name="Path 132" d="M416.4,184.8h.8a.4.4,0,1,0,0-.8h-.8a.4.4,0,1,0,0,.8Z" transform="translate(-379.996 -136.798)"/>
+    <path id="Path_133" data-name="Path 133" d="M304.4,248.8h4a.4.4,0,1,0,0-.8h-4a.4.4,0,1,0,0,.8Z" transform="translate(-273.597 -197.598)"/>
+    <path id="Path_134" data-name="Path 134" d="M416.4,248.8h.8a.4.4,0,1,0,0-.8h-.8a.4.4,0,1,0,0,.8Z" transform="translate(-379.996 -197.598)"/>
+    <path id="Path_135" data-name="Path 135" d="M38,40H18a2,2,0,0,0-2,2V55.6a2,2,0,0,0,2,2h6.313l-.7,3.522A.4.4,0,0,0,24,61.6h8a.4.4,0,0,0,.392-.479l-.7-3.522H38a2,2,0,0,0,2-2V42A2,2,0,0,0,38,40Zm-20,.8H38A1.2,1.2,0,0,1,39.2,42V53.6H16.8V42A1.2,1.2,0,0,1,18,40.8Zm13.515,20H24.49l.64-3.2h5.745ZM38,56.8H18a1.2,1.2,0,0,1-1.2-1.2V54.4H39.2v1.2A1.2,1.2,0,0,1,38,56.8Z"/>
+    <ellipse id="Ellipse_3" data-name="Ellipse 3" cx="0.5" rx="0.5" transform="translate(18 42)"/>
+    <ellipse id="Ellipse_4" data-name="Ellipse 4" cx="0.5" rx="0.5" transform="translate(20 42)"/>
+    <ellipse id="Ellipse_5" data-name="Ellipse 5" cx="0.5" rx="0.5" transform="translate(22 42)"/>
+    <path id="Path_136" data-name="Path 136" d="M241.2,344h-.8a.4.4,0,1,0,0,.8h.8a.4.4,0,0,0,0-.8Z" transform="translate(-212.798 -288.797)"/>
+  </g>
+</svg>
