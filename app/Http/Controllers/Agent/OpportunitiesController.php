@@ -14,7 +14,7 @@ class OpportunitiesController extends Controller
 {
     public function index(Request $request){
       $leads = opportunities::all();
-      return view('Agent.sales.opportunities.opportunities',['leads'=>$leads]);
+      return view('Agent.Sales.Opportunities.Opportunities',['leads'=>$leads]);
 
     }
     public function editScreen(Request $request){
@@ -23,7 +23,7 @@ class OpportunitiesController extends Controller
       $accounts = accounts::query()->where('user_id',$user->id)->get();
       $currancies = currencies::all();
       $stages = sales_stage::all();
-      return view('Agent.sales.Opportunities.newopportunity',['lead'=>$lead,'stages'=>$stages,'type'=>'edit','accounts'=>$accounts,'currancies'=>$currancies]);
+      return view('Agent.Sales.Opportunities.NewOpportunity',['lead'=>$lead,'stages'=>$stages,'type'=>'edit','accounts'=>$accounts,'currancies'=>$currancies]);
 
     }
     public function addScreen(Request $request){
@@ -34,7 +34,7 @@ class OpportunitiesController extends Controller
       $accounts = accounts::query()->where('user_id',$user->id)->get();
       $stages = sales_stage::all();
 
-      return view('Agent.sales.Opportunities.newopportunity',['lead'=>$lead,'stages'=>$stages,'type'=>'add','accounts'=>$accounts,'currancies'=>$currancies]);
+      return view('Agent.Sales.Opportunities.NewOpportunity',['lead'=>$lead,'stages'=>$stages,'type'=>'add','accounts'=>$accounts,'currancies'=>$currancies]);
 
     }
 

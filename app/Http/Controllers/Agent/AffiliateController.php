@@ -11,7 +11,7 @@ class AffiliateController extends Controller
 {
   public function index(Request $request){
     $leads = Auth::user()->with('followers.followers')->get();
-    return view('Agent.affiliate.affiliate',['leads'=>$leads]);
+    return view('Agent.Affiliate.Affiliate',['leads'=>$leads]);
   }
 
 

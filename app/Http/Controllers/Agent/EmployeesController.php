@@ -28,7 +28,7 @@ class EmployeesController extends Component
     public function editScreen(Request $request){
       $lead = tasks::query()->where('id',request('id'));
 
-      return view('Agent.marketing.marketing',['lead'=>$lead]);
+      return view('Agent.Marketing.Marketing',['lead'=>$lead]);
 
     }
     public function add(Request $request){

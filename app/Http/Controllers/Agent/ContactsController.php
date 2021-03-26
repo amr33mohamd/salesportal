@@ -12,7 +12,7 @@ class ContactsController extends Controller
 {
     public function index(Request $request){
       $leads = contacts::all();
-      return view('Agent.sales.members.members',['leads'=>$leads]);
+      return view('Agent.Sales.Members.Members',['leads'=>$leads]);
 
     }
     public function editScreen(Request $request){
@@ -21,14 +21,14 @@ class ContactsController extends Controller
 
       $accounts = accounts::query()->where('user_id',$user->id)->get();
 
-      return view('Agent.sales.members.newmembers',['lead'=>$lead,'type'=>'edit','accounts'=>$accounts]);
+      return view('Agent.Sales.Members.NewMembers',['lead'=>$lead,'type'=>'edit','accounts'=>$accounts]);
 
     }
     public function addScreen(Request $request){
       $lead =new contacts;
       $user = Auth::user();
       $accounts = accounts::query()->where('user_id',$user->id)->get();
-      return view('Agent.sales.members.newmembers',['lead'=>$lead,'type'=>'add','accounts'=>$accounts]);
+      return view('Agent.Sales.Members.NewMembers',['lead'=>$lead,'type'=>'add','accounts'=>$accounts]);
 
     }
 

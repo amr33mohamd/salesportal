@@ -52,7 +52,7 @@ return view('Agent.sales.leads.newlead',['lead'=>$lead,'sources'=>$sources,'medi
        $currancies = currencies::all();
        $sources = traffic_source::all();
        $mediums = traffic_mediums::all();
-      return view('Agent.sales.leads.newlead',['lead'=>$lead,'sources'=>$sources,'mediums'=>$mediums,'industries'=>$industries,'currancies'=>$currancies,'type'=>'add','statuses'=>$statuses,'education_qualifications'=>$educations,'hear_about_uses'=>$hear_about_uses,'nationalities'=>$nationalities]);
+      return view('Agent.Sales.Leads.NewLead',['lead'=>$lead,'sources'=>$sources,'mediums'=>$mediums,'industries'=>$industries,'currancies'=>$currancies,'type'=>'add','statuses'=>$statuses,'education_qualifications'=>$educations,'hear_about_uses'=>$hear_about_uses,'nationalities'=>$nationalities]);
 
     }
     public function edit(Request $request){

@@ -21,7 +21,7 @@ class CallsController extends Controller
       $accounts = accounts::query()->where('user_id',$user->id)->get();
       $userLeads = leads::query()->where('user_id',$user->id)->get();
 
-      return view('Agent.activities.calls.calls',['leads'=>$leads,'stages'=>$stages,'accounts'=>$accounts,'userLeads'=>$userLeads]);
+      return view('Agent.Activities.Calls.Calls',['leads'=>$leads,'stages'=>$stages,'accounts'=>$accounts,'userLeads'=>$userLeads]);
 
     }
     public function editScreen(Request $request){

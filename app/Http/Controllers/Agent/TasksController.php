@@ -20,7 +20,7 @@ class TasksController extends Controller
     $accounts = accounts::query()->where('user_id',$user->id)->get();
     $userLeads = leads::query()->where('user_id',$user->id)->get();
 
-    return view('Agent.activities.tasks.tasks',['leads'=>$leads,'stages'=>$stages,'accounts'=>$accounts,'userLeads'=>$userLeads]);
+    return view('Agent.Activities.Tasks.Tasks',['leads'=>$leads,'stages'=>$stages,'accounts'=>$accounts,'userLeads'=>$userLeads]);
 
   }
 

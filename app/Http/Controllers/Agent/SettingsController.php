@@ -14,7 +14,7 @@ class SettingsController extends Controller
 {
     public function index(Request $request){
       $user = Auth::user();
-      return view('Agent.settings.settings',['user'=>$user]);
+      return view('Agent.Settings.Settings',['user'=>$user]);
 
     }
     public function editScreen(Request $request){

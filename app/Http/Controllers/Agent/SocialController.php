@@ -17,7 +17,7 @@ class SocialController extends Controller
       $Template = $auth->documents->where('type','Template');
 
       $leads = documents::query();
-      return view('Agent.marketing.marketing',['leads'=>$leads,'Social'=>$Social,'Image'=>$Image,'Template'=>$Template]);
+      return view('Agent.Marketing.Marketing',['leads'=>$leads,'Social'=>$Social,'Image'=>$Image,'Template'=>$Template]);
 
     }
     public function editScreen(Request $request){
