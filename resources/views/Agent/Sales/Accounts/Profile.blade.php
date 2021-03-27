@@ -208,6 +208,11 @@
                                         role="tab" aria-controls="attachments" aria-selected="false">Attachments</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link " id="attachments-assign-tab" data-toggle="tab" href="#attachments-assign"
+                                        role="tab" aria-controls="attachments-assign" aria-selected="false">Attachments Assigned</a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a class="nav-link " id="finance-tab" data-toggle="tab" href="#finance"
                                         role="tab" aria-controls="finance" aria-selected="false">Finance</a>
                                 </li>
@@ -623,6 +628,55 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <div class="tab-pane fade attachment-btn show " id="attachments-assign" role="tabpanel"
+                                    aria-labelledby="attachments-assign-tab">
+                                    <div class="top-btn">
+                                        <div class="admin-table">
+                                            <div class="row admin-table-header">
+                                                <div class="col admin-table-filter-box">
+                                                    <div
+                                                        class="admin-table-filter d-flex justify-content-end align-items-center">
+                                                        <button
+                                                            class="admin-table-btn admin-table-btn-add mr-3" data-toggle="modal" data-target="#add-attachment"><img
+                                                                class="mr-2"
+                                                                src="/assets/images/table-add.svg">Assign Document</button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row my-3 attachment-row">
+                                      @if($account->attachments->count() == 0)
+                                      <p>No Attachments Uploaded</p>
+                                      @else
+                                      @foreach($account->assiegned_attachments as $attachment)
+                                      <div class="col-lg-2 mb-3" >
+                                          <div class="card-box social-box">
+                                              <div class="social-box-img"><img  style="height:250px !important" src="{{$attachment->attachment->getFirstMediaUrl()}}"/></div>
+                                              <div class="social-box-detail p-3">
+                                                  <div class="row">
+                                                      <div class="col">
+
+                                                          <p><a href="/account/edit/assign-attachment/{{$attachment->id}}"  >Delete</a></p>
+                                                      </div>
+                                                      <div class="col-auto d-flex align-items-center">
+                                                        <a href="{{$attachment->attachment->getFirstMediaUrl()}}"><img src="/assets/images/direct-download-red.svg"/></a>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+
+                                        @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+
+
                                 <div class="tab-pane fade attachment-btn show " id="attachments" role="tabpanel"
                                     aria-labelledby="attachments-tab">
                                     <div class="top-btn">
@@ -655,17 +709,19 @@
                                                                 <div class="setting-form-box">
                                                                     <div class="row px-2">
                                                                         <div class="col px-2">
-                                                                            <form action="/attachment/assign" method="post">
                                                                             <div class="row mx-0">
                                                                                 <div class="col-lg px-2">
                                                                                     <div class="form-field">
+                                                                                      <form action="/account/add/attachment/{{$account->id}}" method="post">
+                                                                                        @csrf
                                                                                         <div class="form-field__control">
                                                                                             <label for="attachment-2" class="form-field__label">File Name</label>
-                                                                                            <select id="attachment-2" name="country" class="form-field__input">
+                                                                                            <select id="attachment-2" name="document_id" class="form-field__input">
                                                                                               @foreach($documents as $document)
                                                                                                 <option value="{{$document->id}}">{{$document->name}} {{$document->category}} / {{$document->category}}</option>
                                                                                                 @endforeach
                                                                                             </select>
+
                                                                                             <div class="form-dropdown-icon">
                                                                                                 <img src="/assets/images/form-drop-down.svg" />
                                                                                             </div>
@@ -707,8 +763,8 @@
                                                       <div class="col">
 
                                                           <h4>{{($attachment->status == '1') ? 'waiting' : (($attachment->status == '2') ? 'accepted' : 'rejected')}}</h4>
-                                                        <p>  <button >Accept</button> <p>
-                                                          <p><button >Reject</button></p>
+                                                        <p>  <a href="/account/edit/attachment/{{$attachment->id}}/2"  >Accept</a> <p>
+                                                          <p><a href="/account/edit/attachment/{{$attachment->id}}/3"  >Reject</a></p>
                                                       </div>
                                                       <div class="col-auto d-flex align-items-center">
                                                         <a href="{{$attachment->getFirstMediaUrl()}}"><img src="/assets/images/direct-download-red.svg"/></a>

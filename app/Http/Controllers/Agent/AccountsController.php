@@ -16,6 +16,8 @@ use App\Models\industry;
 use App\Models\currencies;
 use App\Models\traffic_source;
 use App\Models\traffic_mediums;
+use App\Models\account_attachments;
+use App\Models\account_assiened_attachments;
 class AccountsController extends Controller
 {
   public function index(Request $request){
@@ -41,6 +43,24 @@ class AccountsController extends Controller
 
 
   }
+
+  public function change_attachment_status(Request $request){
+    $user = Auth::user();
+    $documents =account_attachments::query()->where('id',$request->id)->update(['status'=>$request->status]);
+    return back();
+  }
+  public function assin_attachment(Request $request){
+    $user = Auth::user();
+    $documents = account_assiened_attachments::create(['account_id'=>$request->account_id,'document_id'=>$request->document_id]);
+    return back();
+  }
+  public function delete_assin_attachment(Request $request){
+    $user = Auth::user();
+    $documents = account_assiened_attachments::query()->where('id',$request->id)->delete();
+    return back();
+  }
+
+
   public function editScreen(Request $request){
     $lead = accounts::query()->where('id',request('id'))->first();
     $user = Auth::user();

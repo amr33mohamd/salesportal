@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class account_assiened_attachments extends Model
 {
     use HasFactory;
+    protected $guarded = [
+        'id',
+
+    ];
     public function attachment()
     {
-       return $this->hasOne(documents::class,'document_id','id');
+       return $this->hasOne(documents::class,'id','document_id');
      }
 }

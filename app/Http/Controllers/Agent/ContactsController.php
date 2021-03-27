@@ -56,6 +56,6 @@ class ContactsController extends Controller
        $leads = contacts::find($request->id)->delete();
 
 
-       return Redirect::back();
+       return redirect('/members');
    }
 }

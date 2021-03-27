@@ -74,6 +74,10 @@ Route::get('/account/new', [App\Http\Controllers\Agent\AccountsController::class
 Route::post('/account/new/action', [App\Http\Controllers\Agent\AccountsController::class, 'add'])->name('NewAccountAction');
 
 Route::get('/accounts/delete/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'delete'])->name('DeleteAccount');
+Route::get('/account/edit/attachment/{id}/{status}', [App\Http\Controllers\Agent\AccountsController::class, 'change_attachment_status']);
+Route::post('/account/add/attachment/{account_id}', [App\Http\Controllers\Agent\AccountsController::class, 'assin_attachment']);
+Route::get('/account/edit/assign-attachment/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'delete_assin_attachment']);
+
 
 
 
