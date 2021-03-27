@@ -639,7 +639,7 @@
                                                     <div
                                                         class="admin-table-filter d-flex justify-content-end align-items-center">
                                                         <button
-                                                            class="admin-table-btn admin-table-btn-add mr-3" data-toggle="modal" data-target="#add-attachment"><img
+                                                            class="admin-table-btn admin-table-btn-add mr-3" data-toggle="modal" data-target="#add-attachment2"><img
                                                                 class="mr-2"
                                                                 src="/assets/images/table-add.svg">Assign Document</button>
 
@@ -649,6 +649,61 @@
                                         </div>
 
                                     </div>
+                                    <!-- Modal Start -->
+                                    <div class="modal fade" id="add-attachment2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <div class="setting-box">
+                                                        <div class="card-box px-2 py-3">
+                                                            <div class="row setting-title-box px-2 mb-3">
+                                                                <div class="col">
+                                                                    <p class="p-0">Assign Attachment</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="setting-form-box">
+                                                                <div class="row px-2">
+                                                                    <div class="col px-2">
+                                                                        <div class="row mx-0">
+                                                                            <div class="col-lg px-2">
+                                                                                <div class="form-field">
+                                                                                  <form action="/account/add/attachment/{{$account->id}}" method="post">
+                                                                                    @csrf
+                                                                                    <div class="form-field__control">
+                                                                                        <label for="attachment-2" class="form-field__label">File Name</label>
+                                                                                        <select id="attachment-2" name="document_id" class="form-field__input">
+                                                                                          @foreach($documents as $document)
+                                                                                            <option value="{{$document->id}}">{{$document->name}} {{$document->category}} / {{$document->category}}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+
+                                                                                        <div class="form-dropdown-icon">
+                                                                                            <img src="/assets/images/form-drop-down.svg" />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                        <div class="row mx-0">
+
+
+                                                                            <div class="col-lg d-flex justify-content-end align-items-end px-2">
+                                                                                <button type="submit" class="btn-admin-primary ml-3"><img src="/assets/images/table-add.svg" class="mr-2"/>Assign Attachment</a>
+                                                                            </div>
+                                                                          </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
                                     <div class="row my-3 attachment-row">
                                       @if($account->attachments->count() == 0)
                                       <p>No Attachments Uploaded</p>
