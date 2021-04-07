@@ -355,6 +355,12 @@ $('.filter').toggle(
 })
 
 
+var table = $('#example').DataTable( {
+    orderCellsTop: true,
+    fixedHeader: false,
+    searching:true
+} );
+
 
 
 

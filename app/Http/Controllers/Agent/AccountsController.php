@@ -99,7 +99,7 @@ return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'sources'=>$sources
       $edit =  accounts::query()->where('id',request('id'))->first()->addMedia($request->file)->toMediaCollection();
        // echo $edit;
     }
-    // $edit = accounts::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
+    $edit = accounts::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
 
     return redirect('/accounts');
 

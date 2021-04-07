@@ -22,8 +22,15 @@ div.dataTables_wrapper div.dataTables_filter{
  display: none !important;
 
 }
-.table-responsive{
-  overflow: hidden !important;
+.table-responsive::-webkit-scrollbar{
+display: none;
+}
+.table-responsive {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.dt-buttons{
+  display: none;
 }
 </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -207,9 +214,9 @@ div.dataTables_wrapper div.dataTables_filter{
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <div class="sub-menu">
-                                        <a href="/marketing">Social</a>
-                                        <a href="/marketing">Templates</a>
-                                        <a href="/marketing">Image Library</a>
+                                        <a href="/marketing#social">Social</a>
+                                        <a href="/marketing#templates">Templates</a>
+                                        <a href="/marketing#image-library">Image Library</a>
                                     </div>
                                 </div>
                             </li>
@@ -248,6 +255,14 @@ div.dataTables_wrapper div.dataTables_filter{
 <script src="https://cdn.datatables.net/fixedheader/3.1.8/js/dataTables.fixedHeader.min.js"></script>
 <!-- Custom js For form -->
 <script src="/assets/js/form.js"></script>
+<script>
+$(document).ready(function(){
+  $("#export").click(function(){
+    $(".buttons-csv").click();
+  })
+})
+
+</script>
 @stack('scripts')
 
 </html>

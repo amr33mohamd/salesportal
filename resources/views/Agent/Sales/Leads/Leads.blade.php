@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="page-title">
-                            Leade
+                            Leads
                         </div>
                     </div>
                     <div class="col-auto">
@@ -43,8 +43,6 @@
                         </div>
                         <div class="row m-0">
                             <ul class="admin-table-info">
-                                <li class="mr-1">Viewing (13)</li>
-                                <li>Record (s)</li>
                             </ul>
                         </div>
                     </div>
@@ -78,6 +76,8 @@
                                                     <img src="./assets/images/table-arrow-down.svg">
                                                 </div>
                                             </th>
+                                            <th scope="col">To Account</th>
+
                                             <th scope="col">Name</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Email</th>
@@ -96,6 +96,8 @@
                                                     <input type="checkbox">
                                                 </div>
                                             </td>
+                                            <td><a href="/leads/edit/{{$lead->id}}" style="display:inline-block;width:15%">  Convert</a>
+                                            </div></td>
                                             <td><a href="/leads/edit/{{$lead->id}}">{{$lead->first_name}} {{$lead->last_name}}</a></td>
                                             <td >
                                                 <div style="background: #0D3745;
@@ -114,8 +116,16 @@
                                             <td>{{$lead->fax}}</td>
                                             <td>
                                               <div class="row">
+                                                <div class="col-2">
+
                                               <a href="/leads/edit/{{$lead->id}}" style="display:inline-block;width:15%">  <button class="ml-1"><img src="./assets/images/table-edit.svg"/></button></a>
-                                              <a  href="/leads/delete/{{$lead->id}}" style="display:inline-block;width:15%">X</a>
+                                                </div>
+                                                <div class="col-2">
+
+
+                                              <div class="col-8">
+                                              <a  href="/leads/delete/{{$lead->id}}"  style="display:inline-block;width:15%;text-align: right;color: red;">X</a>
+                                            </div>
                                             </div>
                                             </td>
                                         </tr>

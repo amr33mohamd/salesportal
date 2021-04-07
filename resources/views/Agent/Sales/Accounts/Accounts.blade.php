@@ -43,8 +43,6 @@
                         </div>
                         <div class="row m-0">
                             <ul class="admin-table-info">
-                                <li class="mr-1">Viewing ({{$leads->count()}})</li>
-                                <li>Record (s)</li>
                             </ul>
                         </div>
                     </div>
@@ -54,7 +52,7 @@
                                     src="./assets/images/table-add.svg">Add</a>
                             <button id="filter" class="admin-table-btn mr-3"><img class="mr-2"
                                     src="./assets/images/table-filter.svg">Filter</button>
-                            <button class="admin-table-btn mr-3"><img class="mr-2"
+                            <button class="admin-table-btn mr-3" id="export"><img class="mr-2"
                                     src="./assets/images/table-export.svg">Export</button>
                             <a href="./step-1.html" class="admin-table-btn mr-3"><img class="mr-2"
                                     src="./assets/images/table-import.svg">Import</a>
@@ -93,10 +91,10 @@
 
                                             <td>
                                                 <div class="select">
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" id="select">
                                                 </div>
                                             </td>
-                                            <td><a href="/accounts/edit/{{$lead->id}}">{{$lead->first_name}} {{$lead->last_name}}</a></td>
+                                            <td><a href="/accounts/profile/{{$lead->id}}">{{$lead->first_name}} {{$lead->last_name}}</a></td>
                                             <td >
                                                 <div style="background: #0D3745;
     padding: 5px 10px;
@@ -114,10 +112,15 @@
                                             <td>{{$lead->fax}}</td>
                                             <td>
                                               <div class="row">
-                                              <a href="/accounts/edit/{{$lead->id}}" style="display:inline-block;width:15%">  <button class="ml-1"><img src="./assets/images/table-edit.svg"/></button></a>
-                                              <a  href="/accounts/delete/{{$lead->id}}" style="display:inline-block;width:15%">X</a>
-                                              <a href="/accounts/profile/{{$lead->id}}" style="display:inline-block;width:15%">  <button class="ml-1"><img src="./assets/images/user-outline.svg"/></button></a>
-
+                                                <div class="col-8">
+                                                    <a href="/accounts/edit/{{$lead->id}}" style="display:inline-block;width:15%" >  <button class="ml-1"><img src="./assets/images/table-edit.svg"/></button></a>
+                                                </div>
+                                                <div class="col-4">
+                                                  <a  href="/accounts/delete/{{$lead->id}}" style="display:inline-block;width:15%;text-align: right;color: red;">X</a>
+                                                </div>
+                                              <!-- <div class="col-4">
+                                                <a href="/accounts/profile/{{$lead->id}}" >  <button class="ml-1"><img src="./assets/images/user-outline.svg"/></button></a>
+                                              </div> -->
                                             </div>
                                             </td>
                                         </tr>
@@ -142,6 +145,13 @@
 
 @endsection
 @push('scripts')
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+
 <script>
 $(document).ready(function() {
 
@@ -183,7 +193,31 @@ $('.filter').toggle(
 var table = $('#example').DataTable( {
     orderCellsTop: true,
     fixedHeader: false,
-    searching:true
+    searching:true,
+    dom: 'Bfrtip',
+       buttons: [
+           'copy',
+           'csv',
+           'excel',
+           'pdf',
+           {
+               extend: 'print',
+               exportOptions: {
+                               orthogonal: 'sort'
+                           }
+           }
+       ],
+       columnDefs: [{
+       targets:[0,5],
+       render: function(data, type, row, meta){
+          if(type === 'sort'){
+             var $input = $(data).find('input[type="checkbox"]').addBack();
+             data = ($input.prop('checked')) ? "1" : "0";
+          }
+
+          return data;
+       }
+    }]
 } );
 
 } );

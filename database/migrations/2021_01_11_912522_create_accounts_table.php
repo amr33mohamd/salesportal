@@ -65,6 +65,20 @@ class CreateAccountsTable extends Migration
             $table->foreign('hear_about_us_id')->references('id')->on('hear_about_uses')->onDelete('set null');
             $table->string('city')->nullable();
             $table->integer('maritial_status')->nullable();
+
+            $table->integer('points_age')->nullable();
+            $table->integer('points_english')->nullable();
+            $table->integer('points_overseases')->nullable();
+            $table->integer('points_incountry')->nullable();
+            $table->integer('points_education_qualifications')->nullable();
+            $table->integer('points_specialist_education_qualifications')->nullable();
+            $table->integer('points_study_requiments')->nullable();
+            $table->integer('points_professional_year')->nullable();
+            $table->integer('points_credentialled_community_language')->nullable();
+            $table->integer('points_study_in_regional')->nullable();
+            $table->integer('points_partner_skills')->nullable();
+            $table->integer('points')->nullable();
+
             $table->string('traffic_ip')->nullable();
             $table->string('country')->nullable();
             $table->date('booking_date')->nullable();
@@ -84,6 +98,19 @@ class CreateAccountsTable extends Migration
             $table->string('shipping_state')->nullable();
             $table->string('shipping_postal_code')->nullable();
             $table->string('employees')->nullable();
+
+            $table->string('surname')->nullable();
+            $table->string('given_names')->nullable();
+            $table->string('preferred_name')->nullable();
+            $table->string('home_telephone')->nullable();
+            $table->string('work_telephone')->nullable();
+            $table->string('prefered_email')->nullable();
+            $table->string('alternative_email')->nullable();
+            $table->date('last_contact')->nullable();
+            $table->string('category')->nullable();
+            $table->string('matter_type')->nullable();
+            $table->string('description')->nullable();
+
             $table->string('email_type')->nullable();
             $table->unsignedBigInteger('lead_id')->unsigned()->nullable();
             $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');

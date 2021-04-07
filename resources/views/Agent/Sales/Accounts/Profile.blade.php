@@ -705,7 +705,7 @@
                                     </div>
                                     <!-- Modal End -->
                                     <div class="row my-3 attachment-row">
-                                      @if($account->attachments->count() == 0)
+                                      @if($account->assiegned_attachments->count() == 0)
                                       <p>No Attachments Uploaded</p>
                                       @else
                                       @foreach($account->assiegned_attachments as $attachment)

@@ -43,7 +43,7 @@
                     <div class="card-box my-3 px-2 py-3">
                         <div class="row setting-title-box px-2 mb-3">
                             <div class="col">
-                                <h2>BMS Office</h2>
+                                <h2>Basic Info</h2>
                             </div>
                         </div>
                         <div class="setting-form-box">
@@ -83,9 +83,7 @@
                                                     <label for="lead-2" class="form-field__label">Lead Assignment Date</label>
                                                     <input name="assignment_date" value="{{old('assignment_date',$lead->assignment_date)}}" id="lead-2" type="date" class="form-field__input"
                                                         placeholder="DD/MM/YYYY" />
-                                                    <div class="form-dropdown-icon">
-                                                        <img src="/assets/images/form-calendar.svg" />
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -136,7 +134,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-6" class="form-field__label">Booking Date</label>
-                                                    <input id="lead-3" value="{{old('booking_date',$lead->booking_date)}}" name="booking_date" type="date" type="text" class="form-field__input"
+                                                    <input id="lead-6" value="{{old('booking_date',$lead->booking_date)}}" name="booking_date" type="date" type="text" class="form-field__input"
                                                         placeholder="Follow up Date" />
                                                 </div>
                                             </div>
@@ -147,21 +145,139 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-7" class="form-field__label">Message</label>
-                                                    <input id="lead-7" value="{{old('message',$lead->message)}}" name="message" type="text" class="form-field__input"
-                                                        placeholder="Message" value="333" />
+                                                    <textarea id="lead-7" value="{{old('message',$lead->message)}}" name="message" type="text" class="form-field__input"
+                                                        placeholder="Message" style="height: 47px" ></textarea>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 px-2">
+                                        <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-8" class="form-field__label">Preferred Office Location</label>
-                                                    <input id="lead-7" value="{{old('prefered_office_location',$lead->prefered_office_location)}}" name="prefered_office_location" type="text" class="form-field__input"
+                                                    <input id="lead-8" value="{{old('prefered_office_location',$lead->prefered_office_location)}}" name="prefered_office_location" type="text" class="form-field__input"
                                                         placeholder="Preferred Office Location" />
 
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                        <div class="col-lg px-2">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label for="lead-9" class="form-field__label">Given names</label>
+                                                    <input id="lead-9" value="{{old('given_names',$lead->given_names)}}" name="given_names" type="text" class="form-field__input"
+                                                        placeholder="Given names" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mx-0">
+                                        <div class="col-lg px-2">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label for="lead-10" class="form-field__label">Surname</label>
+                                                    <input id="lead-10" value="{{old('surname',$lead->surname)}}" name="surname" type="text" class="form-field__input"
+                                                        placeholder="surname"  >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg px-2">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label for="lead-11" class="form-field__label">Prefered Email</label>
+                                                    <input id="lead-11" value="{{old('prefered_email',$lead->prefered_email)}}" name="prefered_email" type="email" class="form-field__input"
+                                                        placeholder="prefered email"  >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg px-2">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label for="lead-12" class="form-field__label">Preferred Name</label>
+                                                    <input id="lead-12" value="{{old('preferred_name',$lead->preferred_name)}}" name="preferred_name" type="text" class="form-field__input"
+                                                        placeholder="Preferred Name" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg px-2">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label for="lead-13" class="form-field__label">Home Telephone</label>
+                                                    <input id="lead-13" value="{{old('home_telephone',$lead->home_telephone)}}" name="home_telephone" type="text" class="form-field__input"
+                                                        placeholder="Home Telephone" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg px-2">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label for="lead-14" class="form-field__label">Work Telephone</label>
+                                                    <input id="lead-14" value="{{old('work_telephone',$lead->work_telephone)}}" name="work_telephone" type="text" class="form-field__input"
+                                                        placeholder="Home Telephone" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg px-2">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label for="lead-15" class="form-field__label">Alternative Email</label>
+                                                    <input id="lead-15" value="{{old('alternative_email',$lead->alternative_email)}}" name="alternative_email" type="email" class="form-field__input"
+                                                        placeholder="Alternative Email" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mx-0">
+                                        <div class="col-lg px-2">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label for="lead-16" class="form-field__label">last contact</label>
+                                                    <input id="lead-16" value="{{old('last_contact',$lead->last_contact)}}" name="last_contact" type="date" class="form-field__input"
+                                                        placeholder="last contact"  >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg px-2">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label for="lead-17" class="form-field__label">category</label>
+                                                    <input id="lead-17" value="{{old('category',$lead->category)}}" name="category" type="text" class="form-field__input"
+                                                        placeholder="category"  >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg px-2">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label for="lead-18" class="form-field__label">Matter type</label>
+                                                    <input id="lead-18" value="{{old('matter_type',$lead->matter_type)}}" name="matter_type" type="text" class="form-field__input"
+                                                        placeholder="Matter type" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg px-2">
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label for="lead-19" class="form-field__label">description</label>
+                                                    <input id="lead-19" value="{{old('description',$lead->description)}}" name="description" type="text" class="form-field__input"
+                                                        placeholder="description" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="col-lg px-2">
 
                                         </div>
@@ -188,7 +304,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-20" class="form-field__label">Applicant Title</label>
-                                                    <input id="lead-7" value="{{old('title',$lead->title)}}" name="title" type="text" class="form-field__input"
+                                                    <input id="lead-20" value="{{old('title',$lead->title)}}" name="title" type="text" class="form-field__input"
                                                         placeholder="Applicant Title" />
 
 
@@ -226,7 +342,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-24" class="form-field__label">Your Current Location</label>
-                                                    <input name="current_location" value="{{old('current_location',$lead->current_location)}}" id="lead-23" type="text" class="form-field__input"
+                                                    <input name="current_location" value="{{old('current_location',$lead->current_location)}}" id="lead-24" type="text" class="form-field__input"
                                                         placeholder="Current Location" />
                                                 </div>
                                             </div>
@@ -235,7 +351,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-25" class="form-field__label">Email</label>
-                                                    <input name="email" value="{{old('email',$lead->email)}}" id="lead-25" type="text" class="form-field__input"
+                                                    <input name="email" value="{{old('email',$lead->email)}}" id="lead-25" type="email" class="form-field__input"
                                                         placeholder="Email" />
                                                 </div>
                                             </div>
@@ -246,7 +362,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-26" class="form-field__label">Country Code</label>
-                                                    <input name="country_code" value="{{old('country_code',$lead->country_code)}}" id="lead-25" type="text" class="form-field__input"
+                                                    <input name="country_code" value="{{old('country_code',$lead->country_code)}}" id="lead-26" type="text" class="form-field__input"
                                                         placeholder="Country Code" />
                                                 </div>
                                             </div>
@@ -339,8 +455,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-37" class="form-field__label">Number of Applicants</label>
-                                                    <input name="no_of_applicants" value="{{old('no_of_applicants',$lead->no_of_applicants)}}" id="lead-37" type="text" class="form-field__input"
+                                                    <label for="lead-35" class="form-field__label">Number of Applicants</label>
+                                                    <input name="no_of_applicants" value="{{old('no_of_applicants',$lead->no_of_applicants)}}" id="lead-35" type="text" class="form-field__input"
                                                         placeholder="Number of Applicants" />
                                                 </div>
                                             </div>
@@ -440,8 +556,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-41" class="form-field__label">Traffic Source</label>
-                                                    <select name="traffic_source_id" id="lead-41" name="country" class="form-field__input">
+                                                    <label for="lead-40" class="form-field__label">Traffic Source</label>
+                                                    <select name="traffic_source_id" id="lead-40" name="country" class="form-field__input">
                                                       <option value=""  >N/A</option>
 
                                                       @foreach($sources as $source)
@@ -457,8 +573,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-42" class="form-field__label">Traffic Medium</label>
-                                                    <select name="traffic_medium_id" id="lead-42" name="country" class="form-field__input">
+                                                    <label for="lead-41" class="form-field__label">Traffic Medium</label>
+                                                    <select name="traffic_medium_id" id="lead-41" name="country" class="form-field__input">
                                                       <option value=""  >N/A</option>
 
                                                       @foreach($mediums as $medium)
@@ -474,8 +590,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-43" class="form-field__label">Traffic Campaign</label>
-                                                    <input value="{{old('traffic_campaign',$lead->traffic_campaign)}}" name="traffic_campaign" id="lead-43" type="text" class="form-field__input"
+                                                    <label for="lead-42" class="form-field__label">Traffic Campaign</label>
+                                                    <input value="{{old('traffic_campaign',$lead->traffic_campaign)}}" name="traffic_campaign" id="lead-42" type="text" class="form-field__input"
                                                         placeholder="Traffic Campaign" />
                                                 </div>
                                             </div>
@@ -483,8 +599,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-44" class="form-field__label">Traffic Content</label>
-                                                    <input value="{{old('traffic_content',$lead->traffic_content)}}" name="traffic_content" id="lead-44" type="text" class="form-field__input"
+                                                    <label for="lead-43" class="form-field__label">Traffic Content</label>
+                                                    <input value="{{old('traffic_content',$lead->traffic_content)}}" name="traffic_content" id="lead-43" type="text" class="form-field__input"
                                                         placeholder="Traffic Content" />
                                                 </div>
                                             </div>
@@ -492,8 +608,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-45" class="form-field__label">Traffic IP</label>
-                                                    <input value="{{old('traffic_ip',$lead->traffic_ip)}}" name="traffic_ip" id="lead-45" type="text" class="form-field__input"
+                                                    <label for="lead-44" class="form-field__label">Traffic IP</label>
+                                                    <input value="{{old('traffic_ip',$lead->traffic_ip)}}" name="traffic_ip" id="lead-44" type="text" class="form-field__input"
                                                         placeholder="Traffic IP" />
                                                 </div>
                                             </div>
@@ -501,8 +617,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-46" class="form-field__label">Traffic URL</label>
-                                                    <input value="{{old('traffic_url',$lead->traffic_url)}}" name="traffic_url" id="lead-46" type="text" class="form-field__input"
+                                                    <label for="lead-45" class="form-field__label">Traffic URL</label>
+                                                    <input value="{{old('traffic_url',$lead->traffic_url)}}" name="traffic_url" id="lead-45" type="text" class="form-field__input"
                                                         placeholder="Traffic URL" />
                                                 </div>
                                             </div>
@@ -529,7 +645,7 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-47" class="form-field__label">Company</label>
+                                                    <label for="lead-46" class="form-field__label">Company</label>
                                                     <input value="{{old('company',$lead->company)}}" name="company" id="lead-46" type="text" class="form-field__input"
                                                         placeholder="Company" />
 
@@ -539,8 +655,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-58" class="form-field__label">Appointment Date Time</label>
-                                                    <input value="{{old('appointment_date',$lead->appointment_date)}}" id="lead-58"  name="appointment_date" type="date" class="form-field__input"
+                                                    <label for="lead-47" class="form-field__label">Appointment Date Time</label>
+                                                    <input value="{{old('appointment_date',$lead->appointment_date)}}" id="lead-47"  name="appointment_date" type="date" class="form-field__input"
                                                         placeholder="Appointment Date Time" />
                                                 </div>
                                             </div>
@@ -549,7 +665,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-48" class="form-field__label">Secondary Email</label>
-                                                    <input value="{{old('secondary_email',$lead->secondary_email)}}" name="secondary_email" id="lead-48" type="text" class="form-field__input"
+                                                    <input value="{{old('secondary_email',$lead->secondary_email)}}" name="secondary_email" id="lead-48" type="email" class="form-field__input"
                                                         placeholder="Secondary Email" />
                                                 </div>
                                             </div>
@@ -559,8 +675,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-51" class="form-field__label">Country</label>
-                                                    <input value="{{old('country',$lead->country)}}" name="country" id="lead-48" type="text" class="form-field__input"
+                                                    <label for="lead-49" class="form-field__label">Country</label>
+                                                    <input value="{{old('country',$lead->country)}}" name="country" id="lead-49" type="text" class="form-field__input"
                                                         placeholder="Country" />
 
                                                 </div>
@@ -569,8 +685,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-52" class="form-field__label">Resume Received</label>
-                                                    <select id="lead-53" name="resume_recieved" class="form-field__input">
+                                                    <label for="lead-50" class="form-field__label">Resume Received</label>
+                                                    <select id="lead-50" name="resume_recieved" class="form-field__input">
                                                       <option value=""  >N/A</option>
                                                         <option @if(old('resume_recieved',$lead->resume_recieved) == '1' ) selected @endif value="1">yes</option>
                                                         <option @if(old('resume_recieved',$lead->resume_recieved) == '2' ) selected @endif value="2">no</option>
@@ -584,8 +700,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                               <div class="form-field__control">
-                                                  <label for="lead-56" class="form-field__label">Resume ID</label>
-                                                  <input value="{{old('resume_id',$lead->resume_id)}}" id="lead-56" name="resume_id" type="text" class="form-field__input"
+                                                  <label for="lead-51" class="form-field__label">Resume ID</label>
+                                                  <input value="{{old('resume_id',$lead->resume_id)}}" id="lead-51" name="resume_id" type="text" class="form-field__input"
                                                       placeholder="Resume ID" />
                                               </div>
                                             </div>
@@ -595,8 +711,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-53" class="form-field__label">Industry</label>
-                                                    <select name="industry_id" id="lead-53"  class="form-field__input">
+                                                    <label for="lead-52" class="form-field__label">Industry</label>
+                                                    <select name="industry_id" id="lead-52"  class="form-field__input">
                                                       <option value=""  >N/A</option>
 
                                                       @foreach($industries as $industry)
@@ -612,8 +728,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="lead-54" class="form-field__label">Currency</label>
-                                                    <select id="lead-54" name="currency_id" class="form-field__input">
+                                                    <label for="lead-53" class="form-field__label">Currency</label>
+                                                    <select id="lead-53" name="currency_id" class="form-field__input">
                                                       <option value=""  >N/A</option>
 
                                                       @foreach($currancies as $curancy)
@@ -629,8 +745,8 @@
                                         <div class="col-lg px-2">
                                           <div class="form-field">
                                               <div class="form-field__control">
-                                                  <label for="lead-48" class="form-field__label">Fax</label>
-                                                  <input value="{{old('fax',$lead->fax)}}" name="fax" id="lead-48" type="text" class="form-field__input"
+                                                  <label for="lead-54" class="form-field__label">Fax</label>
+                                                  <input value="{{old('fax',$lead->fax)}}" name="fax" id="lead-54" type="text" class="form-field__input"
                                                       placeholder="Fax" />
                                               </div>
                                           </div>

@@ -53,6 +53,22 @@ class CreateLeadsTable extends Migration
             $table->string('postal_code')->nullable();
             $table->integer('ielts')->nullable();
             $table->integer('age')->nullable();
+
+            $table->string('surname')->nullable();
+            $table->string('given_names')->nullable();
+            $table->string('preferred_name')->nullable();
+            $table->string('home_telephone')->nullable();
+            $table->string('work_telephone')->nullable();
+            $table->string('prefered_email')->nullable();
+            $table->string('alternative_email')->nullable();
+            $table->date('last_contact')->nullable();
+            $table->string('category')->nullable();
+            $table->string('matter_type')->nullable();
+            $table->string('description')->nullable();
+            $table->string('nominated_occupation')->nullable();
+            $table->string('ANZSCO_code')->nullable();
+
+
             $table->string('traffic_campaign')->nullable();
             $table->unsignedBigInteger('currency_id')->unsigned()->nullable();
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('set null');
