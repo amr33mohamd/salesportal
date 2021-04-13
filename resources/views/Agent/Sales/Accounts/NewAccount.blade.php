@@ -57,26 +57,7 @@
                                       </div>
                                       <div class="col px-2">
                                           <div class="row mx-0">
-                                              <div class="col-lg px-2">
-                                                  <div class="form-field">
-                                                      <div class="form-field__control">
-                                                          <label for="lead-1" class="form-field__label">Lead Owner</label>
-                                                          <select id="lead-1" name="lead_owner" class="form-field__input">
-                                                            <option value=""  >N/A</option>
-                                                              <option value="Administrator" @if(old('lead_owner',$lead->lead_owner) == 'Administrator' ) selected @endif >Administrator</option>
-                                                              <option value="FBP DWC"@if(old('lead_owner',$lead->lead_owner) == 'FBP DWC' ) selected @endif >FBP DWC</option>
-                                                              <option value="FBP Sales" @if(old('lead_owner',$lead->lead_owner) == 'FBP Sales' ) selected @endif>FBP Sales</option>
-                                                              <option value="FBP Universal" @if(old('lead_owner',$lead->lead_owner) == 'FBP Universal' ) selected @endif>FBP Universal</option>
-                                                              <option value="FBP Malaysia" @if(old('lead_owner',$lead->lead_owner) == 'FBP Malaysia' ) selected @endif>FBP Malaysia</option>
 
-                                                              <option value="FBP user">FBP user</option>
-                                                          </select>
-                                                          <div class="form-dropdown-icon">
-                                                              <img src="/assets/images/form-drop-down.svg" />
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
                                               <div class="col-lg px-2">
                                                   <div class="form-field">
                                                       <div class="form-field__control">
@@ -100,7 +81,7 @@
                                                   <div class="form-field">
                                                       <div class="form-field__control">
                                                           <label for="lead-4" class="form-field__label">Lead Status</label>
-                                                          <select id="lead-4" name="status_id" class="form-field__input">
+                                                          <select id="lead-4" name="status_id" class="form-field__input" required>
                                                             <option value=""  >N/A</option>
 
                                                             @foreach($statuses as $status)

@@ -54,8 +54,7 @@
                                     src="./assets/images/table-filter.svg">Filter</button>
                             <button class="admin-table-btn mr-3" id="export"><img class="mr-2"
                                     src="./assets/images/table-export.svg">Export</button>
-                            <a href="./step-1.html" class="admin-table-btn mr-3"><img class="mr-2"
-                                    src="./assets/images/table-import.svg">Import</a>
+                            
                             <div class="table-search">
                                 <img src="./assets/images/table-search.svg">
                                 <input id="myInputTextField" value="" type="text" placeholder="Search …">
@@ -81,6 +80,11 @@
                                             <th scope="col">Email</th>
                                             <th scope="col">Home Phone</th>
                                             <th scope="col">Fax</th>
+                                            <th scope="col">Follow Up</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Secondary Email</th>
+                                            <th scope="col">Age</th>
+
                                             <th scope="col">Actions</th>
 
                                         </tr>
@@ -110,10 +114,18 @@
 
                                             <td>{{$lead->contact_number}}</td>
                                             <td>{{$lead->fax}}</td>
+                                            <td>{{$lead->follow_up}}</td>
+                                            <td>{{$lead->gender}}</td>
+                                            <td>{{$lead->secondary_email}}</td>
+                                            <td>{{$lead->age}}</td>
+
                                             <td>
                                               <div class="row">
-                                                <div class="col-8">
+                                                <div class="col-4">
                                                     <a href="/accounts/edit/{{$lead->id}}" style="display:inline-block;width:15%" >  <button class="ml-1"><img src="./assets/images/table-edit.svg"/></button></a>
+                                                </div>
+                                                <div class="col-4">
+                                                    <a href="/member/new/{{$lead->id}}" style="display:inline-block;width:15%" >  <img src="./assets/images/user-outline.svg" class="mr-2"></a>
                                                 </div>
                                                 <div class="col-4">
                                                   <a  href="/accounts/delete/{{$lead->id}}" style="display:inline-block;width:15%;text-align: right;color: red;">X</a>
@@ -200,24 +212,9 @@ var table = $('#example').DataTable( {
            'csv',
            'excel',
            'pdf',
-           {
-               extend: 'print',
-               exportOptions: {
-                               orthogonal: 'sort'
-                           }
-           }
-       ],
-       columnDefs: [{
-       targets:[0,5],
-       render: function(data, type, row, meta){
-          if(type === 'sort'){
-             var $input = $(data).find('input[type="checkbox"]').addBack();
-             data = ($input.prop('checked')) ? "1" : "0";
-          }
 
-          return data;
-       }
-    }]
+       ],
+
 } );
 
 } );

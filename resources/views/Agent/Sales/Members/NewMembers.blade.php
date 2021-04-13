@@ -38,7 +38,7 @@
     <!-- Form box Start -->
     <div class="setting-box">
         <div class="container-fluid">
-          <form method="post" action="@if($type == 'add') {{route('NewMemberAction')}} @else /members/edit/action/{{$lead->id}} @endif" >
+          <form method="post" action="@if($type == 'add') /member/new/action/{{$account_id}} @else /members/edit/action/{{$lead->id}} @endif" >
             @csrf
             <div class="row">
                 <div class="col-lg d-flex justify-content-end">
@@ -115,20 +115,7 @@
                                         </div>
                                     </div>
                                     <div class="row mx-0">
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <select id="contact-7" name="account_id" class="form-field__input js-example-basic-single">
-                                                      <option value=""  >Select Account Name</option>
 
-                                                      @foreach($accounts as $account)
-                                                        <option value="{{$account->id}}" @if(old('account_id',$lead->account_id) == $account->id ) selected @endif>{{$account->first_name}} {{$account->last_name}}</option>
-                                                        @endforeach
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         <div class="col-lg px-2">
                                             <div class="form-field">
@@ -224,10 +211,7 @@
                                 <div class="d-flex justify-content-Start align-items-center">
                                     <h2>Shipping Address</h2>
                                     <div class="form-field other-field ml-3 mb-0">
-                                        <div class="form-field__control d-flex align-items-center">
-                                            <input name="last_name" value="{{old('last_name',$lead->last_name)}}" id="contact-11" type="checkbox" class="m-0 mr-2">
-                                            <label for="contact-11" class="form-field__label m-0">Same as Billing Address</label>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

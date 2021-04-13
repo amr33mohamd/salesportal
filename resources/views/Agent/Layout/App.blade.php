@@ -53,23 +53,9 @@ display: none;
                     </form>
                 </div>
                 <div class="d-flex align-items-center top-right-header">
-                    <div class="country-flag mr-4">
-                        <img src="/assets/images/united-states.svg" />
-                        <div class="country-flag-menu">
-                            <div class="card-box">
-                                <ul>
-                                    <li><a href="#"><img src="/assets/images/united-states.svg" /></a></li>
-                                    <li><a href="#"><img src="/assets/images/united-states.svg" /></a></li>
-                                    <li><a href="#"><img src="/assets/images/united-states.svg" /></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="header-notification mr-4">
-                        <div class="notification-icon-box">
-                            <img src="/assets/images/notification.svg">
-                            <span>2</span>
-                        </div>
+
                         <div class="notificatin-list-box">
                             <div class="card-box w-100 p-3">
                                 <div class="notification-list">

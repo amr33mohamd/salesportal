@@ -164,7 +164,7 @@
                                                 <div class="form-field__control">
                                                     <label for="8" class="form-field__label">Referals Link</label>
                                                     <input id="8" type="text" class="form-field__input"
-                                                        value="http://www.fbpsales.com/id={{$user->id}}" />
+                                                        value="{{ url('/')}}/register?id={{$user->id}}" />
                                                 </div>
                                             </div>
                                         </div>

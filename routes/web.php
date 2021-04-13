@@ -60,6 +60,7 @@ Route::get('/lead/new', [App\Http\Controllers\Agent\LeadsController::class, 'add
 Route::post('/lead/new/action', [App\Http\Controllers\Agent\LeadsController::class, 'add'])->name('NewLeadAction');
 
 Route::get('/leads/delete/{id}', [App\Http\Controllers\Agent\LeadsController::class, 'delete'])->name('DeleteLead');
+Route::get('/leads/convert/{id}', [App\Http\Controllers\Agent\LeadsController::class, 'convert'])->name('ConvertLead');
 
 
 ////////////////////
@@ -88,8 +89,8 @@ Route::get('/members', [App\Http\Controllers\Agent\ContactsController::class, 'i
 Route::get('/members/edit/{id}', [App\Http\Controllers\Agent\ContactsController::class, 'editScreen'])->name('EditMember');
 Route::post('/members/edit/action/{id}', [App\Http\Controllers\Agent\ContactsController::class, 'edit'])->name('EditMemberAction');
 
-Route::get('/member/new', [App\Http\Controllers\Agent\ContactsController::class, 'addScreen'])->name('NewMember');
-Route::post('/member/new/action', [App\Http\Controllers\Agent\ContactsController::class, 'add'])->name('NewMemberAction');
+Route::get('/member/new/{account_id}', [App\Http\Controllers\Agent\ContactsController::class, 'addScreen']);
+Route::post('/member/new/action/{account_id}', [App\Http\Controllers\Agent\ContactsController::class, 'add'])->name('NewMemberAction');
 
 Route::get('/members/delete/{id}', [App\Http\Controllers\Agent\ContactsController::class, 'delete'])->name('DeleteMember');
 

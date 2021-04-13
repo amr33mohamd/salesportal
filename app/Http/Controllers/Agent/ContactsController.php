@@ -21,14 +21,14 @@ class ContactsController extends Controller
 
       $accounts = accounts::query()->where('user_id',$user->id)->get();
 
-      return view('Agent.Sales.Members.NewMembers',['lead'=>$lead,'type'=>'edit','accounts'=>$accounts]);
+      return view('Agent.Sales.Members.NewMembers',['lead'=>$lead,'type'=>'edit','accounts'=>$accounts,'account_id'=>$request->account_id]);
 
     }
     public function addScreen(Request $request){
       $lead =new contacts;
       $user = Auth::user();
       $accounts = accounts::query()->where('user_id',$user->id)->get();
-      return view('Agent.Sales.Members.NewMembers',['lead'=>$lead,'type'=>'add','accounts'=>$accounts]);
+      return view('Agent.Sales.Members.NewMembers',['lead'=>$lead,'type'=>'add','accounts'=>$accounts,'account_id'=>$request->account_id]);
 
     }
 
@@ -45,8 +45,9 @@ class ContactsController extends Controller
     public function add(Request $request){
       $leads = contacts::all();
       $data = $request->all();
-
-      $add = contacts::query()->create(array_merge(array_filter($data)));
+// return $request->account_id;
+      $add = contacts::query()->create(array_merge(array_filter($data),['account_id'=>$request->account_id]));
+      // return $add;
       return redirect('/members');
 
     }

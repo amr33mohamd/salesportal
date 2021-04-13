@@ -43,21 +43,18 @@
                         </div>
                         <div class="row m-0">
                             <ul class="admin-table-info">
-                                <li class="mr-1">Viewing ({{$leads->count()}})</li>
-                                <li>Record (s)</li>
+
                             </ul>
                         </div>
                     </div>
                     <div class="col admin-table-filter-box">
                         <div class="admin-table-filter d-flex justify-content-end align-items-center">
-                            <a href="{{route('NewMember')}}" class="admin-table-btn admin-table-btn-add mr-3"><img class="mr-2"
-                                    src="./assets/images/table-add.svg">Add</a>
+
                             <button id="filter" class="admin-table-btn mr-3"><img class="mr-2"
                                     src="./assets/images/table-filter.svg">Filter</button>
                             <button class="admin-table-btn mr-3"><img class="mr-2"
                                     src="./assets/images/table-export.svg">Export</button>
-                            <a href="./step-1.html" class="admin-table-btn mr-3"><img class="mr-2"
-                                    src="./assets/images/table-import.svg">Import</a>
+
                             <div class="table-search">
                                 <img src="./assets/images/table-search.svg">
                                 <input id="myInputTextField" value="" type="text" placeholder="Search …">
@@ -108,8 +105,14 @@
                                             <td>{{$lead->email}}</td>
                                             <td>
                                               <div class="row">
+                                                <div class="col-8">
+
                                               <a href="/members/edit/{{$lead->id}}" style="display:inline-block;width:15%">  <button class="ml-1"><img src="./assets/images/table-edit.svg"/></button></a>
-                                              <a  href="/members/delete/{{$lead->id}}" style="display:inline-block;width:15%">X</a>
+                                            </div>
+                                            <div class="col-4">
+
+                                              <a  href="/members/delete/{{$lead->id}}" style="display:inline-block;width:15%;color:red">X</a>
+                                            </div>
                                             </div>
                                             </td>
                                         </tr>

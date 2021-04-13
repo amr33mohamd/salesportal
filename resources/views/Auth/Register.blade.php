@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>FPB</title>
+    <title>Vdc</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- style css -->
@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="auth-title mb-2">
                                     <h2 class="mb-1">Sign Up</h2>
-                                    <h3 class="mb-0">Get started with the FBP Sales Portal</h3>
+                                    <h3 class="mb-0">Get started with the Sales Portal</h3>
                                 </div>
                                 <div class="auth-form">
                                     <form novalidate method="POST" action="{{ route('register_response') }}">

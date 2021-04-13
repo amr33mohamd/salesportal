@@ -101,7 +101,7 @@ return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'sources'=>$sources
     }
     $edit = accounts::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
 
-    return redirect('/accounts');
+    return back();
 
   }
   public function add(Request $request){

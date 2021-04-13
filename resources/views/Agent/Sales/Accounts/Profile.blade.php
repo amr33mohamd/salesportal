@@ -3,7 +3,7 @@
 
 @section('content')
 
-<main class="pb-3">
+<main class="pb-3" id="app">
     <!-- Page Title and Breadcrumb Start -->
     <div class="page-title-breadcrumb my-3">
         <div class="container-fluid">
@@ -26,7 +26,7 @@
     </div>
     <!-- Page Title and Breadcrumb End -->
 
-    <div class="profile-box">
+    <div class="profile-box" style="margin-bottom:50px">
         <div class="container-fluid">
             <div class="card-box p-3">
                 <div class="row">
@@ -136,15 +136,10 @@
                                     <button class="btn ml-2"><img src="/assets/images/add-icon.svg"
                                             class="mr-1">Add
                                         Notes</button>
-                                    <button class="btn ml-2"><img src="/assets/images/view-invoices-icon.svg"
-                                            class="mr-1">View
-                                        Invoices</button>
+
                                 </div>
                                 <div class="profile-price-box">
-                                    <ul>
-                                        <li class="ml-3 mt-2"><span class="mr-1">Due</span>$2345</li>
-                                        <li class="ml-3 mt-2"><span class="mr-1">Paid</span>$45.54</li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -154,7 +149,7 @@
         </div>
     </div>
 
-    <section class="profile-strength my-3">
+    <!-- <section class="profile-strength my-3">
         <div class="container-fluid">
             <div class="card-box p-3">
                 <div class="row">
@@ -187,11 +182,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <section class="profile-content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 mb-3">
+                <div class="col-md-8 mb-3">
                     <div class="card-box p-3">
                         <div class="tab-h-box">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -361,7 +356,7 @@
                                                         <div class="row mt-1">
                                                             <div class="col-lg">
                                                                 <h3>Nationality</h3>
-                                                                <h2>{{($account->nationality) ? $account->nationality :'N/A'}}</h2>
+                                                                <h2>{{($account->nationality) ? $account->nationality->name :'N/A'}}</h2>
                                                             </div>
                                                             <div class="col-lg">
                                                                 <h3>State</h3>
@@ -457,28 +452,33 @@
                                 <div class="tab-pane fade" id="assessments" role="tabpanel"
                                     aria-labelledby="assessments-tab">
                                     <div class="question-answer p-0">
+                                      <form method="post" action="/accounts/edit/action/{{$account->id}}"  enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-lg d-flex justify-content-end">
+                                                <a href="#" class="btn-admin-default">Cancel</a>
+                                                <button type="submit" class="btn-admin-primary ml-3">Save</a>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="points" value="@{{points}}"/>
                                         <div class="row">
                                             <div class="col-auto">
                                                 <div class="assessments-box">
                                                     <div class="assessments-user-name">
                                                         <img src="/assets/images/profile-icon.svg"
-                                                            class="mr-2">Visa Subclass
+                                                            class="mr-2">Educational
                                                     </div>
-                                                    <div class="assessments-user-question">Which of the following
-                                                        subclasses are you applying for?</div>
-                                                    <div id="accordion" class="answer-accordion">
-                                                        <div id="test1">
-                                                            <button data-toggle="collapse" data-target="#question1"
-                                                                aria-expanded="true" aria-controls="question1">
-                                                                Skilled Independent Subclass 189
-                                                                <span></span>
-                                                            </button>
-                                                        </div>
-                                                        <div id="question1" class="collapse answer-text"
-                                                            aria-labelledby="test1" data-parent="#accordion">
-                                                            Skilled Independent Subclass 189
-                                                        </div>
-                                                    </div>
+                                                    <div class="assessments-user-question">Educational qualifications</div>
+                                                    <select  id="lead-82" previous="0" name="points_education_qualifications" class="form-field__input points">
+                                                      <option value="" points="0"  >N/A</option>
+
+                                                        <option @if(old('points_education_qualifications',$account->points_education_qualifications) == 1 ) selected @endif value="1" points="20">A Doctorate from the country educational institution or a Doctorate from another educational institution, that is of a recognised standard.</option>
+                                                        <option @if(old('points_education_qualifications',$account->points_education_qualifications) == 2 ) selected @endif value="2" points="15">At least a Bachelor degree from the country educational institution or at least a Bachelor qualification, from another educational institution, that is of a recognised standard.</option>
+                                                        <option @if(old('points_education_qualifications',$account->points_education_qualifications) == 3 ) selected @endif value="3" points="10">A diploma or trade qualification from the country educational institution.</option>
+                                                        <option @if(old('points_education_qualifications',$account->points_education_qualifications) == 4 ) selected @endif value="4" points="10">Attained a qualification or award recognised by the relevant assessing authority for your nominated skilled occupation as being suitable for that occupation.</option>
+
+
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -486,23 +486,112 @@
                                             <div class="col-auto">
                                                 <div class="assessments-box">
                                                     <div class="assessments-user-name">
-                                                        <img src="/assets/images/profile-icon.svg" class="mr-2">Age
+                                                        <img src="/assets/images/profile-icon.svg" class="mr-2">Specialist
                                                     </div>
-                                                    <div class="assessments-user-question">Which age band do you fit
-                                                        into?</div>
-                                                    <div id="accordion" class="answer-accordion">
-                                                        <div id="test2">
-                                                            <button data-toggle="collapse" data-target="#question2"
-                                                                aria-expanded="true" aria-controls="question2">
-                                                                18 to 24
-                                                                <span></span>
-                                                            </button>
-                                                        </div>
-                                                        <div id="question2" class="collapse answer-text"
-                                                            aria-labelledby="test2" data-parent="#accordion">
-                                                            18 to 24
-                                                        </div>
+                                                    <div class="assessments-user-question">Specialist education qualification</div>
+                                                    <select  id="lead-53" previous="0" name="points_specialist_education_qualifications" class="form-field__input points">
+                                                      <option value="" points="0"  >N/A</option>
+
+                                                        <option @if(old('points_specialist_education_qualifications',$account->points_specialist_education_qualifications) == 1 ) selected @endif value="1" points="10">A Masters degree by research or a Doctorate degree from the country educational institution that included at least 2 academic years study  in a relevant field.</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <div class="assessments-box">
+                                                    <div class="assessments-user-name">
+                                                        <img src="/assets/images/profile-icon.svg" class="mr-2">English language
                                                     </div>
+                                                    <div class="assessments-user-question">English language skills</div>
+                                                    <select  id="lead-90"  previous="0"name="points_english" class="form-field__input points">
+                                                      <option value="" points="0"  >N/A</option>
+
+                                                        <option @if(old('points_english',$account->points_english) == 1 ) selected @endif value="1" points="0">Competent English</option>
+                                                        <option @if(old('points_english',$account->points_english) == 2 ) selected @endif value="2" points="10">Proficient English</option>
+                                                        <option @if(old('points_english',$account->points_english) == 3 ) selected @endif value="3" points="20">Superior English</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <div class="assessments-box">
+                                                    <div class="assessments-user-name">
+                                                        <img src="/assets/images/profile-icon.svg" class="mr-2">Overseas skilled
+                                                    </div>
+                                                    <div class="assessments-user-question">Overseas skilled employment</div>
+                                                    <select  id="lead-51" previous="0" name="points_overseases" class="form-field__input points">
+                                                      <option value="" points="0"  >N/A</option>
+
+                                                        <option @if(old('points_overseases',$account->points_overseases) == 1 ) selected @endif value="1" points="0">Less than 3 years</option>
+                                                        <option @if(old('points_overseases',$account->points_overseases) == 2 ) selected @endif value="2" points="5">At least 3 but less than 5 years</option>
+                                                        <option @if(old('points_overseases',$account->points_overseases) == 3 ) selected @endif value="3" points="10">At least 5 but less than 8 years</option>
+                                                        <option @if(old('points_overseases',$account->points_overseases) == 4 ) selected @endif value="4" points="15">At least 8 years</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <div class="assessments-box">
+                                                    <div class="assessments-user-name">
+                                                        <img src="/assets/images/profile-icon.svg" class="mr-2">In Country skilled
+                                                    </div>
+                                                    <div class="assessments-user-question">In Country skilled employmen</div>
+                                                    <select  id="lead-52" previous="0" name="points_incountry" class="form-field__input points">
+                                                      <option value="" points="0"  >N/A</option>
+
+                                                        <option @if(old('points_incountry',$account->points_incountry) == 1 ) selected @endif value="1" points="0">Less than 1 year</option>
+                                                        <option @if(old('points_incountry',$account->points_incountry) == 2 ) selected @endif value="2" points="5">At least 1 but less than 3 years</option>
+                                                        <option @if(old('points_incountry',$account->points_incountry) == 3 ) selected @endif value="3" points="10">At least 3 but less than 5 years</option>
+                                                        <option @if(old('points_incountry',$account->points_incountry) == 4 ) selected @endif value="4" points="15">At least 5 but less than 8 years</option>
+                                                        <option @if(old('points_incountry',$account->points_incountry) == 5 ) selected @endif value="5" points="20">At least 8 years</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <div class="assessments-box">
+                                                    <div class="assessments-user-name">
+                                                        <img src="/assets/images/profile-icon.svg" class="mr-2">Specialist
+                                                    </div>
+                                                    <div class="assessments-user-question">Specialist education qualification</div>
+                                                    <select  id="lead-53" previous="0" name="points_specialist_education_qualifications" class="form-field__input points">
+                                                      <option value="" points="0"  >N/A</option>
+
+                                                        <option @if(old('points_specialist_education_qualifications',$account->points_specialist_education_qualifications) == 1 ) selected @endif value="1" points="10">A Masters degree by research or a Doctorate degree from the country educational institution that included at least 2 academic years study  in a relevant field.</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <div class="assessments-box">
+                                                    <div class="assessments-user-name">
+                                                        <img src="/assets/images/profile-icon.svg"
+                                                            class="mr-2">study requirement
+                                                    </div>
+                                                    <div class="assessments-user-question">study requirement</div>
+                                                    <select  id="lead-54" previous="0" name="points_study_requiments" class="form-field__input points">
+                                                    <option value="" points="0"  >N/A</option>
+
+                                                      <option @if(old('points_study_requiments',$account->points_study_requiments) == 1 ) selected @endif value="1" points="5">Meet the study requirement</option>
+
+
+                                                  </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -511,23 +600,16 @@
                                                 <div class="assessments-box">
                                                     <div class="assessments-user-name">
                                                         <img src="/assets/images/profile-icon.svg"
-                                                            class="mr-2">English Language Ability
+                                                            class="mr-2">Professional Year
                                                     </div>
-                                                    <div class="assessments-user-question">How would you rate your
-                                                        English language ability?</div>
-                                                    <div id="accordion" class="answer-accordion">
-                                                        <div id="test3">
-                                                            <button data-toggle="collapse" data-target="#question3"
-                                                                aria-expanded="true" aria-controls="question3">
-                                                                Proficient English
-                                                                <span></span>
-                                                            </button>
-                                                        </div>
-                                                        <div id="question3" class="collapse answer-text"
-                                                            aria-labelledby="test3" data-parent="#accordion">
-                                                            Proficient English
-                                                        </div>
-                                                    </div>
+                                                    <div class="assessments-user-question">Professional Year in country</div>
+                                                    <select  id="lead-55" previous="0" name="points_professional_year" class="form-field__input points">
+                                                      <option value=""  points="0"  >N/A</option>
+
+                                                        <option @if(old('points_professional_year',$account->points_professional_year) == 1 ) selected @endif value="1" points="5">Completion of a Professional Year in the country</option>
+
+
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -536,30 +618,16 @@
                                                 <div class="assessments-box">
                                                     <div class="assessments-user-name">
                                                         <img src="/assets/images/profile-icon.svg"
-                                                            class="mr-2">Australian Educational Qualification
+                                                            class="mr-2">Credentialled community
                                                     </div>
-                                                    <div class="assessments-user-question">Have you met the
-                                                        requirements for the award of degree, diploma, advanced
-                                                        diploma or trade qualification(s) which took at least 2
-                                                        years (92 weeks) of full-time study in Australia at an
-                                                        Australian institution?</div>
-                                                    <div id="accordion" class="answer-accordion">
-                                                        <div id="test4">
-                                                            <button data-toggle="collapse" data-target="#question4"
-                                                                aria-expanded="true" aria-controls="question4">
-                                                                Yes: Degree, diploma advanced diploma or trade
-                                                                qualification(s) taking at least 2 years of
-                                                                full-time study in Australia.
-                                                                <span></span>
-                                                            </button>
-                                                        </div>
-                                                        <div id="question4" class="collapse answer-text"
-                                                            aria-labelledby="test4" data-parent="#accordion">
-                                                            Yes: Degree, diploma advanced diploma or trade
-                                                            qualification(s) taking at least 2 years of full-time
-                                                            study in Australia.
-                                                        </div>
-                                                    </div>
+                                                    <div class="assessments-user-question">Credentialled community language</div>
+                                                    <select  id="lead-56" previous="0" name="points_credentialled_community_language" class="form-field__input points">
+                                                      <option value="" points="0"  >N/A</option>
+
+                                                        <option @if(old('points_credentialled_community_language',$account->points_credentialled_community_language) == 1 ) selected @endif value="1" points="5">Hold a recognised qualification in a credentialled community language</option>
+
+
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -568,23 +636,16 @@
                                                 <div class="assessments-box">
                                                     <div class="assessments-user-name">
                                                         <img src="/assets/images/profile-icon.svg"
-                                                            class="mr-2">Visa Subclass
+                                                            class="mr-2">Study
                                                     </div>
-                                                    <div class="assessments-user-question">Which of the following
-                                                        subclasses are you applying for?</div>
-                                                    <div id="accordion" class="answer-accordion">
-                                                        <div id="test5">
-                                                            <button data-toggle="collapse" data-target="#question5"
-                                                                aria-expanded="true" aria-controls="question5">
-                                                                Skilled Independent Subclass 189
-                                                                <span></span>
-                                                            </button>
-                                                        </div>
-                                                        <div id="question5" class="collapse answer-text"
-                                                            aria-labelledby="test5" data-parent="#accordion">
-                                                            Skilled Independent Subclass 189
-                                                        </div>
-                                                    </div>
+                                                    <div class="assessments-user-question">Study in regional</div>
+                                                    <select  id="lead-57" previous="0" name="points_study_in_regional" class="form-field__input points">
+                                                      <option value="" points="0"  >N/A</option>
+
+                                                        <option @if(old('points_study_in_regional',$account->points_study_in_regional) == 1 ) selected @endif value="1" points="5">You must have at least 1 degree</option>
+
+
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -592,39 +653,34 @@
                                             <div class="col-auto">
                                                 <div class="assessments-box">
                                                     <div class="assessments-user-name">
-                                                        <img src="/assets/images/profile-icon.svg" class="mr-2">Age
+                                                        <img src="/assets/images/profile-icon.svg"
+                                                            class="mr-2">Partner skills
                                                     </div>
-                                                    <div class="assessments-user-question">Which age band do you fit
-                                                        into?</div>
-                                                    <div id="accordion" class="answer-accordion">
-                                                        <div id="test6">
-                                                            <button data-toggle="collapse" data-target="#question6"
-                                                                aria-expanded="true" aria-controls="question6">
-                                                                18 to 24
-                                                                <span></span>
-                                                            </button>
-                                                        </div>
-                                                        <div id="question6" class="collapse answer-text"
-                                                            aria-labelledby="test6" data-parent="#accordion">
-                                                            18 to 24
-                                                        </div>
-                                                    </div>
+                                                    <div class="assessments-user-question">Partner skills</div>
+                                                    <select   id="lead-58" previous="0" name="points_partner_skills" class="form-field__input points">
+                                                      <option value="" points="0"  >N/A</option>
+
+                                                        <option @if(old('points_partner_skills',$account->points_partner_skills) == 1 ) selected @endif value="1" points="10">Your spouse or de facto partner must also be an applicant for this visa and meet age, English and skill criteria</option>
+                                                        <option @if(old('points_partner_skills',$account->points_partner_skills) == 2 ) selected @endif value="2" points="5">Your spouse or de facto partner must also be an applicant for this visa and has competent English</option>
+                                                        <option @if(old('points_partner_skills',$account->points_partner_skills) == 3 ) selected @endif value="3" points="10">You are single or your partner is  the country citizen or permanent resident</option>
+
+
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
+
+</form>
+
+
                                     </div>
                                     <div class="your-score">
                                         <div class="row d-flex align-items-center">
                                             <div class="col-auto">
-                                                <div class="score-title-box d-flex align-items-center">Your
-                                                    Score<span class="ml-3">35</span></div>
+                                                <div class=" d-flex align-items-center">Your
+                                                    Score<span class="ml-3">@{{points}}</span></div>
                                             </div>
-                                            <div class="col pl-0">
-                                                <div class="score-text">
-                                                    As the pass mark for Skilled - Independent Subclass 189 is 65,
-                                                    you would not appear to meet the criteria for this type of visa.
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -1021,7 +1077,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-md-4">
+                <div class="col-md-4">
                     <div class="card-box p-3">
                         <div class="tab-h-box-2">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -1036,172 +1092,127 @@
                                             src="/assets/images/add-icon.svg" class="pl-1" /></a>
                                 </li>
                             </ul>
+                            <ul class="row my-3  mx-0 nav nav-tabs border-0">
+                                <li class="col-auto nav-item pl-0 px-2 ">
+                                    <a class="activities-btn nav-link active" id="call-tab" data-toggle="tab"
+                                    href="#call" role="tab" aria-controls="call"
+                                    aria-selected="true">
+                                        <span class="px-3" style="display:inline;padding:5px">Call</span>
+                                        <div style="display:inline;" class="activities-btn-icon px-2" data-toggle="modal" data-target="#schedule-a-call">
+                                            <img src="/assets/images/add-icon.svg" />
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="col-auto nav-item px-2">
+                                    <a class="activities-btn nav-link row" id="meetings-tab" data-toggle="tab"
+                                    href="#meetings" role="tab" aria-controls="meetings"
+                                    aria-selected="true">
+                                        <span class="px-3" style="display:inline;padding:5px">Meetings</span>
+                                        <div style="display:inline;" class="activities-btn-icon px-2" data-toggle="modal" data-target="#schedule-a-meeting">
+                                            <img src="/assets/images/add-icon.svg" />
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="col-auto nav-item px-2">
+                                    <a class="activities-btn nav-link row " id="tasks-tab" data-toggle="tab"
+                                    href="#tasks" role="tab" aria-controls="tasks"
+                                    aria-selected="true">
+                                        <span style="display:inline;padding:5px" class="px-3 col">Tasks</span>
+                                        <div style="display:inline;"  class="activities-btn-icon px-2 col" data-toggle="modal" data-target="#schedule-a-task">
+                                            <img src="/assets/images/add-icon.svg" />
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="activities" role="tabpanel"
-                                    aria-labelledby="activities-tab">
-                                    <div class="row my-3  mx-0">
-                                        <div class="col-auto pl-0 px-2">
-                                            <a class="activities-btn active">
-                                                <span class="px-3">Call</span>
-                                                <div class="activities-btn-icon px-2" data-toggle="modal" data-target="#Call">
-                                                    <img src="/assets/images/add-icon.svg" />
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto px-2">
-                                            <a class="activities-btn">
-                                                <span class="px-3">Meetings</span>
-                                                <div class="activities-btn-icon px-2" data-toggle="modal" data-target="#meeting-information">
-                                                    <img src="/assets/images/add-icon.svg" />
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto px-2">
-                                            <a class="activities-btn">
-                                                <span class="px-3">Tasks</span>
-                                                <div class="activities-btn-icon px-2" data-toggle="modal" data-target="#add-a-task">
-                                                    <img src="/assets/images/add-icon.svg" />
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="tab-pane fade show active" id="call" role="tabpanel"
+                                    aria-labelledby="call-tab">
                                     <div class="activities px-3">
                                         <div class="row">
-                                            <div class="activities-title mb-2">Previous Calls</div>
+                                            <div class="activities-title mb-2"> Calls</div>
                                         </div>
                                         <div class="row">
+                                          @if($account->calls->count() != 0 )
+                                          @foreach($account->calls as $call)
                                             <div class="activities-list">
                                                 <div class="activities-box">
                                                     <div class="activities-box-heading">
-                                                        <h2><span class="mr-3">Today</span>2:00 P.M</h2>
-                                                        <h2>Ashwin Jayaraman</h2>
+                                                        <h2><span class="mr-3">{{$call->start}}</h2>
                                                     </div>
-                                                    <div class="activities-box-detail">Lorem Ipsum is simply dummy
-                                                        text
-                                                        of the printing and typesetting industry. Lorem Ipsum ha
+                                                    <div class="activities-box-detail">
+                                                      {{$call->purpose}}
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="activities-list">
-                                                <div class="activities-box">
-                                                    <div class="activities-box-heading">
-                                                        <h2><span class="mr-3">Today</span>2:00 P.M</h2>
-                                                        <h2>Ashwin Jayaraman</h2>
-                                                    </div>
-                                                    <div class="activities-box-detail">Lorem Ipsum is simply dummy
-                                                        text
-                                                        of the printing and typesetting industry. Lorem Ipsum ha
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="activities-list">
-                                                <div class="activities-box">
-                                                    <div class="activities-box-heading">
-                                                        <h2><span class="mr-3">Today</span>2:00 P.M</h2>
-                                                        <h2>Ashwin Jayaraman</h2>
-                                                    </div>
-                                                    <div class="activities-box-detail">Lorem Ipsum is simply dummy
-                                                        text
-                                                        of the printing and typesetting industry. Lorem Ipsum ha
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="activities activities-2 px-3 mt-3">
-                                        <div class="row">
-                                            <div class="activities-title mb-2">Scheduled Calls</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="activities-list w-100">
-                                                <div class="activities-box">
-                                                    <div class="activities-box-heading">
-                                                        <h2><span class="mr-3">Today</span>2:00 P.M</h2>
-                                                        <h2>Ashwin Jayaraman</h2>
-                                                    </div>
-                                                    <div
-                                                        class="activities-box-detail d-flex align-items-center justify-content-center">
-                                                        <div class="w-100">12/12/2020</div>
-                                                        <div class="w-100">2 hours remaining</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="activities-list w-100">
-                                                <div class="activities-box">
-                                                    <div class="activities-box-heading">
-                                                        <h2><span class="mr-3">Today</span>2:00 P.M</h2>
-                                                        <h2>Ashwin Jayaraman</h2>
-                                                    </div>
-                                                    <div
-                                                        class="activities-box-detail d-flex align-items-center justify-content-center">
-                                                        <div class="w-100">12/12/2020</div>
-                                                        <div class="w-100">2 hours remaining</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="activities-list w-100">
-                                                <div class="activities-box">
-                                                    <div class="activities-box-heading">
-                                                        <h2><span class="mr-3">Today</span>2:00 P.M</h2>
-                                                        <h2>Ashwin Jayaraman</h2>
-                                                    </div>
-                                                    <div
-                                                        class="activities-box-detail d-flex align-items-center justify-content-center">
-                                                        <div class="w-100">12/12/2020</div>
-                                                        <div class="w-100">2 hours remaining</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="activities-list w-100">
-                                                <div class="activities-box">
-                                                    <div class="activities-box-heading">
-                                                        <h2><span class="mr-3">Today</span>2:00 P.M</h2>
-                                                        <h2>Ashwin Jayaraman</h2>
-                                                    </div>
-                                                    <div
-                                                        class="activities-box-detail d-flex align-items-center justify-content-center">
-                                                        <div class="w-100">12/12/2020</div>
-                                                        <div class="w-100">2 hours remaining</div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endforeach
+                                            @else
+                                            <p>No call</p>
+                                            @endif
                                         </div>
 
                                     </div>
+
                                 </div>
-                                 <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">notes</div>
-                            </div>
-                        </div>
-                    </div>
-                  -->
-                    <!-- Modal Start -->
-                    <div class="modal fade" id="Call" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-sm modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <div class="setting-box">
-                                        <div class="card-box d-flex align-items-center justify-content-center p-2">
-                                            <a href="#" class="btn-admin-primary w-100">Schedule a Call</a>
-                                            <a href="#" class="btn-admin-danger w-100 ml-2">Log a Call</a>
-                                        </div>
+                                <div class="tab-pane fade" id="meetings" role="tabpanel"
+                                    aria-labelledby="meetings-tab">
+                                    <div class="activities px-3">
+
+                                        <div class="row">
+                                          @if($account->meetings->count() != 0 )
+                                          @foreach($account->meetings as $call)
+                                            <div class="activities-list">
+                                                <div class="activities-box">
+                                                    <div class="activities-box-heading">
+                                                        <h2><span class="mr-3">from : {{$call->from}}</h2>
+                                                          <h2><span class="mr-3">to : {{$call->to}}</h2>
+
+                                                    </div>
+                                                    <div class="activities-box-detail">
+                                                      {{$call->name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                            @else
+                                            <p>No Meetings</p>
+                                            @endif
+
                                     </div>
+
+
+                                  </div>
+                                </div>
+                                <div class="tab-pane fade" id="tasks" role="tabpanel"
+                                    aria-labelledby="tasks-tab">
+                                    <div class="activities px-3">
+
+                                        <div class="row">
+                                          @if($account->tasks->count() != 0 )
+                                          @foreach($account->tasks as $call)
+                                            <div class="activities-list">
+                                                <div class="activities-box">
+                                                    <div class="activities-box-heading">
+                                                        <h2><span class="mr-3">{{$call->due_date}}</h2>
+                                                    </div>
+                                                    <div class="activities-box-detail">
+                                                      {{$call->description}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                            @else
+                                            <p>No Tasks</p>
+                                            @endif
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Modal End -->
                     <!-- Modal Start -->
-                    <div class="modal fade" id="meeting-information" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                    <div class="modal fade" id="schedule-a-call" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-body">
@@ -1209,52 +1220,78 @@
                                         <div class="card-box px-2 py-3">
                                             <div class="row setting-title-box px-2 mb-3">
                                                 <div class="col">
-                                                    <p class="p-0">Meeting Information</p>
+                                                    <p class="p-0">Schedule a call</p>
                                                 </div>
                                             </div>
+                                            <form id="callForm" method="post" action="/calls/new/action" >
+                                              @csrf
                                             <div class="setting-form-box">
                                                 <div class="row px-2">
                                                     <div class="col px-2">
                                                         <div class="row mx-0">
+                                                          <input type="hidden" name="form_back" value="1"/>
+
+
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <label for="meeting-1" class="form-field__label">Client Name</label>
-                                                                        <input id="meeting-1" type="text" class="form-field__input"
-                                                                            placeholder="Client Name" />
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/search-icon.svg" />
-                                                                        </div>
+                                                                        <label for="call-24" class="form-field__label">Related To</label>
+                                                                        <input id="call-24" :value="(editing == 1 ) ? current_lead.related_to :null" name="related_to" type="text" class="form-field__input"
+                                                                            placeholder="Related To" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <label for="meeting-2" class="form-field__label">Meeting Name</label>
-                                                                        <input id="meeting-2" type="text" class="form-field__input"
-                                                                            placeholder="Meeting Name" />
+                                                                        <label for="call-23" class="form-field__label">Call Type</label>
+                                                                        <input id="call-23" :value="(editing == 1 ) ? current_lead.call_type :null" name="call_type" type="text" class="form-field__input"
+                                                                            placeholder="Call Type" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <label for="meeting-3" class="form-field__label">Location</label>
-                                                                        <input id="meeting-3" type="text" class="form-field__input"
-                                                                            placeholder="Location" />
+                                                                        <label for="call-22" class="form-field__label">Outgoing Call Status</label>
+                                                                        <input id="call-22" :value="(editing == 1 ) ? current_lead.status :null"  name="status" type="text" class="form-field__input"
+                                                                            placeholder="Outgoing Call Status" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mx-0">
+                                                            <div class="col-lg px-2">
+                                                                <div class="form-field">
+                                                                    <div class="form-field__control">
+                                                                        <label for="call-21" class="form-field__label">Call Start</label>
+                                                                        <input id="call-21" :value="(editing == 1 ) ? new Date(current_lead.start).toISOString().substring(0,new Date().toISOString().length-1) :null" name="start" type="datetime-local" class="form-field__input"
+                                                                            placeholder="16:30" />
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                                          <input type="hidden"  name="callable" value="account,{{$account->id}}" class="form-field__input js-example-basic-single">
+
+
+                                                            <div class="col-lg px-2">
+                                                                <div class="form-field">
+                                                                    <div class="form-field__control">
+                                                                        <label for="call-20" class="form-field__label">Subject</label>
+                                                                        <input id="call-20" :value="(editing == 1 ) ? current_lead.subject :null" name="subject" type="text" class="form-field__input"
+                                                                            placeholder="Subject" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <label for="meeting-4" class="form-field__label">All Day</label>
-                                                                        <select id="meeting-4" name="country" class="form-field__input">
-                                                                            <option value="">All Day</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
+                                                                        <label for="call-19" class="form-field__label">Reminder</label>
+                                                                        <select id="call-19" name="reminder" class="form-field__input">
+                                                                            <option value="">N/A</option>
+                                                                            <option value="1" :selected="(editing == 1 && current_lead.reminder == 1) ? true :false">Yes</option>
+                                                                            <option value="2" :selected="(editing == 1 && current_lead.reminder == 2) ? true :false">no</option>
                                                                         </select>
                                                                         <div class="form-dropdown-icon">
                                                                             <img src="/assets/images/form-drop-down.svg" />
@@ -1265,100 +1302,34 @@
                                                         </div>
                                                         <div class="row mx-0">
                                                             <div class="col-lg px-2">
-                                                                <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="meeting-5" class="form-field__label">Start Date</label>
-                                                                        <input id="meeting-5" type="text" class="form-field__input"
-                                                                            placeholder="DD/MM/YYYY" />
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-calendar.svg" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg px-2">
-                                                                <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="meeting-6" class="form-field__label">Start Time</label>
-                                                                        <input id="meeting-6" type="text" class="form-field__input"
-                                                                            placeholder="16:30" />
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-time.svg" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg px-2">
-                                                                <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="meeting-7" class="form-field__label">End Date</label>
-                                                                        <input id="meeting-7" type="text" class="form-field__input"
-                                                                            placeholder="DD/MM/YYYY" />
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-calendar.svg" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg px-2">
-                                                                <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="meeting-8" class="form-field__label">End Time</label>
-                                                                        <input id="meeting-8" type="text" class="form-field__input"
-                                                                            placeholder="16:30" />
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-time.svg" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mx-0">
-                                                            <div class="col-lg px-2">
                                                                 <div class="form-field mb-0">
                                                                     <div class="form-field__control">
-                                                                        <label for="meeting-9" class="form-field__label">Event Status</label>
-                                                                        <select id="meeting-9" name="country" class="form-field__input">
-                                                                            <option value="">Event Status</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                        </select>
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-drop-down.svg" />
-                                                                        </div>
+                                                                        <label for="call-18" class="form-field__label">Call Purpose</label>
+                                                                        <input id="call-18" :value="(editing == 1 ) ? current_lead.purpose :null" name="purpose" type="text" class="form-field__input"
+                                                                            placeholder="purpose" required />
+
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field mb-0">
                                                                     <div class="form-field__control">
-                                                                        <label for="meeting-10" class="form-field__label">Event Source</label>
-                                                                        <input id="meeting-10" type="text" class="form-field__input"
-                                                                            placeholder="Event Source" />
+                                                                        <label for="call-17" class="form-field__label">Call Agenda</label>
+                                                                        <input id="call-17" :value="(editing == 1 ) ? current_lead.agenda :null" name="agenda" type="text" class="form-field__input"
+                                                                            placeholder="Call Agenda" />
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg px-2">
-                                                                <div class="form-field mb-0">
-                                                                    <div class="form-field__control">
-                                                                        <label for="meeting-11" class="form-field__label">Confirmed Booking</label>
-                                                                        <select id="meeting-11" name="country" class="form-field__input">
-                                                                            <option value="">Confirmed Booking</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                        </select>
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-drop-down.svg" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+
+
+                                                            <div class="col-lg d-flex justify-content-end align-items-end col-lg px-2 ">
+                                                                <a href="#" class="btn-admin-default ml-3" data-dismiss="modal" v-on:click="editing = 0"><img src="/assets/images/default-close.svg" class="mr-2"/> Cancel</a>
+                                                                <button type="submit"  class="btn-admin-primary ml-3"><img src="/assets/images/feather-save.svg" class="mr-2"/> Save</button>
                                                             </div>
-                                                            <div class="col-lg d-flex justify-content-end align-items-end px-2">
-                                                                <a href="#" class="btn-admin-default" data-dismiss="modal"><img src="assets/images/default-close.svg" class="mr-2"/> Cancel</a>
-                                                                <a href="#" class="btn-admin-primary ml-3"><img src="/assets/images/feather-save.svg" class="mr-2"/> Save</a>
-                                                            </div>
+
+                                                          </div>
+
+                                                          </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1368,10 +1339,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <!-- Modal End -->
-                    <!-- Modal Start -->
-                    <div class="modal fade" id="add-a-task" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="schedule-a-meeting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-body">
@@ -1379,59 +1348,55 @@
                                         <div class="card-box px-2 py-3">
                                             <div class="row setting-title-box px-2 mb-3">
                                                 <div class="col">
-                                                    <p class="p-0">Add a Task</p>
+                                                    <p class="p-0">Schedule a Meeting</p>
                                                 </div>
                                             </div>
+                                            <form id="callForm" method="post" action="/meetings/new/action" >
+                                              @csrf
+                                              <input type="hidden" name="form_back" value="1"/>
                                             <div class="setting-form-box">
                                                 <div class="row px-2">
                                                     <div class="col px-2">
                                                         <div class="row mx-0">
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="task-1" class="form-field__label">Task Owner</label>
-                                                                        <input id="task-1" type="text" class="form-field__input"
-                                                                            placeholder="Task Owner" />
-                                                                    </div>
+                                                                  <div class="form-field__control">
+                                                                      <label for="call-9" class="form-field__label">Meeting Name</label>
+                                                                      <input id="call-9" :value="(editing == 1 ) ? current_lead.name :null" name="name" type="text" class="form-field__input"
+                                                                          placeholder="Call Type" />
+                                                                  </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <label for="task-2" class="form-field__label">Due Date</label>
-                                                                        <input id="task-2" type="text" class="form-field__input"
-                                                                            placeholder="DD/MM/YYYY" />
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-calendar.svg" />
-                                                                        </div>
+                                                                        <label for="call-10" class="form-field__label">location</label>
+                                                                        <input id="call-10" :value="(editing == 1 ) ? current_lead.location :null" name="location" type="text" class="form-field__input"
+                                                                            placeholder="Related To" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg px-2">
-                                                                <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="task-3" class="form-field__label">All Day</label>
-                                                                        <select id="task-3" name="country" class="form-field__input">
-                                                                            <option value="">All Day</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                        </select>
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-drop-down.svg" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                              <div class="form-field">
+                                                                  <div class="form-field__control">
+                                                                      <label for="call-11" class="form-field__label">confirmed</label>
+                                                                      <select id="call-11" name="confirmed" class="form-field__input">
+                                                                          <option value="">N/A</option>
+                                                                          <option value="1" :selected="(editing == 1 && current_lead.confirmed == 1) ? true :false">Yes</option>
+                                                                          <option value="2" :selected="(editing == 1 && current_lead.confirmed == 2) ? true :false">no</option>
+                                                                      </select>
+                                                                      <div class="form-dropdown-icon">
+                                                                          <img src="/assets/images/form-drop-down.svg" />
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
                                                             </div>
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <label for="task-4" class="form-field__label">Client Name</label>
-                                                                        <input id="task-4" type="text" class="form-field__input"
-                                                                            placeholder="Client Name" />
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/search-icon.svg" />
-                                                                        </div>
+                                                                        <label for="call-12" class="form-field__label"> Meeting Status</label>
+                                                                        <input id="call-12" :value="(editing == 1 ) ? current_lead.status :null"  name="status" type="text" class="form-field__input"
+                                                                            placeholder="Outgoing Call Status" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1440,24 +1405,11 @@
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <label for="task-5" class="form-field__label">Monster Leads</label>
-                                                                        <input id="task-5" type="text" class="form-field__input"
-                                                                            placeholder="task" />
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/search-icon.svg" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg px-2">
-                                                                <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="task-6" class="form-field__label">Status</label>
-                                                                        <select id="task-6" name="country" class="form-field__input">
-                                                                            <option value="">Status</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
+                                                                        <label for="call-13" class="form-field__label">all day</label>
+                                                                        <select id="call-13" name="all_day" class="form-field__input">
+                                                                            <option value="">N/A</option>
+                                                                            <option value="1" :selected="(editing == 1 && current_lead.all_day == 1) ? true :false">Yes</option>
+                                                                            <option value="2" :selected="(editing == 1 && current_lead.all_day == 2) ? true :false">no</option>
                                                                         </select>
                                                                         <div class="form-dropdown-icon">
                                                                             <img src="/assets/images/form-drop-down.svg" />
@@ -1465,116 +1417,50 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden"  name="callable" value="account,{{$account->id}}" class="form-field__input js-example-basic-single">
+
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <label for="task-7" class="form-field__label">Priority</label>
-                                                                        <select id="task-7" name="country" class="form-field__input">
-                                                                            <option value="">Priority</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                        </select>
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-drop-down.svg" />
-                                                                        </div>
+                                                                        <label for="call-14" class="form-field__label">Source</label>
+                                                                        <input id="call-14" :value="(editing == 1 ) ? current_lead.source :null" name="source" type="text" class="form-field__input"
+                                                                            placeholder="Subject" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg px-2">
-                                                                <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="task-8" class="form-field__label">Reminder</label>
-                                                                        <select id="task-8" name="country" class="form-field__input">
-                                                                            <option value="">Reminder</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                        </select>
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-drop-down.svg" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+
                                                             </div>
                                                         </div>
                                                         <div class="row mx-0">
                                                             <div class="col-lg px-2">
-                                                                <div class="form-field">
+                                                                <div class="form-field mb-0">
                                                                     <div class="form-field__control">
-                                                                        <label for="task-9" class="form-field__label">Repeat</label>
-                                                                        <select id="task-9" name="country" class="form-field__input">
-                                                                            <option value="">Repeat</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                        </select>
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-drop-down.svg" />
-                                                                        </div>
+                                                                        <label for="call-15" class="form-field__label">from</label>
+                                                                        <input id="call-15" :value="(editing == 1 ) ? new Date(current_lead.from).toISOString().substring(0,new Date(current_lead.from).toISOString().length-1) :null" name="from"  type="datetime-local" class="form-field__input"
+                                                                            placeholder="from" />
+
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg px-2">
-                                                                <div class="form-field">
+                                                                <div class="form-field mb-0">
                                                                     <div class="form-field__control">
-                                                                        <label for="task-10" class="form-field__label">Currency</label>
-                                                                        <select id="task-10" name="country" class="form-field__input">
-                                                                            <option value="">Currency</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                            <option value="">lorem ipsum</option>
-                                                                        </select>
-                                                                        <div class="form-dropdown-icon">
-                                                                            <img src="/assets/images/form-drop-down.svg" />
-                                                                        </div>
-                                                                    </div>
+                                                                        <label for="call-16" class="form-field__label">to</label>
+                                                                        <input id="call-16" :value="(editing == 1 ) ? new Date(current_lead.to).toISOString().substring(0,new Date(current_lead.to).toISOString().length-1) :null" name="to"  type="datetime-local" class="form-field__input"
+                                                                            placeholder="to" />
+                                                                                              </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg px-2">
-                                                                <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="task-11" class="form-field__label">Exchange Rate</label>
-                                                                        <input id="task-11" type="text" class="form-field__input"
-                                                                            placeholder="Exchange Rate" />
-                                                                    </div>
-                                                                </div>
+
+                                                            <div class="col-lg d-flex justify-content-end align-items-end col-lg px-2 ">
+                                                                <a href="#" class="btn-admin-default ml-3" data-dismiss="modal" v-on:click="editing = 0"><img src="/assets/images/default-close.svg" class="mr-2"/> Cancel</a>
+                                                                <button type="submit"  class="btn-admin-primary ml-3"><img src="/assets/images/feather-save.svg" class="mr-2"/> Save</button>
                                                             </div>
-                                                            <div class="col-lg px-2">
-                                                                <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="task-12" class="form-field__label">Task Source</label>
-                                                                        <input id="task-12" type="text" class="form-field__input"
-                                                                            placeholder="Task Source" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mx-0">
-                                                            <div class="col-lg px-2">
-                                                                <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="task-13" class="form-field__label">Tasks_GoogleId</label>
-                                                                        <input id="task-13" type="text" class="form-field__input"
-                                                                            placeholder="Tasks_GoogleId" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-9 px-2">
-                                                                <div class="form-field">
-                                                                    <div class="form-field__control">
-                                                                        <label for="task-14" class="form-field__label">Description</label>
-                                                                        <input id="task-14" type="text" class="form-field__input"
-                                                                            placeholder="Description" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mx-0">
-                                                            <div class="col-lg d-flex justify-content-end align-items-end px-2">
-                                                                <a href="#" class="btn-admin-default" data-dismiss="modal"><img src="assets/images/default-close.svg" class="mr-2"/> Cancel</a>
-                                                                <a href="#" class="btn-admin-primary ml-3"><img src="/assets/images/feather-save.svg" class="mr-2"/> Save</a>
-                                                            </div>
+
+                                                          </div>
+
+                                                          </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1584,7 +1470,131 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <!-- Modal End -->
+                    <!-- Modal Start -->
+
+                        <div class="modal fade" id="schedule-a-task" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="setting-box">
+                                            <div class="card-box px-2 py-3">
+                                                <div class="row setting-title-box px-2 mb-3">
+                                                    <div class="col">
+                                                        <p class="p-0">Schedule a Task</p>
+                                                    </div>
+                                                </div>
+                                                <form id="callForm" method="post" action="/tasks/new/action" >
+                                                  @csrf
+                                                  <input type="hidden" name="form_back" value="1"/>
+                                                <div class="setting-form-box">
+                                                    <div class="row px-2">
+                                                        <div class="col px-2">
+                                                            <div class="row mx-0">
+                                                                <div class="col-lg px-2">
+                                                                    <div class="form-field">
+                                                                      <div class="form-field__control">
+                                                                          <label for="call-1" class="form-field__label">Owner</label>
+                                                                          <input id="call-1" :value="(editing == 1 ) ? current_lead.owner :null" name="owner" type="text" class="form-field__input"
+                                                                              placeholder="Owner" />
+                                                                      </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg px-2">
+                                                                    <div class="form-field">
+                                                                        <div class="form-field__control">
+                                                                            <label for="call-2" class="form-field__label">subject</label>
+                                                                            <input id="call-2" :value="(editing == 1 ) ? current_lead.subject :null" name="subject" type="text" class="form-field__input"
+                                                                                placeholder="subject" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg px-2">
+                                                                  <div class="form-field">
+                                                                      <div class="form-field__control">
+                                                                          <label for="call-3" class="form-field__label">reminder</label>
+                                                                          <select id="call-3" name="reminder" class="form-field__input">
+                                                                              <option value="">N/A</option>
+                                                                              <option value="1" :selected="(editing == 1 && current_lead.reminder == 1) ? true :false">Yes</option>
+                                                                              <option value="2" :selected="(editing == 1 && current_lead.reminder == 2) ? true :false">no</option>
+                                                                          </select>
+                                                                          <div class="form-dropdown-icon">
+                                                                              <img src="/assets/images/form-drop-down.svg" />
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="col-lg px-2">
+                                                                    <div class="form-field">
+                                                                        <div class="form-field__control">
+                                                                            <label for="call-4" class="form-field__label"> Task Status</label>
+                                                                            <input id="call-4" :value="(editing == 1 ) ? current_lead.status :null"  name="status" type="text" class="form-field__input"
+                                                                                placeholder="Outgoing Call Status" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mx-0">
+                                                                <div class="col-lg px-2">
+                                                                    <div class="form-field">
+                                                                        <div class="form-field__control">
+                                                                            <label for="call-5" class="form-field__label">task google id</label>
+                                                                            <input id="call-5" :value="(editing == 1 ) ? current_lead.task_google_id :null"  name="task_google_id" type="text" class="form-field__input"
+                                                                                placeholder="task google id<" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="hidden" name="callable" value="account,{{$account->id}}"/>
+                                                                <div class="col-lg px-2">
+                                                                    <div class="form-field">
+                                                                        <div class="form-field__control">
+                                                                            <label for="call-6" class="form-field__label">Source</label>
+                                                                            <input id="call-6" :value="(editing == 1 ) ? current_lead.task_source :null" name="task_source" type="text" class="form-field__input"
+                                                                                placeholder="Source" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg px-2">
+                                                                  <div class="form-field__control">
+                                                                      <label for="call-7" class="form-field__label">due date</label>
+                                                                      <input required id="call-7" :value="(editing == 1 ) ? current_lead.due_date :null" name="due_date"  type="date" class="form-field__input"
+                                                                          placeholder="due date" />
+                                                                                            </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mx-0">
+                                                                <div class="col-lg px-2">
+                                                                  <div class="form-field mb-0">
+                                                                    <div class="form-field__control">
+                                                                        <label for="call-8" class="form-field__label">Description</label>
+                                                                        <input required id="call-8" :value="(editing == 1 ) ? current_lead.description :null" name="description"  type="string" class="form-field__input"
+                                                                            placeholder="to" />
+                                                                                              </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="col-lg px-2">
+
+                                                                </div>
+
+                                                                <div class="col-lg d-flex justify-content-end align-items-end col-lg px-2 ">
+                                                                    <a href="#" class="btn-admin-default ml-3" data-dismiss="modal" v-on:click="editing = 0"><img src="/assets/images/default-close.svg" class="mr-2"/> Cancel</a>
+                                                                    <button type="submit"  class="btn-admin-primary ml-3"><img src="/assets/images/feather-save.svg" class="mr-2"/> Save</button>
+                                                                </div>
+
+                                                              </div>
+
+                                                              </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- Modal End -->
+                </div>
                     <!-- Modal End -->
                 </div>
             </div>
@@ -1593,5 +1603,106 @@
 
 </main>
 <!-- Page Body End -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"></script>
+
+@push('scripts')
+<script>
+const app = new Vue({
+    el: '#app',
+
+    data() {
+      return {
+        points:{{($account->points) ? $account->points:0}}  ,
+
+      }
+    },
+
+    created() {
+      // console.log(JSON.stringify(this.leads[0]))
+      // window.alert = function() {};
+
+      $(document).ready(function(){
+        $('#callForm').ajaxForm((response)=> {
+
+            app.addLead(response);
+            $('#schedule-a-call').modal('hide');
+
+                   // alert(JSON.stringify(response))
+               });
+        $('.points').on('focus',  function() {
+        // Store the current value on focus and on change
+        previous = $('option:selected', this).attr('points');
+    }).change(function(){
+      // app.points =app.points+ 1;
+      app.points -= parseInt(previous);
+
+          var points = $('option:selected', this).attr('points');
+          previous = points;
+
+          $(this).attr('previous',points);
+             app.points += parseInt(points);
+
+        })
+      })
+
+    },
+
+    methods: {
+
+
+
+        addMessage() {
+          this.points ++;
+        },
+
+        sendMessage() {
+            this.addMessage(this.newMessage);
+            this.newMessage = '';
+        }
+    }
+});
+
+$(document).ready(()=>{
+  $("#image").click(()=>{
+    $("#image_input").click();
+  })
+})
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image')
+                    .attr('src', e.target.result)
+                    .width('100%')
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(document).ready(function(){
+        if($('.form-field__input').val() !='' ) {
+              $('.form-field__input').addClass('form-field--is-active');
+        }
+      })
+      function checkForInput(element) {
+  // element is passed to the function ^
+
+
+
+}
+
+// The lines below are executed on page load
+$('.form-field__input').each(function() {
+  checkForInput(this);
+console.log($(this).val())
+  if ($(this).val() != ""  ) {
+    $(this).parent().parent().addClass('form-field--is-active');
+  }
+});
+</script>
+
+
+@endpush
 
 @endsection

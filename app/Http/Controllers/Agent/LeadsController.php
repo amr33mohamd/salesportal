@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\leads;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\accounts;
 
 use App\Models\User;
 use App\Models\lead_status;
@@ -82,6 +83,26 @@ return view('Agent.Sales.Leads.NewLead',['lead'=>$lead,'sources'=>$sources,'medi
          $add->addMedia($request->file)->toMediaCollection();
       }
       return redirect('/leads');
+    }
+    public function convert(Request $request){
+      $row_object = leads::where('id', $request->id)->first();
+
+
+        // convert to array
+        $row_array = $row_object->toArray();
+
+        // unset the row id (assuming id autoincrements)
+        unset($row_array['id']);
+        unset($row_array['lead_owner']);
+        unset($row_array['created_at']);
+        unset($row_array['updated_at']);
+
+
+        // insert the row data into the new table (assuming all fields are the same)
+        accounts::insert($row_array);
+        $leads = leads::find($request->id)->delete();
+
+        return redirect('/accounts');
     }
     public function delete(Request $request){
        $auth = Auth::user();

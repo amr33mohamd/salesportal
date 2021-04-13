@@ -61,7 +61,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-1" class="form-field__label">Lead Owner</label>
-                                                    <select id="lead-1" name="lead_owner" class="form-field__input">
+                                                    <select id="lead-1" name="lead_owner" class="form-field__input" required>
                                                       <option value=""  >N/A</option>
                                                         <option value="Administrator" @if(old('lead_owner',$lead->lead_owner) == 'Administrator' ) selected @endif >Administrator</option>
                                                         <option value="FBP DWC"@if(old('lead_owner',$lead->lead_owner) == 'FBP DWC' ) selected @endif >FBP DWC</option>
@@ -91,7 +91,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-3" class="form-field__label">Follow up Date</label>
-                                                    <input id="lead-3" value="{{old('follow_up',$lead->follow_up)}}" name="follow_up" type="date" type="text" class="form-field__input"
+                                                    <input id="lead-3" value="{{old('follow_up',$lead->follow_up)}}" name="follow_up" type="date" type="date" class="form-field__input"
                                                         placeholder="Follow up Date" />
                                                 </div>
                                             </div>
@@ -100,7 +100,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-4" class="form-field__label">Lead Status</label>
-                                                    <select id="lead-4" name="status_id" class="form-field__input">
+                                                    <select id="lead-4" name="status_id" class="form-field__input" required>
                                                       <option value=""  >N/A</option>
 
                                                       @foreach($statuses as $status)
@@ -316,7 +316,7 @@
                                                 <div class="form-field__control">
                                                     <label for="lead-21" class="form-field__label">First Name</label>
                                                     <input name="first_name" value="{{old('first_name',$lead->first_name)}}" id="lead-21" type="text" class="form-field__input"
-                                                        placeholder="First Name" />
+                                                        placeholder="First Name" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -325,7 +325,7 @@
                                                 <div class="form-field__control">
                                                     <label for="lead-22" class="form-field__label">Last Name</label>
                                                     <input name="last_name" value="{{old('last_name',$lead->last_name)}}" id="lead-22" type="text" class="form-field__input"
-                                                        placeholder="Last Name" />
+                                                        placeholder="Last Name" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -352,7 +352,7 @@
                                                 <div class="form-field__control">
                                                     <label for="lead-25" class="form-field__label">Email</label>
                                                     <input name="email" value="{{old('email',$lead->email)}}" id="lead-25" type="email" class="form-field__input"
-                                                        placeholder="Email" />
+                                                        placeholder="Email" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -435,11 +435,9 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="lead-33" class="form-field__label">Date of Birth</label>
-                                                    <input id="lead-33" value="{{old('birthday',$lead->birthday)}}" type="text" name="birthday" class="form-field__input"
+                                                    <input id="lead-33" value="{{old('birthday',$lead->birthday)}}" type="date" name="birthday" class="form-field__input"
                                                         placeholder="DD/MM/YYYY" />
-                                                    <div class="form-dropdown-icon">
-                                                        <img src="/assets/images/form-calendar.svg">
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>

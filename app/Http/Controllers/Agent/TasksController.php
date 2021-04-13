@@ -68,8 +68,13 @@ class TasksController extends Controller
       $add->taskable()->associate($leadUser);
       $add->save();
     }
-    return $add;
-  }
+    if($request->form_back){
+      return back();
+    }
+    else {
+      return $add;
+    }
+    }
     public function delete(Request $request){
        $auth = Auth::user();
 

@@ -13,14 +13,14 @@
                 <div class="row">
                     <div class="col">
                         <div class="page-title">
-                            Opportunities
+                            Cases
                         </div>
                     </div>
                     <div class="col-auto">
                         <div class="breadcrumb-box">
                             <ul>
                                 <li>Sales</li>
-                                <li>Opportunities</li>
+                                <li>Cases</li>
                             </ul>
                         </div>
                     </div>
@@ -37,14 +37,13 @@
                         <div class="row m-0">
                             <div class="top-heading mb-1">
                                 <img src="./assets/images/user-outline.svg" class="mr-2">
-                                <h2>My Opportunities</h2>
+                                <h2>My Cases</h2>
                                 <img src="assets/images/question-circle.svg" class="ml-2">
                             </div>
                         </div>
                         <div class="row m-0">
                             <ul class="admin-table-info">
-                                <li class="mr-1">Viewing ({{$leads->count()}})</li>
-                                <li>Record (s)</li>
+
                             </ul>
                         </div>
                     </div>

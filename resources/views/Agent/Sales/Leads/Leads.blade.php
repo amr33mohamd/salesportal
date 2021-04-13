@@ -52,10 +52,10 @@
                                     src="./assets/images/table-add.svg">Add</a>
                             <button id="filter" class="admin-table-btn mr-3"><img class="mr-2"
                                     src="./assets/images/table-filter.svg">Filter</button>
-                            <button class="admin-table-btn mr-3"><img class="mr-2"
+                            <button class="admin-table-btn mr-3" id="export"><img class="mr-2"
                                     src="./assets/images/table-export.svg">Export</button>
-                            <a href="./step-1.html" class="admin-table-btn mr-3"><img class="mr-2"
-                                    src="./assets/images/table-import.svg">Import</a>
+                            <!-- <a href="./step-1.html" class="admin-table-btn mr-3"><img class="mr-2"
+                                    src="./assets/images/table-import.svg">Import</a> -->
                             <div class="table-search">
                                 <img src="./assets/images/table-search.svg">
                                 <input id="myInputTextField" value="" type="text" placeholder="Search …">
@@ -83,6 +83,11 @@
                                             <th scope="col">Email</th>
                                             <th scope="col">Home Phone</th>
                                             <th scope="col">Fax</th>
+                                            <th scope="col">Follow Up</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Secondary Email</th>
+                                            <th scope="col">Age</th>
+
                                             <th scope="col">Actions</th>
 
                                         </tr>
@@ -96,7 +101,7 @@
                                                     <input type="checkbox">
                                                 </div>
                                             </td>
-                                            <td><a href="/leads/edit/{{$lead->id}}" style="display:inline-block;width:15%">  Convert</a>
+                                            <td><a href="/leads/convert/{{$lead->id}}" style="display:inline-block;width:15%">  Convert</a>
                                             </div></td>
                                             <td><a href="/leads/edit/{{$lead->id}}">{{$lead->first_name}} {{$lead->last_name}}</a></td>
                                             <td >
@@ -114,6 +119,11 @@
 
                                             <td>{{$lead->contact_number}}</td>
                                             <td>{{$lead->fax}}</td>
+                                            <td>{{$lead->follow_up}}</td>
+                                            <td>{{$lead->gender}}</td>
+                                            <td>{{$lead->secondary_email}}</td>
+                                            <td>{{$lead->age}}</td>
+
                                             <td>
                                               <div class="row">
                                                 <div class="col-2">
@@ -150,6 +160,13 @@
 
 @endsection
 @push('scripts')
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+
 <script>
 $(document).ready(function() {
 
@@ -191,7 +208,16 @@ $('.filter').toggle(
 var table = $('#example').DataTable( {
     orderCellsTop: true,
     fixedHeader: false,
-    searching:true
+    searching:true,
+    dom: 'Bfrtip',
+       buttons: [
+           'copy',
+           'csv',
+           'excel',
+           'pdf',
+
+       ],
+
 } );
 
 } );

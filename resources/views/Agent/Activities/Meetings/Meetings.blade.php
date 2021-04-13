@@ -63,10 +63,9 @@
                                     src="./assets/images/table-add.svg">Add</a>
                             <button id="filter" class="admin-table-btn mr-3"><img class="mr-2"
                                     src="./assets/images/table-filter.svg">Filter</button>
-                            <button class="admin-table-btn mr-3"><img class="mr-2"
+                            <button class="admin-table-btn mr-3" id="export"><img class="mr-2"
                                     src="./assets/images/table-export.svg">Export</button>
-                            <a href="./step-1.html" class="admin-table-btn mr-3"><img class="mr-2"
-                                    src="./assets/images/table-import.svg">Import</a>
+
                             <div class="table-search">
                                 <img src="./assets/images/table-search.svg">
                                 <input id="myInputTextField" value="" type="text" placeholder="Search …">
@@ -355,8 +354,15 @@ $('.filter').toggle(
 var table = $('#example').DataTable( {
     orderCellsTop: true,
     fixedHeader: false,
-    searching:true
-} );
+    searching:true,
+    dom: 'Bfrtip',
+       buttons: [
+           'copy',
+           'csv',
+           'excel',
+           'pdf',
+
+       ],
 
 } );
 

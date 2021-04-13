@@ -74,7 +74,13 @@ class CallsController extends Controller
         $add->callable()->associate($leadUser);
         $add->save();
       }
-      return $add;
+      // return $request;
+      if($request->form_back){
+        return back();
+      }
+      else {
+        return $add;
+      }
     }
     public function delete(Request $request){
        $auth = Auth::user();
