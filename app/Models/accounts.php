@@ -6,15 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-
-class accounts extends Model implements HasMedia
+use ICIGAILLC\LaravelModelFieldBuilder\Fieldable\HasFields;
+use ICIGAILLC\LaravelModelFieldBuilder\Fieldable\InteractsStaticallyWithFields;
+class accounts extends Model implements HasMedia, HasFields
 {
     use HasFactory;
     use InteractsWithMedia;
-
+    use InteractsStaticallyWithFields;
+    protected $with= ["fieldsData"];
     protected $guarded = [
         'id',
-
     ];
     public function lead()
     {

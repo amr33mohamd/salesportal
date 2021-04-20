@@ -1,0 +1,55 @@
+{
+    "name": "icigai/laravel-model-field-builder",
+    "description": "A Laravel package to dynamically associate fields to models and save them in the database.",
+    "keywords": [
+        "icigai",
+        "laravel-model-field-builder"
+    ],
+    "homepage": "https://github.com/ICIGAILLC/laravel-model-field-builder",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Karim Mahmoud",
+            "email": "karim@icigai.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ICIGAILLC\\LaravelModelFieldBuilder\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ICIGAILLC\\LaravelModelFieldBuilder\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ICIGAILLC\\LaravelModelFieldBuilder\\LaravelModelFieldBuilderServiceProvider"
+            ],
+            "aliases": {
+                "LaravelModelFieldBuilder": "ICIGAILLC\\LaravelModelFieldBuilder\\LaravelModelFieldBuilderFacade"
+            }
+        }
+    }
+}

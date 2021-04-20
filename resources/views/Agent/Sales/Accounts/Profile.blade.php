@@ -1622,13 +1622,7 @@ const app = new Vue({
       // window.alert = function() {};
 
       $(document).ready(function(){
-        $('#callForm').ajaxForm((response)=> {
-
-            app.addLead(response);
-            $('#schedule-a-call').modal('hide');
-
-                   // alert(JSON.stringify(response))
-               });
+      
         $('.points').on('focus',  function() {
         // Store the current value on focus and on change
         previous = $('option:selected', this).attr('points');

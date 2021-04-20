@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Stripe\Stripe;
-
+use App\Models\accounts;
 class HomeController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -75,5 +75,19 @@ class HomeController extends Controller
         return view('home', [
             "plans" => $plans
         ]);
+    }
+
+    public function test(){
+      $field= accounts::getTextFieldInstance();
+        $field->name= "field1";
+        $field->label= "test";
+        $field->save();
+        $field= Post::getTextFieldInstance();
+        $field->name= "field2";
+        $field->label= "test";
+        $field->extra= [
+            "group"=> "tracking"
+        ];
+        $field->save();
     }
 }

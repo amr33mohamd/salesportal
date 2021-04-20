@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', function () {
 //     return;
 // });
+Route::get('/tes','App\Http\Controllers\HomeController@test');
 
 Route::middleware(['guest'])->group(function (){
 

@@ -357,6 +357,7 @@ var table = $('#example').DataTable( {
        ],
 
 } );
+})
 
 const app = new Vue({
     el: '#app',
