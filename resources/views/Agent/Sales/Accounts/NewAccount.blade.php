@@ -1001,6 +1001,129 @@
                             </div>
                         </div>
                     </div>
+
+                    @foreach($fields as $index => $field)
+                    @if($index != 0)
+                    <!-- if not first item  -->
+                    <!-- if the same group -->
+                    @if($fields[$index-1]['extra']['group'] == $field['extra']['group'])
+                    <div class="col-lg-2 px-2">
+                      <div class="form-field">
+                          <div class="form-field__control form-field--is-active">
+                              <label for="lead-{{$index+900}}" class="form-field__label">{{$field->label}}</label>
+                              @if($field->type == 'text')
+                              <input value="{{old($field->name,$lead->fax)}}" name="fax" id="lead-{{$index+900}}" type="text" class="form-field__input"
+                                  placeholder="{{$field['label']}}" />
+                              @elseif($field->type = 'select')
+                              <select name="{{$field->name}}" id="lead-{{$index+900}}"  class="form-field__input ">
+                                <option value=""  >N/A</option>
+
+                                @foreach($field['extra']['options'] as $option)
+                                  <option value="{{$option['value']}}" @if(old($field->name,$lead->industry_id) == $option['value'] ) selected @endif>{{$option['label']}}</option>
+                                @endforeach
+                              </select>
+                              <div class="form-dropdown-icon" onclick='document.getElementById("lead-{{$index+900}}").click() '>
+                                  <img src="/assets/images/form-drop-down.svg" />
+                              </div>
+                              @endif
+                          </div>
+                      </div>
+                    </div>
+                      <!-- if end of row -->
+                      @if(($index+1) % 6 == 0)
+                      </div>
+                      <div class="row mx-0">
+                      @endif
+                      <!-- end if end of row -->
+                      @if($fields->count() == $index+1)
+                      <!-- closing previous group -->
+                                  </div>
+                                </div>
+                                  <div class="col-lg-auto col-sm-12  px-2">
+                                      <div class="profile-box empty-box">
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end closing previous group -->
+                        @endif
+                      <!-- end if the same group -->
+                      <!-- if new group -->
+                    @else
+                    <!-- end previous group -->
+                    </div>
+                  </div>
+                    <div class="col-lg-auto col-sm-12  px-2">
+                        <div class="profile-box empty-box">
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+                  <!-- end end prevours group -->
+                  <!-- start new group -->
+                    <div class="card-box my-3 px-2 mt-4 py-3">
+                        <div class="row setting-title-box px-2 mb-3">
+                            <div class="col">
+                                <h2>{{$field['extra']['group']}}</h2>
+                            </div>
+                        </div>
+                        <div class="setting-form-box">
+                          <div class="row px-2">
+                            <div class="col px-2">
+                              <div class="row mx-0">
+
+                                <!-- add field -->
+                                <div class="col-lg-2 px-2">
+                                  <div class="form-field">
+                                      <div class="form-field__control form-field--is-active">
+                                          <label for="lead-{{$index+900}}" class="form-field__label">{{$field->label}}</label>
+                                          @if($field->type == 'text')
+                                          <input value="{{old($field->name,$lead->fax)}}" name="fax" id="lead-{{$index+900}}" type="text" class="form-field__input"
+                                              placeholder="{{$field['label']}}" />
+                                          @elseif($field->type = 'select')
+                                          <select name="{{$field->name}}" id="lead-{{$index+900}}"  class="form-field__input ">
+                                            <option value=""  >N/A</option>
+
+                                            @foreach($field['extra']['options'] as $option)
+                                              <option value="{{$option['value']}}" @if(old($field->name,$lead->industry_id) == $option['value'] ) selected @endif>{{$option['label']}}</option>
+                                            @endforeach
+                                          </select>
+                                          <div class="form-dropdown-icon" onclick='$("#lead-{{$index+900}}").click() '>
+                                              <img src="/assets/images/form-drop-down.svg" />
+                                          </div>
+                                          @endif
+                                      </div>
+                                  </div>
+                                </div>
+                          <!-- end start new group -->
+                    @endif
+                    <!-- end if not first item -->
+                    <!-- start first item -->
+                    @else
+                    <div class="card-box my-3 px-2 mt-4 py-3">
+                        <div class="row setting-title-box px-2 mb-3">
+                            <div class="col">
+                                <h2>{{$field['extra']['group']}}</h2>
+                            </div>
+                        </div>
+                        <div class="setting-form-box">
+                            <div class="row px-2">
+                              <div class="col px-2">
+                                <div class="row mx-0">
+                                  <div class="col-lg-2 px-2">
+                                    <div class="form-field">
+                                        <div class="form-field__control">
+                                            <label for="lead-{{$index+900}}" class="form-field__label">{{$field->label}}</label>
+                                            <input value="{{old('fax',$lead->fax)}}" name="{{$field['name']}}" id="lead-{{$index+900}}" type="text" class="form-field__input"
+                                                placeholder="{{$field->label}}" />
+                                        </div>
+                                    </div>
+                                  </div>
+                    @endif
+                    <!-- end first item -->
+                      @endforeach
                 </div>
             </div>
 

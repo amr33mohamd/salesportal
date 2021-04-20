@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fb4794a5018c63b61a645498f852a43",
+    "content-hash": "a97d99189eb9c3c1bc9df930db2efc45",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1465,6 +1465,16 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.8.1"
             },
             "time": "2021-03-21T16:25:00+00:00"
+        },
+        {
+            "name": "icigaillc/laravel-model-field-builder",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ICIGAILLC/laravel-model-field-builder",
+                "reference": "main"
+            },
+            "type": "library"
         },
         {
             "name": "intervention/image",

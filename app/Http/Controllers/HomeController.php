@@ -78,16 +78,41 @@ class HomeController extends Controller
     }
 
     public function test(){
-      $field= accounts::getTextFieldInstance();
-        $field->name= "field1";
-        $field->label= "test";
-        $field->save();
-        $field= Post::getTextFieldInstance();
-        $field->name= "field2";
-        $field->label= "test";
-        $field->extra= [
-            "group"=> "tracking"
-        ];
-        $field->save();
+
+        $field= accounts::getTextFieldInstance();
+
+          $field->name= "test19";
+          $field->label= "test19";
+          $field->type= "select";
+            "required|min:6"
+          ;
+
+          $field->extra= [
+              "group"=> "mohamed",
+              "options"=>[
+                [
+                  "value"=>1,
+                  "label"=>"male"
+                ],
+                [
+                  "value"=>2,
+                  "label"=>"female"
+                ],
+              ]
+          ];
+          $field->save();
+        // $field= accounts::getTextFieldInstance();
+        // $field->name= "field2";
+        // $field->label= "test";
+        // $field->extra= [
+        //     "group"=> "tracking"
+        // ];
+        // $field->save();
+
+// $accounts= accounts::findOrFail(2);
+// $accounts->fields= [
+//      "field2"=> "123"
+//  ];
+      return accounts::fields()->get();
     }
 }

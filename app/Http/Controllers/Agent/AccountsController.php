@@ -72,7 +72,9 @@ $industries = industry::all();
 $currancies = currencies::all();
 $sources = traffic_source::all();
 $mediums = traffic_mediums::all();
-return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'sources'=>$sources,'mediums'=>$mediums,'industries'=>$industries,'currancies'=>$currancies,'type'=>'edit','statuses'=>$statuses,'education_qualifications'=>$educations,'hear_about_uses'=>$hear_about_uses,'nationalities'=>$nationalities]);
+$fields = accounts::fields()->get();
+
+return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'fields'=>$fields,'sources'=>$sources,'mediums'=>$mediums,'industries'=>$industries,'currancies'=>$currancies,'type'=>'edit','statuses'=>$statuses,'education_qualifications'=>$educations,'hear_about_uses'=>$hear_about_uses,'nationalities'=>$nationalities]);
 
   }
   public function addScreen(Request $request){
@@ -86,7 +88,8 @@ return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'sources'=>$sources
      $currancies = currencies::all();
      $sources = traffic_source::all();
      $mediums = traffic_mediums::all();
-    return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'sources'=>$sources,'mediums'=>$mediums,'industries'=>$industries,'currancies'=>$currancies,'type'=>'add','statuses'=>$statuses,'education_qualifications'=>$educations,'hear_about_uses'=>$hear_about_uses,'nationalities'=>$nationalities]);
+     $fields = accounts::fields()->get();
+    return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'sources'=>$sources,'mediums'=>$mediums,'industries'=>$industries,'currancies'=>$currancies,'type'=>'add','statuses'=>$statuses,'education_qualifications'=>$educations,'hear_about_uses'=>$hear_about_uses,'nationalities'=>$nationalities,'fields'=>$fields]);
 
   }
   public function edit(Request $request){
