@@ -13,7 +13,6 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "icigaillc/laravel-model-field-builder": "*",
         "laravel/cashier": "^12.8",
         "laravel/framework": "^8.12",
         "laravel/passport": "^10.1",
@@ -48,7 +47,7 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "ICIGAILLC\\LaravelModelFieldBuilder\\": "vendor/ICIGAILLC/laravel-model-field-builder/src/"
+            "ICIGAILLC\\LaravelModelFieldBuilder\\": "packages/ICIGAILLC/laravel-model-field-builder/src/"
         }
     },
     "autoload-dev": {
@@ -69,19 +68,5 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    },
-    "repositories":[
-        {
-            "type": "package",
-            "package": {
-                "name": "icigaillc/laravel-model-field-builder",
-                "version": "1.05",
-                "source": {
-                    "type" : "git",
-                    "url" : "https://github.com/ICIGAILLC/laravel-model-field-builder",
-                    "reference" : "main"
-                }
-            }
-        }
-    ]
+    }
 }
