@@ -61,7 +61,7 @@
                                     <div class="row mx-0">
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-1" class="form-field__label">First Name</label>
                                                     <input id="contact-1" name="first_name" value="{{old('first_name',$lead->first_name)}}"  type="text"  class="form-field__input"
                                                         placeholder="First Name" />
@@ -70,7 +70,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-2" class="form-field__label">Last Name</label>
                                                     <input id="contact-2" name="last_name" value="{{old('last_name',$lead->last_name)}}" type="text" class="form-field__input"
                                                         placeholder="Last Name" />
@@ -79,7 +79,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-3" class="form-field__label">Office Phone</label>
                                                     <input id="contact-3" name="office_phone" value="{{old('office_phone',$lead->office_phone)}}" type="text" class="form-field__input"
                                                         placeholder="Office Phone" />
@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-4" class="form-field__label">Mobile</label>
                                                     <input id="contact-4" name="mobile" value="{{old('mobile',$lead->mobile)}}" type="text" class="form-field__input"
                                                         placeholder="Mobile" />
@@ -97,7 +97,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-5" class="form-field__label">Job Title</label>
                                                     <input id="contact-5" name="job_title" value="{{old('job_title',$lead->job_title)}}" type="text" class="form-field__input"
                                                         placeholder="Job Title" />
@@ -106,7 +106,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                           <div class="form-field">
-                                              <div class="form-field__control">
+                                              <div class="form-field__control form-field--is-active">
                                                   <label for="contact-9" class="form-field__label">Email Address</label>
                                                   <input name="email" value="{{old('email',$lead->email)}}" id="contact-9" type="text" class="form-field__input"
                                                       placeholder="Email Address" />
@@ -119,7 +119,7 @@
 
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                              <div class="form-field__control">
+                                              <div class="form-field__control form-field--is-active">
                                                   <label for="contact-9" class="form-field__label">Fax</label>
                                                   <input name="fax" value="{{old('fax',$lead->fax)}}" id="contact-9" type="text" class="form-field__input"
                                                       placeholder="Fax" />
@@ -152,7 +152,7 @@
                                     <div class="row mx-0">
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-13" class="form-field__label">Street</label>
                                                     <input name="billing_street" value="{{old('billing_street',$lead->billing_street)}}" id="contact-13" type="text" class="form-field__input"
                                                         placeholder="Street" />
@@ -161,7 +161,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-14" class="form-field__label">City</label>
                                                     <input name="billing_city" value="{{old('billing_city',$lead->billing_city)}}" id="contact-14" type="text" class="form-field__input"
                                                         placeholder="City" />
@@ -170,7 +170,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-15" class="form-field__label">State/Region</label>
                                                     <input name="billing_state" value="{{old('billing_state',$lead->billing_state)}}" id="contact-15" type="text" class="form-field__input"
                                                         placeholder="State/Region" />
@@ -179,7 +179,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-16" class="form-field__label">Postal Code</label>
                                                     <input name="billing_postal_code" value="{{old('billing_postal_code',$lead->billing_postal_code)}}" id="contact-16" type="text" class="form-field__input"
                                                         placeholder="Postal Code" />
@@ -188,7 +188,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-17" class="form-field__label">Country</label>
                                                     <input  name="billing_country" value="{{old('billing_country',$lead->billing_country)}}" id="contact-17" type="text" class="form-field__input"
                                                         placeholder="Country" />
@@ -211,7 +211,7 @@
                                 <div class="d-flex justify-content-Start align-items-center">
                                     <h2>Shipping Address</h2>
                                     <div class="form-field other-field ml-3 mb-0">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
                                     <div class="row mx-0">
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-18" class="form-field__label">Street</label>
                                                     <input name="shipping_street" value="{{old('shipping_street',$lead->shipping_street)}}" id="contact-18" type="text" class="form-field__input"
                                                         placeholder="Street" />
@@ -231,7 +231,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-19" class="form-field__label">City</label>
                                                     <input name="shipping_city" value="{{old('shipping_city',$lead->shipping_city)}}" id="contact-19" type="text" class="form-field__input"
                                                         placeholder="City" />
@@ -240,7 +240,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-20" class="form-field__label">State/Region</label>
                                                     <input name="shipping_state" value="{{old('shipping_state',$lead->shipping_state)}}" id="contact-20" type="text" class="form-field__input"
                                                         placeholder="State/Region" />
@@ -249,7 +249,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-21" class="form-field__label">Postal Code</label>
                                                     <input name="shipping_postal_code" value="{{old('shipping_postal_code',$lead->shipping_postal_code)}}" id="contact-21" type="text" class="form-field__input"
                                                         placeholder="Postal Code" />
@@ -258,7 +258,7 @@
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
-                                                <div class="form-field__control">
+                                                <div class="form-field__control form-field--is-active">
                                                     <label for="contact-22" class="form-field__label">Country</label>
                                                     <input name="shipping_country" value="{{old('shipping_country',$lead->shipping_country)}}" id="contact-22" type="text" class="form-field__input"
                                                         placeholder="Country" />
