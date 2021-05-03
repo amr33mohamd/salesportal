@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 
@@ -21,7 +22,7 @@
 
 </head>
 <body>
-    <div id="app">
+    <div >
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -82,7 +83,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-0">
             @yield('content')
         </main>
     </div>

@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
+use ICIGAILLC\LaravelModelFieldBuilder\Fieldable\HasFields;
+use ICIGAILLC\LaravelModelFieldBuilder\Fieldable\InteractsStaticallyWithFields;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class leads extends Model implements HasMedia
+class leads extends Model implements HasMedia, HasFields
 {
     use HasFactory;
     use InteractsWithMedia;
+    use InteractsStaticallyWithFields;
+    protected $with= ["fieldsData"];
 
     protected $guarded = [
         'id',

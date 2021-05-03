@@ -132,12 +132,12 @@
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6">
-                                <div class="profile-box-btn">
-                                    <button class="btn ml-2"><img src="/assets/images/add-icon.svg"
-                                            class="mr-1">Add
-                                        Notes</button>
+{{--                                <div class="profile-box-btn">--}}
+{{--                                    <button class="btn ml-2"><img src="/assets/images/add-icon.svg"--}}
+{{--                                            class="mr-1">Add--}}
+{{--                                        Notes</button>--}}
 
-                                </div>
+{{--                                </div>--}}
                                 <div class="profile-price-box">
 
                                 </div>
@@ -452,14 +452,18 @@
                                 <div class="tab-pane fade" id="assessments" role="tabpanel"
                                     aria-labelledby="assessments-tab">
                                     <div class="question-answer p-0">
-                                      <form method="post" action="/accounts/edit/action/{{$account->id}}"  enctype="multipart/form-data">
+                                      <form method="post" action="/accounts/edit/points/action/{{$account->id}}"  enctype="multipart/form-data">
                                         @csrf
-                                        <div class="row">
-                                            <div class="col-lg d-flex justify-content-end">
-                                                <a href="#" class="btn-admin-default">Cancel</a>
-                                                <button type="submit" class="btn-admin-primary ml-3">Save</a>
-                                            </div>
-                                        </div>
+                                          <div class="your-score" >
+                                              <div class="row d-flex align-items-center" style="text-align: center">
+                                                  <div class="col-auto">
+                                                      <div class=" d-flex align-items-center" style="text-align: center">Your
+                                                          Score<span class="ml-3" style="text-align: center">@{{points}}</span></div>
+                                                  </div>
+
+                                              </div>
+                                          </div>
+
                                         <input type="hidden" name="points" value="@{{points}}"/>
                                         <div class="row">
                                             <div class="col-auto">
@@ -670,19 +674,16 @@
                                             </div>
                                         </div>
 
-</form>
-
-
-                                    </div>
-                                    <div class="your-score">
-                                        <div class="row d-flex align-items-center">
-                                            <div class="col-auto">
-                                                <div class=" d-flex align-items-center">Your
-                                                    Score<span class="ml-3">@{{points}}</span></div>
+<div class="row">
+                                            <div class="col-lg d-flex justify-content-end">
+                                                <a href="#" class="btn-admin-default">Cancel</a>
+                                                <button type="submit" class="btn-admin-primary ml-3">Save</a>
                                             </div>
-
                                         </div>
+                                      </form>
+
                                     </div>
+
                                 </div>
 
 
@@ -796,10 +797,7 @@
                                                 <div class="col admin-table-filter-box">
                                                     <div
                                                         class="admin-table-filter d-flex justify-content-end align-items-center">
-                                                        <button
-                                                            class="admin-table-btn admin-table-btn-add mr-3" data-toggle="modal" data-target="#add-attachment"><img
-                                                                class="mr-2"
-                                                                src="/assets/images/table-add.svg">Assign Document</button>
+
 
                                                     </div>
                                                 </div>
@@ -1086,11 +1084,11 @@
                                         href="#activities" role="tab" aria-controls="activities"
                                         aria-selected="true">Activities</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="notes-tab" data-toggle="tab" href="#notes" role="tab"
-                                        aria-controls="notes" aria-selected="true">Notes <img
-                                            src="/assets/images/add-icon.svg" class="pl-1" /></a>
-                                </li>
+{{--                                <li class="nav-item">--}}
+{{--                                    <a class="nav-link" id="notes-tab" data-toggle="tab" href="#notes" role="tab"--}}
+{{--                                        aria-controls="notes" aria-selected="true">Notes <img--}}
+{{--                                            src="/assets/images/add-icon.svg" class="pl-1" /></a>--}}
+{{--                                </li>--}}
                             </ul>
                             <ul class="row my-3  mx-0 nav nav-tabs border-0">
                                 <li class="col-auto nav-item pl-0 px-2 ">
@@ -1103,26 +1101,27 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="col-auto nav-item px-2">
-                                    <a class="activities-btn nav-link row" id="meetings-tab" data-toggle="tab"
-                                    href="#meetings" role="tab" aria-controls="meetings"
-                                    aria-selected="true">
+                                <li class="col-auto nav-item pl-0 px-2 ">
+                                    <a class="activities-btn nav-link " id="meetings-tab" data-toggle="tab"
+                                       href="#meetings" role="tab" aria-controls="meetings"
+                                       aria-selected="true">
                                         <span class="px-3" style="display:inline;padding:5px">Meetings</span>
                                         <div style="display:inline;" class="activities-btn-icon px-2" data-toggle="modal" data-target="#schedule-a-meeting">
                                             <img src="/assets/images/add-icon.svg" />
                                         </div>
                                     </a>
                                 </li>
-                                <li class="col-auto nav-item px-2">
-                                    <a class="activities-btn nav-link row " id="tasks-tab" data-toggle="tab"
-                                    href="#tasks" role="tab" aria-controls="tasks"
-                                    aria-selected="true">
-                                        <span style="display:inline;padding:5px" class="px-3 col">Tasks</span>
-                                        <div style="display:inline;"  class="activities-btn-icon px-2 col" data-toggle="modal" data-target="#schedule-a-task">
+                                <li class="col-auto nav-item pl-0 px-2 ">
+                                    <a class="activities-btn nav-link " id="tasks-tab" data-toggle="tab"
+                                       href="#tasks" role="tab" aria-controls="tasks"
+                                       aria-selected="true">
+                                        <span class="px-3" style="display:inline;padding:5px">Tasks</span>
+                                        <div style="display:inline;" class="activities-btn-icon px-2" data-toggle="modal" data-target="#schedule-a-task">
                                             <img src="/assets/images/add-icon.svg" />
                                         </div>
                                     </a>
                                 </li>
+
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="call" role="tabpanel"
@@ -1264,9 +1263,9 @@
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field">
                                                                     <div class="form-field__control">
-                                                                        <label for="call-21" class="form-field__label">Call Start</label>
-                                                                        <input id="call-21" :value="(editing == 1 ) ? new Date(current_lead.start).toISOString().substring(0,new Date().toISOString().length-1) :null" name="start" type="datetime-local" class="form-field__input"
-                                                                            placeholder="16:30" />
+                                                                        <label for="call-21" class="form-field__label">Call Start *</label>
+                                                                        <input id="call-21" :value="(editing == 1 ) ? new Date(current_lead.start).toISOString().substring(0,new Date().toISOString().length-1) :null" name="start" type="datetime" class="form-field__input"
+                                                                            placeholder="21-04-2021 10:37" required />
 
                                                                     </div>
                                                                 </div>
@@ -1304,7 +1303,7 @@
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field mb-0">
                                                                     <div class="form-field__control">
-                                                                        <label for="call-18" class="form-field__label">Call Purpose</label>
+                                                                        <label for="call-18" class="form-field__label">Call Purpose *</label>
                                                                         <input id="call-18" :value="(editing == 1 ) ? current_lead.purpose :null" name="purpose" type="text" class="form-field__input"
                                                                             placeholder="purpose" required />
 
@@ -1361,9 +1360,9 @@
                                                             <div class="col-lg px-2">
                                                                 <div class="form-field">
                                                                   <div class="form-field__control">
-                                                                      <label for="call-9" class="form-field__label">Meeting Name</label>
+                                                                      <label for="call-9" class="form-field__label">Meeting Name *</label>
                                                                       <input id="call-9" :value="(editing == 1 ) ? current_lead.name :null" name="name" type="text" class="form-field__input"
-                                                                          placeholder="Call Type" />
+                                                                          placeholder="Meeting Name" required />
                                                                   </div>
                                                                 </div>
                                                             </div>
@@ -1372,7 +1371,7 @@
                                                                     <div class="form-field__control">
                                                                         <label for="call-10" class="form-field__label">location</label>
                                                                         <input id="call-10" :value="(editing == 1 ) ? current_lead.location :null" name="location" type="text" class="form-field__input"
-                                                                            placeholder="Related To" />
+                                                                            placeholder="location" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1396,7 +1395,7 @@
                                                                     <div class="form-field__control">
                                                                         <label for="call-12" class="form-field__label"> Meeting Status</label>
                                                                         <input id="call-12" :value="(editing == 1 ) ? current_lead.status :null"  name="status" type="text" class="form-field__input"
-                                                                            placeholder="Outgoing Call Status" />
+                                                                            placeholder="Meeting Status" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1424,34 +1423,32 @@
                                                                     <div class="form-field__control">
                                                                         <label for="call-14" class="form-field__label">Source</label>
                                                                         <input id="call-14" :value="(editing == 1 ) ? current_lead.source :null" name="source" type="text" class="form-field__input"
-                                                                            placeholder="Subject" />
+                                                                            placeholder="Source" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg px-2">
+                                                                <div class="form-field mb-0">
+                                                                    <div class="form-field__control">
+                                                                        <label for="call-15" class="form-field__label">from *</label>
+                                                                        <input id="call-15" :value="(editing == 1 ) ? new Date(current_lead.from).toISOString().substring(0,new Date(current_lead.from).toISOString().length-1) :null" name="from"  type="datetime" class="form-field__input"
+                                                                               placeholder="from" required />
 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg px-2">
+                                                                <div class="form-field mb-0">
+                                                                    <div class="form-field__control">
+                                                                        <label for="call-16" class="form-field__label">to *</label>
+                                                                        <input id="call-16" :value="(editing == 1 ) ? new Date(current_lead.to).toISOString().substring(0,new Date(current_lead.to).toISOString().length-1) :null" name="to"  type="datetime" class="form-field__input"
+                                                                               placeholder="to" required />
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="row mx-0">
-                                                            <div class="col-lg px-2">
-                                                                <div class="form-field mb-0">
-                                                                    <div class="form-field__control">
-                                                                        <label for="call-15" class="form-field__label">from</label>
-                                                                        <input id="call-15" :value="(editing == 1 ) ? new Date(current_lead.from).toISOString().substring(0,new Date(current_lead.from).toISOString().length-1) :null" name="from"  type="datetime-local" class="form-field__input"
-                                                                            placeholder="from" />
 
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg px-2">
-                                                                <div class="form-field mb-0">
-                                                                    <div class="form-field__control">
-                                                                        <label for="call-16" class="form-field__label">to</label>
-                                                                        <input id="call-16" :value="(editing == 1 ) ? new Date(current_lead.to).toISOString().substring(0,new Date(current_lead.to).toISOString().length-1) :null" name="to"  type="datetime-local" class="form-field__input"
-                                                                            placeholder="to" />
-                                                                                              </div>
-                                                                </div>
-                                                            </div>
 
                                                             <div class="col-lg d-flex justify-content-end align-items-end col-lg px-2 ">
                                                                 <a href="#" class="btn-admin-default ml-3" data-dismiss="modal" v-on:click="editing = 0"><img src="/assets/images/default-close.svg" class="mr-2"/> Cancel</a>
@@ -1493,7 +1490,7 @@
                                                             <div class="row mx-0">
                                                                 <div class="col-lg px-2">
                                                                     <div class="form-field">
-                                                                      <div class="form-field__control">
+                                                                      <div class="form-field__control form-field--is-active">
                                                                           <label for="call-1" class="form-field__label">Owner</label>
                                                                           <input id="call-1" :value="(editing == 1 ) ? current_lead.owner :null" name="owner" type="text" class="form-field__input"
                                                                               placeholder="Owner" />
@@ -1502,16 +1499,16 @@
                                                                 </div>
                                                                 <div class="col-lg px-2">
                                                                     <div class="form-field">
-                                                                        <div class="form-field__control">
-                                                                            <label for="call-2" class="form-field__label">subject</label>
+                                                                        <div class="form-field__control form-field--is-active">
+                                                                            <label for="call-2" class="form-field__label">subject *</label>
                                                                             <input id="call-2" :value="(editing == 1 ) ? current_lead.subject :null" name="subject" type="text" class="form-field__input"
-                                                                                placeholder="subject" />
+                                                                                placeholder="subject" required/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg px-2">
                                                                   <div class="form-field">
-                                                                      <div class="form-field__control">
+                                                                      <div class="form-field__control form-field--is-active">
                                                                           <label for="call-3" class="form-field__label">reminder</label>
                                                                           <select id="call-3" name="reminder" class="form-field__input">
                                                                               <option value="">N/A</option>
@@ -1526,10 +1523,10 @@
                                                                 </div>
                                                                 <div class="col-lg px-2">
                                                                     <div class="form-field">
-                                                                        <div class="form-field__control">
-                                                                            <label for="call-4" class="form-field__label"> Task Status</label>
+                                                                        <div class="form-field__control form-field--is-active">
+                                                                            <label for="call-4" class="form-field__label"> Task Status *</label>
                                                                             <input id="call-4" :value="(editing == 1 ) ? current_lead.status :null"  name="status" type="text" class="form-field__input"
-                                                                                placeholder="Outgoing Call Status" />
+                                                                                placeholder="Task Status" required/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1537,17 +1534,17 @@
                                                             <div class="row mx-0">
                                                                 <div class="col-lg px-2">
                                                                     <div class="form-field">
-                                                                        <div class="form-field__control">
+                                                                        <div class="form-field__control form-field--is-active">
                                                                             <label for="call-5" class="form-field__label">task google id</label>
                                                                             <input id="call-5" :value="(editing == 1 ) ? current_lead.task_google_id :null"  name="task_google_id" type="text" class="form-field__input"
-                                                                                placeholder="task google id<" />
+                                                                                placeholder="task google id" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <input type="hidden" name="callable" value="account,{{$account->id}}"/>
                                                                 <div class="col-lg px-2">
                                                                     <div class="form-field">
-                                                                        <div class="form-field__control">
+                                                                        <div class="form-field__control form-field--is-active">
                                                                             <label for="call-6" class="form-field__label">Source</label>
                                                                             <input id="call-6" :value="(editing == 1 ) ? current_lead.task_source :null" name="task_source" type="text" class="form-field__input"
                                                                                 placeholder="Source" />
@@ -1555,23 +1552,24 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg px-2">
-                                                                  <div class="form-field__control">
-                                                                      <label for="call-7" class="form-field__label">due date</label>
+                                                                  <div class="form-field__control form-field--is-active">
+                                                                      <label for="call-7" class="form-field__label">due date *</label>
                                                                       <input required id="call-7" :value="(editing == 1 ) ? current_lead.due_date :null" name="due_date"  type="date" class="form-field__input"
                                                                           placeholder="due date" />
                                                                                             </div>
                                                                 </div>
+                                                                <div class="col-lg px-2">
+                                                                    <div class="form-field mb-0">
+                                                                        <div class="form-field__control form-field--is-active">
+                                                                            <label for="call-8" class="form-field__label">Description</label>
+                                                                            <input  id="call-8" :value="(editing == 1 ) ? current_lead.description :null" name="description"  type="string" class="form-field__input"
+                                                                                   placeholder="Description" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="row mx-0">
-                                                                <div class="col-lg px-2">
-                                                                  <div class="form-field mb-0">
-                                                                    <div class="form-field__control">
-                                                                        <label for="call-8" class="form-field__label">Description</label>
-                                                                        <input required id="call-8" :value="(editing == 1 ) ? current_lead.description :null" name="description"  type="string" class="form-field__input"
-                                                                            placeholder="to" />
-                                                                                              </div>
-                                                                  </div>
-                                                                </div>
+
                                                                 <div class="col-lg px-2">
 
                                                                 </div>
@@ -1622,7 +1620,7 @@ const app = new Vue({
       // window.alert = function() {};
 
       $(document).ready(function(){
-      
+
         $('.points').on('focus',  function() {
         // Store the current value on focus and on change
         previous = $('option:selected', this).attr('points');

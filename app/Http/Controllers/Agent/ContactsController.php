@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Agent;
 
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use App\Models\contacts;
 use App\Http\Controllers\Controller;
@@ -11,7 +12,8 @@ use App\Models\accounts;
 class ContactsController extends Controller
 {
     public function index(Request $request){
-      $leads = contacts::all();
+        $user = Auth::user();
+        $leads = $user->contacts;
       return view('Agent.Sales.Members.Members',['leads'=>$leads]);
 
     }
@@ -45,8 +47,9 @@ class ContactsController extends Controller
     public function add(Request $request){
       $leads = contacts::all();
       $data = $request->all();
+      $user = Auth::user();
 // return $request->account_id;
-      $add = contacts::query()->create(array_merge(array_filter($data),['account_id'=>$request->account_id]));
+      $add = contacts::query()->create(array_merge(array_filter($data),['account_id'=>$request->account_id,'user_id'=>$user->id]));
       // return $add;
       return redirect('/members');
 

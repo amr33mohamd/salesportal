@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $plans = collect([
             (object)[
-                "id" => "price_1IMEwCDdMtluCwdwDsZLxhvN",
+                "id" => "plan_JP83Tsv2xpNfyK",
                 "name" => "Basic Plan",
                 "price" => "20",
                 "description" => "Basic Plan for accessing the application",
@@ -38,7 +38,7 @@ class HomeController extends Controller
                 ]
             ],
             (object)[
-                "id" => "price_1IMEwCDdMtluCwdwDsZLxhvN",
+                "id" => "plan_JP8ID3XFmuOM0y",
                 "name" => "Premium Plan",
                 "price" => "50",
                 "description" => "Premium Plan for accessing the application",
@@ -49,7 +49,7 @@ class HomeController extends Controller
                 ]
             ],
             (object)[
-                "id" => "price_1IMEwCDdMtluCwdwDsZLxhvN",
+                "id" => "price_1ImJncKvk7bbuWcowEzQxVTY",
                 "name" => "Unlimited Plan",
                 "price" => "200",
                 "description" => "Unlimited Plan for accessing the application",
@@ -62,19 +62,28 @@ class HomeController extends Controller
         ]);
 
         //add plan
-        // $stripe = new \Stripe\StripeClient(
-        //   'sk_test_51IMEWIDdMtluCwdwcZCMTSgNjkwyRYFtm6op6maXihd3ki6ybx9Ec8Lz7Z7mK5Lz6w1K1zP1F3ImEpN88Z0emlOj003bFxPDUy'
-        // );
-        // $stripe->plans->create([
-        //   'amount' => 999900,
-        //   'currency' => 'usd',
-        //   'interval' => 'month',
-        //   'product' => 'prod_IyBIw3ZJCGzdrz',
-        // ]);
+//         $stripe = new \Stripe\StripeClient(
+//           'sk_test_51IDzBjKvk7bbuWcozFx0O1f55PPItLvQSL214v0bcVeBpH9zQCaXcBmw0UdCkSOdgV7Rzo1ASDO1Dm8R6zJig7J000bejoZDxi'
+//         );
+//         $stripe->plans->create([
+//           'amount' => 999900,
+//           'currency' => 'usd',
+//           'interval' => 'month',
+//           'product' => 'prod_JP83rFAHNMSfeG',
+//         ]);
 
         return view('home', [
             "plans" => $plans
         ]);
+//        $stripe = new \Stripe\StripeClient(
+//           'sk_test_51IDzBjKvk7bbuWcozFx0O1f55PPItLvQSL214v0bcVeBpH9zQCaXcBmw0UdCkSOdgV7Rzo1ASDO1Dm8R6zJig7J000bejoZDxi'
+//         );
+//        $stripe->charges->create([
+//            'amount' => 2000,
+//            'currency' => 'usd',
+//            'source' => 'tok_amex',
+//            'description' => 'My First Test Charge (created for API docs)',
+//        ]);
     }
 
     public function test(){

@@ -12,6 +12,9 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('home');
+    $router->get('/builder-accounts', 'BuilderAccounts@index');
+    $router->get('/builder-leads', 'BuilderLeads@index');
+
     $router->resource('users', UserController::class);
     $router->resource('leads', leadsController::class);
     $router->resource('calls', callsController::class);
@@ -29,5 +32,6 @@ Route::group([
     $router->resource('sales_stages', sales_stageController::class);
     $router->resource('traffic_mediums', traffic_mediumsController::class);
     $router->resource('traffic_sources', traffic_sourceController::class);
+    $router->resource('designed-milestones', DesignedMilestonesController::class);
 
 });

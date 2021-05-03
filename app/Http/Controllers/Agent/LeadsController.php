@@ -23,8 +23,9 @@ class LeadsController extends Controller
     public function index(Request $request){
       $user = Auth::user();
       $leads = $user->leads;
+        $fields = leads::fields()->get();
 
-      return view('Agent.Sales.Leads.Leads',['leads'=>$leads]);
+      return view('Agent.Sales.Leads.Leads',['leads'=>$leads,'fields'=>$fields]);
 
 
     }
@@ -39,7 +40,9 @@ $industries = industry::all();
 $currancies = currencies::all();
 $sources = traffic_source::all();
 $mediums = traffic_mediums::all();
-return view('Agent.Sales.Leads.NewLead',['lead'=>$lead,'sources'=>$sources,'mediums'=>$mediums,'industries'=>$industries,'currancies'=>$currancies,'type'=>'edit','statuses'=>$statuses,'education_qualifications'=>$educations,'hear_about_uses'=>$hear_about_uses,'nationalities'=>$nationalities]);
+        $fields = leads::fields()->get();
+
+return view('Agent.Sales.Leads.NewLead',['lead'=>$lead,'sources'=>$sources,'mediums'=>$mediums,'industries'=>$industries,'fields'=>$fields,'currancies'=>$currancies,'type'=>'edit','statuses'=>$statuses,'education_qualifications'=>$educations,'hear_about_uses'=>$hear_about_uses,'nationalities'=>$nationalities]);
 
     }
     public function addScreen(Request $request){
@@ -53,7 +56,9 @@ return view('Agent.Sales.Leads.NewLead',['lead'=>$lead,'sources'=>$sources,'medi
        $currancies = currencies::all();
        $sources = traffic_source::all();
        $mediums = traffic_mediums::all();
-      return view('Agent.Sales.Leads.NewLead',['lead'=>$lead,'sources'=>$sources,'mediums'=>$mediums,'industries'=>$industries,'currancies'=>$currancies,'type'=>'add','statuses'=>$statuses,'education_qualifications'=>$educations,'hear_about_uses'=>$hear_about_uses,'nationalities'=>$nationalities]);
+        $fields = leads::fields()->get();
+
+        return view('Agent.Sales.Leads.NewLead',['lead'=>$lead,'fields'=>$fields,'sources'=>$sources,'mediums'=>$mediums,'industries'=>$industries,'currancies'=>$currancies,'type'=>'add','statuses'=>$statuses,'education_qualifications'=>$educations,'hear_about_uses'=>$hear_about_uses,'nationalities'=>$nationalities]);
 
     }
     public function edit(Request $request){
@@ -67,8 +72,9 @@ return view('Agent.Sales.Leads.NewLead',['lead'=>$lead,'sources'=>$sources,'medi
          unset($data['file']);
 
       }
-      $edit = leads::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
-
+        $account= leads::findOrFail(request('id'));
+        $account->fields= array_merge(array_filter($data));
+        $account->save();
       return redirect('/leads');
 
     }
@@ -78,31 +84,44 @@ return view('Agent.Sales.Leads.NewLead',['lead'=>$lead,'sources'=>$sources,'medi
       $data['user_id'] = Auth::user()->id;
       $add = leads::query()->create(array_merge(array_filter($data)));
       unset($data['file']);
-
+        $add->fields = array_merge(array_filter($data));
+        $add->save();
       if(isset($request->file)){
          $add->addMedia($request->file)->toMediaCollection();
       }
       return redirect('/leads');
     }
     public function convert(Request $request){
+        $user = Auth::user();
       $row_object = leads::where('id', $request->id)->first();
-
-
+      $fields = leads::fields()->get();
         // convert to array
-        $row_array = $row_object->toArray();
+        $row_array = [];
+        foreach ($fields as $field){
+            $data = $row_object->getFieldById($field->id);
+//            echo $field->name;
+            if(isset($data->value))
+                $row_array[$field->name] = $data->value;
+        }
+//        $row_array = $row_object->toArray();
+//
+//        // unset the row id (assuming id autoincrements)
+//        unset($row_array['id']);
+//        unset($row_array['created_at']);
+//        unset($row_array['updated_at']);
+//
+//
+//        // insert the row data into the new table (assuming all fields are the same)
+        $account = accounts::create([
+            "user_id"=>$user->id
+        ]);
 
-        // unset the row id (assuming id autoincrements)
-        unset($row_array['id']);
-        unset($row_array['lead_owner']);
-        unset($row_array['created_at']);
-        unset($row_array['updated_at']);
-
-
-        // insert the row data into the new table (assuming all fields are the same)
-        accounts::insert($row_array);
+        $account->fields = array_merge(array_filter($row_array));
+        $account->save();
+//
         $leads = leads::find($request->id)->delete();
 
-        return redirect('/accounts');
+       return redirect('/accounts/edit/'.$account->id);
     }
     public function delete(Request $request){
        $auth = Auth::user();

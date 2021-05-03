@@ -221,13 +221,13 @@
 
                                                             @foreach($accounts as $account)
 
-                                                              <option value="account,{{$account->id}}" :selected="(editing == 1 &&  {{$account->id}} == current_lead.taskable_id) ? true :false">{{$account->first_name}} {{$account->last_name}}</option>
+                                                              <option value="account,{{$account->id}}" :selected="(editing == 1 &&  {{$account->id}} == current_lead.taskable_id) ? true :false">{{$account->getFieldByName('surname')['value'] }}</option>
 
                                                               @endforeach
 
                                                               @foreach($userLeads as $accountt)
 
-                                                                <option  value="lead,{{$accountt->id}}" :selected="(editing == 1  && {{$accountt->id}} == current_lead.taskable_id) ? true :false">{{$accountt->first_name}} {{$accountt->last_name}}</option>
+                                                                <option  value="lead,{{$accountt->id}}" :selected="(editing == 1  && {{$accountt->id}} == current_lead.taskable_id) ? true :false">{{$accountt->getFieldByName('surname')['value'] }}</option>
 
                                                                 @endforeach
 

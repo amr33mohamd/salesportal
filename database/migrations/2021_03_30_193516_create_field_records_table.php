@@ -17,7 +17,7 @@ class CreateFieldRecordsTable extends Migration
             $table->id();
 
             $table->nullableMorphs('model');
-            $table->foreignId('field_id')->constrained();
+            $table->foreignId('field_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->longText('value')->nullable();
 
             $table->timestamps();

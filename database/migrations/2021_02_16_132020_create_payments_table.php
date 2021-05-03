@@ -17,8 +17,8 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->enum('type', ["Cashe", "Milestones"]);
-            $table->integer('amount');
+            $table->text('type')->nullable();
+            $table->integer('amount')->nullable();
             $table->unsignedBigInteger('designed_milestone_id')->unsigned()->nullable();
             $table->foreign('designed_milestone_id')->references('id')->on('designed_milestones')->onDelete('cascade');
             $table->unsignedBigInteger('account_id')->unsigned()->nullable();

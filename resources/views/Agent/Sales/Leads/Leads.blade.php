@@ -78,18 +78,13 @@
                                             </th>
                                             <th scope="col">To Account</th>
 
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Home Phone</th>
-                                            <th scope="col">Fax</th>
-                                            <th scope="col">Follow Up</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Secondary Email</th>
-                                            <th scope="col">Age</th>
+
 
                                             <th scope="col">Actions</th>
+                                            @foreach($fields as $field)
+                                                <th scope="col">{{$field->label}}</th>
 
+                                            @endforeach
                                         </tr>
                                     </thead>
                                     <tbody class="height-300">
@@ -103,26 +98,7 @@
                                             </td>
                                             <td><a href="/leads/convert/{{$lead->id}}" style="display:inline-block;width:15%">  Convert</a>
                                             </div></td>
-                                            <td><a href="/leads/edit/{{$lead->id}}">{{$lead->first_name}} {{$lead->last_name}}</a></td>
-                                            <td >
-                                                <div style="background: #0D3745;
-    padding: 5px 10px;
-    line-height: 15px;
-    border-radius: 3px;
-    color: #ffffff;
-    display: block;
-    margin-top: 2px;
-    float: left;">{{($lead->status) ? $lead->status->name :null}}</div>
 
-                                            </td>
-                                            <td>{{$lead->email}}</td>
-
-                                            <td>{{$lead->contact_number}}</td>
-                                            <td>{{$lead->fax}}</td>
-                                            <td>{{$lead->follow_up}}</td>
-                                            <td>{{$lead->gender}}</td>
-                                            <td>{{$lead->secondary_email}}</td>
-                                            <td>{{$lead->age}}</td>
 
                                             <td>
                                               <div class="row">
@@ -138,6 +114,9 @@
                                             </div>
                                             </div>
                                             </td>
+                            @foreach($fields as $field)
+                                <td>{{($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null}}</td>
+                                @endforeach
                                         </tr>
                                         @endforeach
 

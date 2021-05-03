@@ -50,7 +50,7 @@ class SocialController extends Controller
       $add = documents::query()->create(array_merge(array_filter($data),['user_id' => $auth->id]));
 
       $add->addMedia($request->file)->toMediaCollection();
-      return redirect('/marketing');
+      return back();
 
     }
     public function delete(Request $request){

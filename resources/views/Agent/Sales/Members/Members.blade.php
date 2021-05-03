@@ -94,7 +94,7 @@
                                                     <input type="checkbox">
                                                 </div>
                                             </td>
-                                            <td><a href="./profile.html">{{$lead->first_name}} {{$lead->last_name}}</a></td>
+                                            <td>{{$lead->first_name}} {{$lead->last_name}}</td>
                                             <td >
                                                 {{$lead->billing_city}}
 

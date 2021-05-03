@@ -117,6 +117,10 @@ $animation-duration: 0.4s;
     &::placeholder {
       color: $white-color;
     }
+    &.appearance-auto {
+      appearance: auto;
+      height: 35px;
+    }
 }
 .form-field__textarea {
   height: 150px;

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="radio" transform="translate(13803 514)">
+    <g id="Ellipse_42" data-name="Ellipse 42" transform="translate(-13803 -514)" fill="none" stroke="#000" stroke-width="2">
+      <circle cx="12" cy="12" r="12" stroke="none"/>
+      <circle cx="12" cy="12" r="11" fill="none"/>
+    </g>
+    <g id="Ellipse_43" data-name="Ellipse 43" transform="translate(-13794 -505)" stroke="#000" stroke-width="2">
+      <circle cx="3" cy="3" r="3" stroke="none"/>
+      <circle cx="3" cy="3" r="2" fill="none"/>
+    </g>
+  </g>
+</svg>

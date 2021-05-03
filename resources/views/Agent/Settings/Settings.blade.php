@@ -34,6 +34,7 @@
         </div>
     </div>
     <!-- Page Title and Breadcrumb End -->
+    </form>
 
     <!-- Setting Tab Section Start -->
     <div class="tab-v-box-2 setting-box">
@@ -42,8 +43,10 @@
         <div class="container-fluid">
           <div class="row">
               <div class="col-lg d-flex justify-content-end" style="padding:10px">
-                  <a href="#" class="btn-admin-default">Cancel</a>
-                  <button type="submit" class="btn-admin-primary ml-3">Save</a>
+
+                  <button type="submit" class="btn-admin-primary ml-3">Save</button></a>
+                      <a href="#"  class="btn-admin-primary ml-3" data-toggle="modal" data-target="#add-attachment">
+                          <img class="mr-2" src="./assets/images/table-add.svg" >Add Attachment</a>
               </div>
           </div>
             <div class="row">
@@ -62,6 +65,10 @@
                         <a class="nav-link" id="v-pills-advanced-tab" data-toggle="pill" href="#v-pills-advanced"
                             role="tab" aria-controls="v-pills-advanced" aria-selected="false">
                             <img src="./assets/images/advanced.svg" />Advanced
+                        </a>
+                        <a class="nav-link" id="v-pills-files-tab" data-toggle="pill" href="#v-pills-files"
+                           role="tab" aria-controls="v-pills-files" aria-selected="false">
+                            <img src="./assets/images/advanced.svg" />Attachments
                         </a>
                     </div>
                 </div>
@@ -748,11 +755,249 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="tab-pane fade" id="v-pills-files" role="tabpanel"
+                             aria-labelledby="v-pills-files-tab">
+
+                            <section class="profile-content mt-3">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <div class="card-box pt-3 pl-3 pr-3">
+                                            <div class="tab-h-box">
+                                                <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" id="social-tab" data-toggle="tab" href="#social"
+                                                           role="tab" aria-controls="social" aria-selected="true">Social</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="templates-tab" data-toggle="tab" href="#templates"
+                                                           role="tab" aria-controls="templates" aria-selected="false">Templates</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link " id="image-library-tab" data-toggle="tab" href="#image-library"
+                                                           role="tab" aria-controls="image-library" aria-selected="false">Image Library</a>
+                                                    </li>
+
+                                                </ul>
+                                                <div class="tab-content" id="myTabContent">
+                                                    <div class="tab-pane fade show active" id="social" role="tabpanel"
+                                                         aria-labelledby="social-tab">
+                                                        <div class="row">
+                                                            @if($Social->count() == 0)
+                                                                <p>No Data</p>
+                                                            @else
+                                                                @foreach($Social as $lead)
+                                                                    <div class="col-lg-2 mb-3" >
+                                                                        <div class="card-box social-box">
+                                                                            <div class="social-box-img"><img  style="height:250px !important" src="{{$lead->getFirstMediaUrl()}}"/></div>
+                                                                            <div class="social-box-detail p-3">
+                                                                                <div class="row">
+                                                                                    <div class="col">
+
+                                                                                        <h4>{{$lead->name}}</h4>
+                                                                                        <p>{{($lead->status == 1) ? 'approved' : 'declined'}}</p>
+                                                                                        <p>{{$lead->caregory}} / {{$lead->sub_category}}</p>
+                                                                                    </div>
+                                                                                    <div class="col-auto d-flex align-items-center">
+                                                                                        <a href="{{$lead->getFirstMediaUrl()}}"><img src="./assets/images/direct-download-red.svg"/></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            @endif
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="templates" role="tabpanel"
+                                                         aria-labelledby="templates-tab">
+                                                        <div class="row">
+                                                            @if($Template->count() == 0)
+                                                                <p>No Data</p>
+                                                            @else
+                                                                @foreach($Template as $lead)
+                                                                    <div class="col-lg-2 mb-3" >
+                                                                        <div class="card-box social-box">
+                                                                            <div class="social-box-img"><img  style="height:250px !important"  src="{{$lead->getFirstMediaUrl()}}"/></div>
+                                                                            <div class="social-box-detail p-3">
+                                                                                <div class="row">
+                                                                                    <div class="col">
+
+                                                                                        <h4>{{$lead->name}}</h4>
+                                                                                        <p>{{($lead->status == 1) ? 'approved' : 'declined'}}</p>
+                                                                                        <p>{{$lead->caregory}} / {{$lead->sub_category}}</p>
+                                                                                    </div>
+                                                                                    <div class="col-auto d-flex align-items-center">
+                                                                                        <a href="{{$lead->getFirstMediaUrl()}}"><img src="./assets/images/direct-download-red.svg"/></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="image-library" role="tabpanel"
+                                                         aria-labelledby="image-library-tab">
+                                                        <div class="row">
+                                                            @if($Image->count() == 0)
+                                                                <p>No Data</p>
+                                                            @else
+                                                                @foreach($Image as $lead)
+                                                                    <div class="col-lg-2 mb-3" >
+                                                                        <div class="card-box social-box">
+                                                                            <div class="social-box-img"><img style="height:250px !important" src="{{$lead->getFirstMediaUrl()}}"/></div>
+                                                                            <div class="social-box-detail p-3">
+                                                                                <div class="row">
+                                                                                    <div class="col">
+
+                                                                                        <h4>{{$lead->name}}</h4>
+                                                                                        <p>{{($lead->status == 1) ? 'approved' : 'declined'}}</p>
+                                                                                        <p>{{$lead->caregory}} / {{$lead->sub_category}}</p>
+                                                                                    </div>
+                                                                                    <div class="col-auto d-flex align-items-center">
+                                                                                        <a href="{{$lead->getFirstMediaUrl()}}"><img src="./assets/images/direct-download-red.svg"/></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- Table Section End -->
+</main>
+
+</form>
+<!-- Modal Start -->
+<div class="modal fade" id="add-attachment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="setting-box">
+                    <div class="card-box px-2 py-3">
+                        <div class="row setting-title-box px-2 mb-3">
+                            <div class="col">
+                                <p class="p-0">Add Attachment</p>
+                            </div>
+                        </div>
+                        <div class="setting-form-box">
+                            <form id="marketingForm" method="post" enctype="multipart/form-data" action="{{route('AddMarketing')}}">
+                                @csrf
+                                <div class="row px-2">
+                                    <div class="col px-2">
+                                        <div class="row mx-0">
+                                            <div class="col-lg px-2">
+                                                <div class="form-field other-field float-left">
+                                                    <div class="form-field__control">
+                                                        <label class="form-field__label">File</label>
+                                                        <label for="attachment-1" class="btn-admin-primary mb-0">
+                                                            <img class="mr-2" src="./assets/images/computing-cloud.svg">Choose File
+                                                        </label>
+                                                        <input id="attachment-1" name="file" type="file" class="other-field d-none" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mx-0">
+                                            <div class="col-lg px-2">
+                                                <div class="form-field">
+                                                    <div class="form-field__control">
+                                                        <label for="attachment-2" class="form-field__label">File Name</label>
+                                                        <input id="attachment-2" type="text" name="name" class="form-field__input"
+                                                               placeholder="name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg px-2">
+                                                <div class="form-field">
+                                                    <div class="form-field__control">
+                                                        <label for="attachment-3" class="form-field__label">Caregory</label>
+                                                        <input id="attachment-3" name="category" type="text" class="form-field__input"
+                                                               placeholder="Category" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg px-2">
+                                                <div class="form-field">
+                                                    <div class="form-field__control">
+                                                        <label for="attachment-4" class="form-field__label">sub category</label>
+                                                        <input id="attachment-4" name="sub_category" type="text" class="form-field__input"
+                                                               placeholder="Sub Category" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mx-0">
+                                            <div class="col-lg px-2">
+                                                <div class="form-field mb-0">
+                                                    <div class="form-field__control">
+                                                        <label for="attachment-5" class="form-field__label">Aprroval Stauts</label>
+                                                        <select id="attachment-5" name="status" class="form-field__input">
+                                                            <option value="">Aprroval Stauts</option>
+                                                            <option value="1">Approved</option>
+                                                            <option value="2">declined</option>
+                                                        </select>
+                                                        <div class="form-dropdown-icon">
+                                                            <img src="./assets/images/form-drop-down.svg" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg px-2">
+                                                <div class="form-field mb-0">
+                                                    <div class="form-field__control">
+                                                        <label for="attachment-6" class="form-field__label">Type</label>
+                                                        <select id="attachment-6" name="type" class="form-field__input" required>
+                                                            <option value="">Choose</option>
+
+                                                            <option value="Template">Template</option>
+                                                            <option value="Social">Social</option>
+                                                            <option value="Image">Image</option>
+                                                        </select>
+                                                        <div class="form-dropdown-icon">
+                                                            <img src="./assets/images/form-drop-down.svg" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg d-flex justify-content-end align-items-end px-2">
+                                                <button type="submit"  class="btn-admin-primary ml-3"><img src="./assets/images/table-add.svg" class="mr-2"/>Add Attachment</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-      </form>
+    </div>
+</div>
+<!-- Modal End -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Setting Tab Section End -->
 </main>

@@ -32,7 +32,20 @@ display: none;
 .dt-buttons{
   display: none;
 }
+textarea {
+    resize: none !important;
+}
+
 </style>
+<link rel="stylesheet" type="text/css" href="/datatime/DateTimePicker.css" />
+
+<!--[if lt IE 9]>
+ <link rel="stylesheet" type="text/css" href="/datetime/DateTimePicker-ltie9.css" />
+ <script type="text/javascript" src="/datetime/DateTimePicker-ltie9.js"></script>
+<![endif]-->
+
+<!-- For i18n Support -->
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- style css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
@@ -53,7 +66,7 @@ display: none;
                     </form>
                 </div>
                 <div class="d-flex align-items-center top-right-header">
-                    
+
                     <div class="header-notification mr-4">
 
                         <div class="notificatin-list-box">
@@ -228,6 +241,7 @@ display: none;
     </header>
 <body>
   @yield('content')
+  <div id="dtBox"></div>
 
 </body>
 
@@ -247,8 +261,20 @@ $(document).ready(function(){
     $(".buttons-csv").click();
   })
 })
+$(document).ready(function()
+ {
 
+     $("#dtBox").DateTimePicker({
+       options:{
+           dateSeparator:'/'
+       }
+     });
+
+ });
 </script>
+<script type="text/javascript" src="/datatime/DateTimePicker.js"></script>
+
+
 @stack('scripts')
 
 </html>

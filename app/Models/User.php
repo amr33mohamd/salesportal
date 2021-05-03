@@ -61,6 +61,20 @@ class User extends Authenticatable
      {
         return $this->hasMany(User::class,'invited_by','id');
       }
+    public function contacts()
+    {
+        return $this->hasManyThrough(
+            contacts::class, accounts::class,
+            'user_id', 'account_id', 'id'
+        );
+    }
+    public function cases()
+    {
+        return $this->hasManyThrough(
+            opportunities::class, accounts::class,
+            'user_id', 'account_id', 'id'
+        );
+    }
       public function leads()
       {
          return $this->hasMany(leads::class,'user_id','id');
@@ -101,6 +115,6 @@ class User extends Authenticatable
                {
                   return $this->hasMany(User::class,'follow_id','id');
                 }
-                
+
 
 }

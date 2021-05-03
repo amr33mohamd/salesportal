@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Agent;
 
+use ICIGAILLC\LaravelModelFieldBuilder\Models\FieldRule;
 use Illuminate\Http\Request;
 use App\Models\accounts;
 use App\Http\Controllers\Controller;
@@ -23,8 +24,9 @@ class AccountsController extends Controller
   public function index(Request $request){
     $user = Auth::user();
     $leads = $user->accounts;
+      $fields = accounts::fields()->get();
 
-    return view('Agent.Sales.Accounts.Accounts',['leads'=>$leads]);
+    return view('Agent.Sales.Accounts.Accounts',['leads'=>$leads,'fields'=>$fields]);
 
 
   }
@@ -62,7 +64,7 @@ class AccountsController extends Controller
 
 
   public function editScreen(Request $request){
-    $lead = accounts::query()->where('id',request('id'))->first();
+    $lead = accounts::query()->where('id',request('id'))->with('fieldsData.field')->first();
     $user = Auth::user();
      $statuses = lead_status::all();
 $hear_about_uses = hear_about_us::all();
@@ -89,23 +91,37 @@ return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'fields'=>$fields,'
      $sources = traffic_source::all();
      $mediums = traffic_mediums::all();
      $fields = accounts::fields()->get();
+//      $field= $fields->first();
+//      $rule= new FieldRule();
+//      $rule->rule= "required";
+//      $field->rules()->save($rule);
     return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'sources'=>$sources,'mediums'=>$mediums,'industries'=>$industries,'currancies'=>$currancies,'type'=>'add','statuses'=>$statuses,'education_qualifications'=>$educations,'hear_about_uses'=>$hear_about_uses,'nationalities'=>$nationalities,'fields'=>$fields]);
-
+//return $fields;
   }
   public function edit(Request $request){
-    $leads = accounts::all();
-    $data = $request->all();
-    unset($data['_token']);
-    unset($data['file']);
+     $leads = accounts::all();
+     $data = $request->all();
+     unset($data['_token']);
+     unset($data['file']);
 
-    if($request->file){
-      $edit =  accounts::query()->where('id',request('id'))->first()->addMedia($request->file)->toMediaCollection();
-       // echo $edit;
-    }
-    $edit = accounts::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
+     if($request->file){
+       $edit =  accounts::query()->where('id',request('id'))->first()->addMedia($request->file)->toMediaCollection();
+        // echo $edit;
+     }
+//      $edit = accounts::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
+     $account= accounts::findOrFail(request('id'));
+     $account->fields= array_merge(array_filter($data));
+     $account->save();
+    return redirect('/accounts');
 
-    return back();
+  }
 
+  public function editPoints(Request $request){
+      $data = $request->all();
+      unset($data['_token']);
+
+      $edit = accounts::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
+      return back();
   }
   public function add(Request $request){
     $leads = accounts::all();
@@ -114,6 +130,10 @@ return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'fields'=>$fields,'
     unset($data['file']);
 
     $add = accounts::query()->create(array_merge(array_filter($data)));
+      unset($data['user_id']);
+
+     $add->fields = array_merge(array_filter($data));
+     $add->save();
     if(isset($request->file)){
        $add->addMedia($request->file)->toMediaCollection();
     }

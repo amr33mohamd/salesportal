@@ -51,7 +51,8 @@ class PaymentMethodController extends Controller
         if ($user->stripe_id == null) {
             $user->createAsStripeCustomer();
         }
-
+//    return  $user->createAsStripeCustomer();
+//       return $paymentMethodID;
         $user->addPaymentMethod($paymentMethodID);
         $user->updateDefaultPaymentMethod($paymentMethodID);
         $user->updateDefaultPaymentMethodFromStripe();

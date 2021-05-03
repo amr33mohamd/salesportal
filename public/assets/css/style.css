@@ -20076,13 +20076,15 @@ a {
 
 .activities-btn {
   border-radius: 3px;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  background: #F3F2F2;
+  background: #F3F2F2 !important;
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
+  padding: 0 !important;
+  border: none !important;
 }
 .activities-btn span {
   color: #000000;
@@ -20101,6 +20103,9 @@ a {
   background: #0D3745 !important;
   color: #ffffff !important;
   display: block;
+}
+.activities-btn::before {
+  display: none;
 }
 
 /* 
@@ -30250,6 +30255,11 @@ h3 {
 .form-field__textarea::placeholder {
   color: #ffffff;
 }
+.form-field__input.appearance-auto,
+.form-field__textarea.appearance-auto {
+  appearance: auto;
+  height: 35px;
+}
 
 .form-field__textarea {
   height: 150px;
@@ -30383,6 +30393,25 @@ input[type=radio]:checked:after {
   opacity: 0.5;
   line-height: 20px !important;
 }
+.auth-page .auth-box .auth-form .form-field--is-active .form-dropdown-icon {
+  display: none;
+}
+.auth-page .auth-box .auth-form .form-field--is-filled .form-field__control::after {
+  border-bottom: 2px solid #000000;
+  transform: scaleX(150);
+  opacity: 1;
+}
+.auth-page .auth-box .auth-form .form-field--is-filled .form-field__label {
+  padding: 15px 0 0 !important;
+  opacity: 0.5;
+  line-height: 20px !important;
+}
+.auth-page .auth-box .auth-form .form-field--is-filled .form-dropdown-icon {
+  display: none;
+}
+.auth-page .auth-box .auth-form .form-field.drop-down-click .form-dropdown-icon {
+  width: 18px;
+}
 .auth-page .auth-box .auth-form .form-field__control {
   border-radius: 0;
   border: 1px solid #ffffff;
@@ -30399,7 +30428,6 @@ input[type=radio]:checked:after {
   right: 0;
   transform: scaleX(150);
   transition: all 0.4s;
-  width: 1%;
   opacity: 0.3;
 }
 .auth-page .auth-box .auth-form .form-field__control .form-field__label {
@@ -30418,6 +30446,15 @@ input[type=radio]:checked:after {
   line-height: 25px;
   color: #000000;
   border: none;
+}
+.auth-page .auth-box .auth-form .form-field__control .form-dropdown-icon {
+  bottom: 0;
+  top: inherit;
+  height: 35px;
+  width: 35px;
+}
+.auth-page .auth-box .auth-form .form-field__control .form-dropdown-icon img {
+  width: 10px;
 }
 .auth-page .auth-box .auth-form .form-field__control .password-input {
   padding-right: 36px;
@@ -30471,6 +30508,26 @@ input[type=radio]:checked:after {
   opacity: 0.3;
   margin: 0;
   padding: 0;
+}
+.auth-page .back {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -10%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 5px;
+}
+.auth-page .back:hover {
+  background: #BE2623;
+}
+.auth-page .back:hover img {
+  -webkit-filter: invert(100%);
+  /* Safari/Chrome */
+  filter: invert(100%);
 }
 
 /* 
@@ -31760,7 +31817,7 @@ header .nav-menu-admin li.active a.nav-link::before {
 }
 .attachment-btn .top-btn {
   position: absolute;
-  z-index: 9999;
+  z-index: 0;
   top: -54px;
   right: -15px;
 }
@@ -32470,6 +32527,169 @@ header .nav-menu-admin li.active a.nav-link::before {
   margin: 10px 0 0;
 }
 
+.subscription-box {
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.subscription-box .recommended {
+  text-transform: capitalize;
+  background: #BE2623;
+  width: 40%;
+  font-size: 14px;
+  text-align: center;
+  line-height: 20px;
+  color: #ffffff;
+  padding: 10px 0;
+  border-radius: 0 0 10px 0;
+}
+.subscription-box .subscription-header h2 {
+  font-size: 26px;
+  line-height: 36px;
+  color: #000000;
+  margin-bottom: 0;
+}
+.subscription-box .subscription-header .price h4 {
+  font-size: 30px;
+  line-height: 30px;
+  color: #000000;
+  margin-bottom: 0;
+}
+.subscription-box .subscription-header .price h3 {
+  font-size: 95px;
+  line-height: 80px;
+  color: #000000;
+  margin-bottom: 0;
+}
+.subscription-box .subscription-header h6 {
+  font-size: 15px;
+  line-height: 20px;
+  color: #000000;
+  margin-bottom: 0;
+  opacity: 0.3;
+}
+.subscription-box .subscription-header p {
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+  margin-bottom: 0;
+  text-align: left;
+}
+.subscription-box .subscription-body .list {
+  flex-wrap: wrap;
+}
+.subscription-box .subscription-body .list .icon {
+  width: 10%;
+}
+.subscription-box .subscription-body .list .text {
+  width: 80%;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+.subscription-box .subscription-body .list .info {
+  width: 10%;
+  text-align: right;
+  opacity: 0.3;
+}
+.subscription-box .subscription-body .list .info img {
+  width: 19px;
+}
+.subscription-box .subscription-footer button {
+  background: #0D3745;
+  font-size: 20px;
+  line-height: 25px;
+  color: #ffffff;
+  border: none;
+  border-radius: 0 10px 0 0;
+  text-transform: uppercase;
+  width: 60%;
+  padding: 15px 0;
+  font-weight: 500;
+}
+.subscription-box .subscription-footer button:hover {
+  background: #BE2623;
+}
+.subscription-box.active {
+  transform: scale(1.18);
+  z-index: 99999;
+}
+.subscription-box.active .subscription-header .price h3 {
+  color: #BE2623;
+}
+.subscription-box.active .subscription-footer {
+  text-align: center;
+}
+.subscription-box.active .subscription-footer button {
+  background: #BE2623;
+  border-radius: 10px 10px 0 0;
+}
+.subscription-box.active .subscription-footer button:hover {
+  background: #0D3745;
+}
+
+.subscription-detail .list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.subscription-detail .list .heading {
+  width: 100%;
+}
+.subscription-detail .list .heading h5 {
+  font-size: 20px;
+  line-height: 25px;
+  color: #000000;
+  text-align: left;
+}
+.subscription-detail .list .text {
+  width: 100%;
+}
+.subscription-detail .list .text h5 {
+  font-size: 20px;
+  line-height: 25px;
+  color: #F46A6A;
+  text-align: right;
+}
+.subscription-detail .list .text h6 {
+  font-size: 20px;
+  line-height: 25px;
+  color: #000000;
+  text-align: right;
+  opacity: 0.3;
+  text-decoration: line-through;
+}
+
+.card-btn-box img {
+  width: 200px;
+}
+
+.payment-btn {
+  background: #F46A6A;
+  color: #ffffff;
+  text-transform: capitalize;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  padding: 10px 0;
+  width: 100%;
+}
+
+#add-milestone .setting-box .admin-table-form-top-btn a:hover {
+  background: #F3F2F2 !important;
+  color: #000000 !important;
+}
+
+.add-milestone-table thead {
+  background: #F6F9FC !important;
+}
+.add-milestone-table tfoot {
+  background: #F6F9FC;
+}
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
@@ -32650,6 +32870,11 @@ header .nav-menu-admin li.active a.nav-link::before {
   .mark-stage {
     margin-top: 12px !important;
   }
+
+  .subscription-box.active {
+    transform: scale(1);
+    z-index: 99999;
+  }
 }
 /* 
 ##Device = Most of the Smartphones Mobiles (Portrait)
@@ -32784,6 +33009,12 @@ header .nav-menu-admin li.active a.nav-link::before {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .subscription-box.active {
+    transform: scale(1);
+    z-index: 99999;
+    margin: 20px 0;
   }
 }
 

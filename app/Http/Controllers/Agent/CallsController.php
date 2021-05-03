@@ -61,8 +61,9 @@ class CallsController extends Controller
       $data = request()->all();
       unset($data['_token']);
       unset($data['callable']);
+        $user = Auth::user();
 
-      $add = calls::query()->create(array_merge(array_filter($data)));
+      $add = calls::query()->create(array_merge(array_filter($data),["user_id"=>$user->id]));
       $callable = explode(",",$request->callable);
       if($callable[0] == 'account'){
         $account = accounts::find($callable[1]);

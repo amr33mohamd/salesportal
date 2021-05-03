@@ -19,8 +19,6 @@ class CreateCommissionsTable extends Migration
             $table->foreign('milestone_id')->references('id')->on('milestones')->onDelete('cascade');
             $table->unsignedBigInteger('payment_id')->unsigned()->nullable();
             $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
-            $table->unsignedBigInteger('item_id')->unsigned()->nullable();
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
 
             $table->float('amount');
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();
@@ -37,6 +35,9 @@ class CreateCommissionsTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('commissions');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
     }
 }

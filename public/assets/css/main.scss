@@ -1,0 +1,98 @@
+@font-face {
+    font-family: "poppins-regular";
+    src: url("../fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+    font-family: "poppins-semi";
+    src: url("../fonts/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "poppins-bold";
+    src: url("../fonts/Poppins-Bold.ttf");
+}
+
+html {
+    --scrollbarBG: #cfd8dc;
+    --thumbBG: #90a4ae;
+}
+
+body {
+    font-family: "poppins-regular" !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-bottom: 0px !important;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+a:hover{
+    text-decoration: none !important;
+}
+
+.boxScroll {
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+.boxScrolly::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+}
+
+.boxScroll::-webkit-scrollbar {
+    width: 11px;
+}
+
+.boxScroll::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG);
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
+}
+.para-sm {
+    font-size: 0.8rem;
+}
+
+.topbar {
+    background-color: #323639 !important;
+}
+
+.components-card {
+    border: 0px;
+    margin-bottom: 0.5rem;
+}
+
+.component-img {
+    height: 24px;
+    margin-bottom: 0.5rem;
+}
+
+.accordion-button {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    color: black;
+}
+
+.accordion-body {
+    min-height: 90vh;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: none;
+}
+
+.icon-danger{
+    fill: red;
+}

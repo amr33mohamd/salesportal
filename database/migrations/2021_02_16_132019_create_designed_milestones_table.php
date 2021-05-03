@@ -27,6 +27,7 @@ class CreateDesignedMilestonesTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('designed_milestones');
-    }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');    }
 }

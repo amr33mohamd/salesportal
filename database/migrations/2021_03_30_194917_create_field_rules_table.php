@@ -18,11 +18,10 @@ class CreateFieldRulesTable extends Migration
             $table->string("rule");
 //            $table->unsignedBigInteger("rule_id");
 //            $table->foreign("rule_id")->references("id")->on("rules")->onUpdate("Cascade");
+            $table->foreignId('field_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unsignedBigInteger("field_id");
-            $table->string("value");
-            $table->string("extra");
-            $table->foreign("field_id")->references("id")->on("fields")->onUpdate("Cascade");
+            $table->string("value")->nullable();
+            $table->string("extra")->nullable();
             $table->timestamps();
         });
     }

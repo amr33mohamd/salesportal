@@ -52,11 +52,12 @@ class TasksController extends Controller
 
   public function add(Request $request){
     $leads = tasks::all();
+    $user = Auth::user();
     $data = request()->all();
     unset($data['_token']);
     unset($data['callable']);
 
-    $add = tasks::query()->create(array_merge(array_filter($data)));
+    $add = tasks::query()->create(array_merge(array_filter($data),["user_id"=>$user->id]));
     $callable = explode(",",$request->callable);
     if($callable[0] == 'account'){
       $account = accounts::find($callable[1]);

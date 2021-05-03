@@ -24,4 +24,8 @@ class opportunities extends Model
       {
          return $this->belongsTo(sales_stage::class,'sales_stage_id','id');
        }
+    public function assiegned_attachments()
+    {
+        return $this->hasMany(opportunity_assiened_attachments::class,'opportunity_id','id');
+    }
 }

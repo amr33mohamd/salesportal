@@ -17,10 +17,10 @@ class CreateMilestonesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('payment_id')->unsigned()->nullable();
             $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
-            $table->integer('percent');
+            $table->integer('amount')->nullable();
             $table->enum('status', ["Waiting","done", "Due Date"]);
-            $table->DateTime('due_date');
-            $table->string('note');
+            $table->DateTime('due_date')->nullable();
+            $table->string('note')->nullable();
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 

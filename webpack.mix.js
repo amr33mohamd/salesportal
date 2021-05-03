@@ -15,3 +15,4 @@ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css');
     mix.js('resources/js/Calls.js', 'public/js').vue()
+mix.js('resources/js/builder.js', 'public/js').vue();

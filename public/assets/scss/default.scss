@@ -200,13 +200,15 @@ a {
 }
 .activities-btn {
     border-radius: 3px;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
-    background: $setting-tab-active;
+    background: $setting-tab-active !important;
     overflow: hidden;
     text-decoration: none;
     cursor: pointer;
+    padding: 0 !important;
+    border: none !important;
     span {
         color: $black-color;
         line-height: 30px;
@@ -228,6 +230,9 @@ a {
             color: $white-color !important;
             display: block;
         }
+    }
+    &::before {
+        display: none;
     }
 }
 

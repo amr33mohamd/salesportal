@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', function () {
 //     return;
 // });
+
+////////////
+Route::get('/builder/{module}', 'App\\Http\\Controllers\\FieldBuilderController@index');
+Route::post('/builder/{module}', 'App\\Http\\Controllers\\FieldBuilderController@save');
+
 Route::get('/tes','App\Http\Controllers\HomeController@test');
 
 Route::middleware(['guest'])->group(function (){
@@ -31,6 +36,9 @@ Route::post('/logout','App\Http\Controllers\Auth\UserController@logout')->name('
 
 Route::get('/register','App\Http\Controllers\Auth\UserController@register')->name('register');
 Route::post('/register_response','App\Http\Controllers\Auth\UserController@register_user')->name('register_response');
+
+
+
 });
 
 
@@ -70,6 +78,8 @@ Route::get('/accounts', [App\Http\Controllers\Agent\AccountsController::class, '
 Route::get('/accounts/profile/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'profile'])->name('profile');
 
 Route::get('/accounts/edit/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'editScreen'])->name('EditAccount');
+    Route::post('/accounts/edit/points/action/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'editPoints'])->name('EditAccount');
+
 Route::post('/accounts/edit/action/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'edit'])->name('EditAccountAction');
 
 Route::get('/account/new', [App\Http\Controllers\Agent\AccountsController::class, 'addScreen'])->name('NewAccount');
@@ -107,6 +117,10 @@ Route::get('/opportunities/new', [App\Http\Controllers\Agent\OpportunitiesContro
 Route::post('/opportunities/new/action', [App\Http\Controllers\Agent\OpportunitiesController::class, 'add'])->name('NewOpportunityAction');
 
 Route::get('/opportunities/delete/{id}', [App\Http\Controllers\Agent\OpportunitiesController::class, 'delete'])->name('DeleteOpportunity');
+
+Route::get('/opportunities/profile/{id}', [App\Http\Controllers\Agent\OpportunitiesController::class, 'profile'])->name('profileOpportunity');
+    Route::post('/opportunity/add/attachment/{opportunity_id}', [App\Http\Controllers\Agent\OpportunitiesController::class, 'assin_attachment']);
+    Route::get('/opportunity/edit/assign-attachment/{id}', [App\Http\Controllers\Agent\OpportunitiesController::class, 'delete_assin_attachment']);
 
 
 ///////////////////
@@ -150,6 +164,8 @@ Route::post('/marketing/new/action', [App\Http\Controllers\Agent\SocialControlle
 
 ////////////////////
 Route::get('/payments', [App\Http\Controllers\Agent\PaymentsController::class, 'index'])->name('payments');
+Route::post('/payments/add', [App\Http\Controllers\Agent\PaymentsController::class, 'add_payment'])->name('add_payment');
+
 Route::get('/invoice/{id}', [App\Http\Controllers\Agent\PaymentsController::class, 'invoice'])->name('invoice');
 
 
@@ -168,4 +184,6 @@ Route::get('/settings', [App\Http\Controllers\Agent\SettingsController::class, '
 Route::post('/settingsAction', [App\Http\Controllers\Agent\SettingsController::class, 'edit'])->name('settingsAction');
 
 
+
 });
+

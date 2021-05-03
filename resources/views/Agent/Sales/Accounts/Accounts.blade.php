@@ -54,7 +54,7 @@
                                     src="./assets/images/table-filter.svg">Filter</button>
                             <button class="admin-table-btn mr-3" id="export"><img class="mr-2"
                                     src="./assets/images/table-export.svg">Export</button>
-                            
+
                             <div class="table-search">
                                 <img src="./assets/images/table-search.svg">
                                 <input id="myInputTextField" value="" type="text" placeholder="Search …">
@@ -75,17 +75,15 @@
                                                     <img src="./assets/images/table-arrow-down.svg">
                                                 </div>
                                             </th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Home Phone</th>
-                                            <th scope="col">Fax</th>
-                                            <th scope="col">Follow Up</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Secondary Email</th>
-                                            <th scope="col">Age</th>
+                                            <th>Profile</th>
+
 
                                             <th scope="col">Actions</th>
+
+                                        @foreach($fields as $field)
+                                            <th scope="col">{{$field->label}}</th>
+
+                                            @endforeach
 
                                         </tr>
                                     </thead>
@@ -98,26 +96,8 @@
                                                     <input type="checkbox" id="select">
                                                 </div>
                                             </td>
-                                            <td><a href="/accounts/profile/{{$lead->id}}">{{$lead->first_name}} {{$lead->last_name}}</a></td>
-                                            <td >
-                                                <div style="background: #0D3745;
-    padding: 5px 10px;
-    line-height: 15px;
-    border-radius: 3px;
-    color: #ffffff;
-    display: block;
-    margin-top: 2px;
-    float: left;">{{($lead->status) ? $lead->status->name :null}}</div>
+                                            <td><a href="/accounts/profile/{{$lead->id}}">Profile</a></td>
 
-                                            </td>
-                                            <td>{{$lead->email}}</td>
-
-                                            <td>{{$lead->contact_number}}</td>
-                                            <td>{{$lead->fax}}</td>
-                                            <td>{{$lead->follow_up}}</td>
-                                            <td>{{$lead->gender}}</td>
-                                            <td>{{$lead->secondary_email}}</td>
-                                            <td>{{$lead->age}}</td>
 
                                             <td>
                                               <div class="row">
@@ -135,7 +115,10 @@
                                               </div> -->
                                             </div>
                                             </td>
-                                        </tr>
+                                              @foreach($fields as $field)
+                                              <td>{{($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null}}</td>
+                                              @endforeach
+                                          </tr>
                                         @endforeach
 
                                     </tbody>

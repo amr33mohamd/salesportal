@@ -14,7 +14,15 @@ class SettingsController extends Controller
 {
     public function index(Request $request){
       $user = Auth::user();
-      return view('Agent.Settings.Settings',['user'=>$user]);
+        $auth = Auth::user();
+
+        $Social = $auth->documents->where('type','Social');
+        $Image = $auth->documents->where('type','Image');
+        $Template = $auth->documents->where('type','Template');
+
+        $leads = documents::query();
+
+        return view('Agent.Settings.Settings',['user'=>$user,'leads'=>$leads,'Social'=>$Social,'Image'=>$Image,'Template'=>$Template]);
 
     }
     public function editScreen(Request $request){

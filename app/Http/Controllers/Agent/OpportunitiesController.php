@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Agent;
 
+use App\Models\account_assiened_attachments;
+use App\Models\account_attachments;
 use App\Models\opportunities;
+use App\Models\opportunity_assiened_attachments;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +17,37 @@ use App\Models\sales_stage;
 class OpportunitiesController extends Controller
 {
     public function index(Request $request){
-      $leads = opportunities::all();
+        $user = Auth::user();
+        $leads = $user->cases;
       return view('Agent.Sales.Opportunities.Opportunities',['leads'=>$leads]);
 
+    }
+    public function profile(Request $request){
+        $user = Auth::user();
+        $opportunity = opportunities::query()->where('id',request('id'))->first();
+
+        $account = $opportunity->account()->first();
+        if($user->follow_id ==null){
+            $documents = $user->documents;
+        }
+        else{
+            $documents = user::find($user->follow_id)->first()->documents;
+        }
+        // return $account;
+        return view('Agent.Sales.Opportunities.Profile',['account'=>$account,'documents'=>$documents,'opportunity'=>$opportunity]);
+
+
+    }
+
+    public function assin_attachment(Request $request){
+        $user = Auth::user();
+        $documents = opportunity_assiened_attachments::create(['opportunity_id'=>$request->opportunity_id,'document_id'=>$request->document_id]);
+        return back();
+    }
+    public function delete_assin_attachment(Request $request){
+        $user = Auth::user();
+        $documents = opportunity_assiened_attachments::query()->where('id',$request->id)->delete();
+        return back();
     }
     public function editScreen(Request $request){
       $lead = opportunities::query()->where('id',request('id'))->first();
