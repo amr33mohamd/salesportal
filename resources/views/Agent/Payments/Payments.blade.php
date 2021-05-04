@@ -468,7 +468,7 @@
 
                                                                                             @foreach($accounts as $account)
 
-                                                                                                 <option value="{{$account->id}}" >{{$account->first_name}} {{$account->last_name}}</option>
+                                                                                                 <option value="{{$account->id}}" >{{$account->getFieldByName('surname')['value']}}</option>
 
                                                                                              @endforeach
 

@@ -110,7 +110,7 @@ return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'fields'=>$fields,'
      }
 //      $edit = accounts::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
      $account= accounts::findOrFail(request('id'));
-     $account->fields= array_merge(array_filter($data));
+     $account->fields = array_merge(array_filter($data));
      $account->save();
     return redirect('/accounts');
 
