@@ -1,141 +1,83 @@
-@extends('Agent.Layout.App')
+@extends('Agent.Layout.App2')
 @section('title', 'Accounts')
 
 @section('content')
 
-    <!-- Header End -->
+<div class="cui-layout-content">
 
-    <!-- Page Body Start -->
-    <main class="pb-3">
-        <!-- Page Title and Breadcrumb Start -->
-        <div class="page-title-breadcrumb my-3">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="page-title">
-                            Accounts
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="breadcrumb-box">
-                            <ul>
-                                <li>Sales</li>
-                                <li>Accounts</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+<div class="cui-utils-content">
+<!-- START: tables/datatables -->
+<section class="card">
+  <div class="card-header">
+    <span class="cui-utils-title">
+      <strong>Accounts</strong>
+      <a href="{{route('NewAccount')}}" target="_blank" class="btn btn-sm btn-primary ml-2"
+        >Add Account <i class="icmn-plus ml-1"><!-- --></i></a
+      >
+    </span>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="mb-5">
+          <table class="table table-hover nowrap" id="example1">
+            <thead>
+              <tr>
+                <th scope="col">More</th>
+                <th scope="col">Actions</th>
+                @foreach($fields as $field)
+                    <th scope="col">{{$field->label}}</th>
+
+                @endforeach
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($leads as $lead)
+              <tr>
+
+
+
+
+<td>
+</td>
+                <td>
+                  <div class="row">
+
+                  <a href="/accounts/edit/{{$lead->id}}" style="display:inline-block;width:50%">  <button class="btn btn-sm btn-primary ml-2"><img src="./assets/images/table-edit.svg"/></button></a>
+
+
+                  <a  href="/accounts/delete/{{$lead->id}}"  style="display:inline-block;width:50%;text-align: right;color: red;">X</a>
+                </td>
+              @foreach($fields as $field)
+                <td>{{($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null}}</td>
+                @endforeach
+            </tr>
+            @endforeach
+
+
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="col">More</th>
+
+                <th scope="col">Actions</th>
+                @foreach($fields as $field)
+                    <th scope="col">{{$field->label}}</th>
+
+                @endforeach
+              </tr>
+            </tfoot>
+          </table>
         </div>
-        <!-- Page Title and Breadcrumb End -->
-
-        <!-- Table Section Start -->
-        <div class="admin-table">
-            <div class="container-fluid">
-                <div class="row admin-table-header">
-                    <div class="col-auto admin-table-header-box">
-                        <div class="row m-0">
-                            <div class="top-heading mb-1">
-                                <img src="./assets/images/user-outline.svg" class="mr-2">
-                                <h2>My Accounts</h2>
-                                <img src="assets/images/question-circle.svg" class="ml-2">
-                            </div>
-                        </div>
-                        <div class="row m-0">
-                            <ul class="admin-table-info">
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col admin-table-filter-box">
-                        <div class="admin-table-filter d-flex justify-content-end align-items-center">
-                            <a href="{{route('NewAccount')}}" class="admin-table-btn admin-table-btn-add mr-3"><img class="mr-2"
-                                    src="./assets/images/table-add.svg">Add</a>
-                            <button id="filter" class="admin-table-btn mr-3"><img class="mr-2"
-                                    src="./assets/images/table-filter.svg">Filter</button>
-                            <button class="admin-table-btn mr-3" id="export"><img class="mr-2"
-                                    src="./assets/images/table-export.svg">Export</button>
-
-                            <div class="table-search">
-                                <img src="./assets/images/table-search.svg">
-                                <input id="myInputTextField" value="" type="text" placeholder="Search …">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row admin-table-body mt-3">
-                    <div class="col">
-                        <div class="card-box p-2">
-                            <div class="table-responsive table-checkbox">
-                                <table class="table table-sm" id="example">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">
-                                                <div class="select-all">
-                                                    <input type="checkbox">
-                                                    <img src="./assets/images/table-arrow-down.svg">
-                                                </div>
-                                            </th>
-                                            <th>Profile</th>
+      </div>
+    </div>
 
 
-                                            <th scope="col">Actions</th>
-
-                                        @foreach($fields as $field)
-                                            <th scope="col">{{$field->label}}</th>
-
-                                            @endforeach
-
-                                        </tr>
-                                    </thead>
-                                    <tbody class="height-300">
-                                          @foreach($leads as $lead)
-                                          <tr>
-
-                                            <td>
-                                                <div class="select">
-                                                    <input type="checkbox" id="select">
-                                                </div>
-                                            </td>
-                                            <td><a href="/accounts/profile/{{$lead->id}}">Profile</a></td>
-
-
-                                            <td>
-                                              <div class="row">
-                                                <div class="col-4">
-                                                    <a href="/accounts/edit/{{$lead->id}}" style="display:inline-block;width:15%" >  <button class="ml-1"><img src="./assets/images/table-edit.svg"/></button></a>
-                                                </div>
-                                                <div class="col-4">
-                                                    <a href="/member/new/{{$lead->id}}" style="display:inline-block;width:15%" >  <img src="./assets/images/user-outline.svg" class="mr-2"></a>
-                                                </div>
-                                                <div class="col-4">
-                                                  <a  href="/accounts/delete/{{$lead->id}}" style="display:inline-block;width:15%;text-align: right;color: red;">X</a>
-                                                </div>
-                                              <!-- <div class="col-4">
-                                                <a href="/accounts/profile/{{$lead->id}}" >  <button class="ml-1"><img src="./assets/images/user-outline.svg"/></button></a>
-                                              </div> -->
-                                            </div>
-                                            </td>
-                                              @foreach($fields as $field)
-                                              <td>{{($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null}}</td>
-                                              @endforeach
-                                          </tr>
-                                        @endforeach
-
-                                    </tbody>
-                                    @if($leads->count() == 0)
-                                    <p>There is no data yet</p>
-                                    @endif
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Table Section End -->
-    </main>
-    <!-- Page Body End -->
-
+</section>
+<!-- END: tables/datatables -->
 
 
 @endsection
