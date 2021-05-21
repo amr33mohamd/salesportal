@@ -61,9 +61,6 @@ function bindTouchHandler(element, i, supportsTouch, supportsIePointer) {
     }
   }
   function shouldHandle(e) {
-    if (e.pointerType && e.pointerType === 'pen' && e.buttons === 0) {
-      return false;
-    }
     if (e.targetTouches && e.targetTouches.length === 1) {
       return true;
     }
@@ -124,30 +121,28 @@ function bindTouchHandler(element, i, supportsTouch, supportsIePointer) {
     if (!inGlobalTouch && inLocalTouch) {
       inLocalTouch = false;
 
-      if (i.settings.swipeEasing) {
-        clearInterval(easingLoop);
-        easingLoop = setInterval(function () {
-          if (!instances.get(element)) {
-            clearInterval(easingLoop);
-            return;
-          }
+      clearInterval(easingLoop);
+      easingLoop = setInterval(function () {
+        if (!instances.get(element)) {
+          clearInterval(easingLoop);
+          return;
+        }
 
-          if (!speed.x && !speed.y) {
-            clearInterval(easingLoop);
-            return;
-          }
+        if (!speed.x && !speed.y) {
+          clearInterval(easingLoop);
+          return;
+        }
 
-          if (Math.abs(speed.x) < 0.01 && Math.abs(speed.y) < 0.01) {
-            clearInterval(easingLoop);
-            return;
-          }
+        if (Math.abs(speed.x) < 0.01 && Math.abs(speed.y) < 0.01) {
+          clearInterval(easingLoop);
+          return;
+        }
 
-          applyTouchMove(speed.x * 30, speed.y * 30);
+        applyTouchMove(speed.x * 30, speed.y * 30);
 
-          speed.x *= 0.8;
-          speed.y *= 0.8;
-        }, 10);
-      }
+        speed.x *= 0.8;
+        speed.y *= 0.8;
+      }, 10);
     }
   }
 
@@ -157,7 +152,9 @@ function bindTouchHandler(element, i, supportsTouch, supportsIePointer) {
     i.event.bind(element, 'touchstart', touchStart);
     i.event.bind(element, 'touchmove', touchMove);
     i.event.bind(element, 'touchend', touchEnd);
-  } else if (supportsIePointer) {
+  }
+
+  if (supportsIePointer) {
     if (window.PointerEvent) {
       i.event.bind(window, 'pointerdown', globalTouchStart);
       i.event.bind(window, 'pointerup', globalTouchEnd);

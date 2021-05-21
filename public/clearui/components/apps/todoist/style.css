@@ -1,0 +1,72 @@
+/* TODOIST */
+.vb__todoist {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+@media (max-width: 575px) {
+    .vb__todoist {
+        flex-direction: column;
+    }
+}
+
+.vb__todoist__sidebar {
+    width: 16.66rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 575px) {
+    .vb__todoist__sidebar {
+        width: auto;
+    }
+}
+
+.vb__todoist__searchIcon {
+    position: absolute;
+    color: #c8c4db;
+    font-size: 1.13rem;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem;
+}
+
+.vb__todoist__searchInput {
+    border: 1px solid #e4e9f0;
+    border-radius: 5px;
+    background-color: #fff;
+    padding-left: 3rem;
+    padding-right: 1.33rem;
+    padding-top: 0.33rem;
+    padding-bottom: 0.26rem;
+    width: 100%;
+}
+
+.vb__todoist__categories {
+    height: 100%;
+}
+
+@media (max-width: 575px) {
+    .vb__todoist__categories {
+        margin-bottom: 1rem;
+    }
+}
+
+.vb__todoist__category {
+    padding-top: 0.33rem;
+    padding-bottom: 0.53rem;
+    padding-left: 0.66rem;
+    border-radius: 5px;
+}
+
+.vb__todoist__category:hover, .vb__todoist__category--current {
+    background-color: #f2f4f8;
+}
+
+.vb__todoist__category--title:hover {
+    background-color: initial;
+}
+
+[data-vb-theme='dark'] .vb__todoist__category:hover, [data-vb-theme='dark'] .vb__todoist__category--current {
+    background-color: #232135;
+}

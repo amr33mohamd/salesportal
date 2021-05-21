@@ -208,7 +208,6 @@ $(function () {
       .bootstrapToast('show')
   })
 
-
   QUnit.test('should close toast when close element with data-dismiss attribute is set', function (assert) {
     assert.expect(2)
     var done = assert.async()
@@ -233,6 +232,128 @@ $(function () {
       .on('hidden.bs.toast', function () {
         assert.strictEqual($toast.hasClass('show'), false)
         done()
+      })
+      .bootstrapToast('show')
+  })
+
+  QUnit.test('should expose default setting to allow to override them', function (assert) {
+    assert.expect(1)
+
+    var defaultDelay = 1000
+    Toast.Default.delay = defaultDelay
+
+    var toastHtml =
+      '<div class="toast" data-autohide="false" data-animation="false">' +
+        '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast">' +
+          'close' +
+        '</button>' +
+      '</div>'
+
+    var $toast = $(toastHtml)
+      .bootstrapToast()
+
+    var toast = $toast.data('bs.toast')
+    assert.strictEqual(toast._config.delay, defaultDelay)
+  })
+
+  QUnit.test('should not trigger shown if show is prevented', function (assert) {
+    assert.expect(1)
+    var done = assert.async()
+
+    var toastHtml =
+      '<div class="toast" data-delay="1" data-autohide="false">' +
+        '<div class="toast-body">' +
+          'a simple toast' +
+        '</div>' +
+      '</div>'
+
+    var $toast = $(toastHtml)
+      .bootstrapToast()
+      .appendTo($('#qunit-fixture'))
+
+    var shownCalled = false
+    function assertDone() {
+      setTimeout(function () {
+        assert.strictEqual(shownCalled, false)
+        done()
+      }, 20)
+    }
+
+    $toast
+      .on('show.bs.toast', function (event) {
+        event.preventDefault()
+        assertDone()
+      })
+      .on('shown.bs.toast', function () {
+        shownCalled = true
+      })
+      .bootstrapToast('show')
+  })
+
+  QUnit.test('should clear timeout if toast is shown again before it is hidden', function (assert) {
+    assert.expect(2)
+    var done = assert.async()
+
+    var toastHtml =
+      '<div class="toast">' +
+        '<div class="toast-body">' +
+          'a simple toast' +
+        '</div>' +
+      '</div>'
+
+    var $toast = $(toastHtml)
+      .bootstrapToast()
+      .appendTo($('#qunit-fixture'))
+
+    var toast = $toast.data('bs.toast')
+    var spyClearTimeout = sinon.spy(toast, '_clearTimeout')
+
+    setTimeout(function () {
+      toast._config.autohide = false
+      $toast.on('shown.bs.toast', function () {
+        assert.ok(spyClearTimeout.called)
+        assert.ok(toast._timeout === null)
+        done()
+      })
+      $toast.bootstrapToast('show')
+    }, toast._config.delay / 2)
+
+    $toast.bootstrapToast('show')
+  })
+
+  QUnit.test('should not trigger hidden if hide is prevented', function (assert) {
+    assert.expect(1)
+    var done = assert.async()
+
+    var toastHtml =
+      '<div class="toast" data-delay="1" data-autohide="false">' +
+        '<div class="toast-body">' +
+          'a simple toast' +
+        '</div>' +
+      '</div>'
+
+    var $toast = $(toastHtml)
+      .bootstrapToast()
+      .appendTo($('#qunit-fixture'))
+
+    var hiddenCalled = false
+    function assertDone() {
+      setTimeout(function () {
+        assert.strictEqual(hiddenCalled, false)
+        done()
+      }, 20)
+    }
+
+    $toast
+      .on('shown.bs.toast', function () {
+        $toast.bootstrapToast('hide')
+      })
+      .on('hide.bs.toast', function (event) {
+        event.preventDefault()
+        assertDone()
+      })
+      .on('hidden.bs.toast', function () {
+        hiddenCalled = true
       })
       .bootstrapToast('show')
   })

@@ -1,21 +1,36 @@
-@extends('Agent.Layout.App2')
-@section('title', 'Leads')
+@extends('Agent.Layout.App3')
+@section('title', 'Accounts')
 
 @section('content')
+<div class="vb__layout__content">
+  <div class="vb__breadcrumbs">
+<div class="vb__breadcrumbs__path">
+<a href="javascript: void(0);">Home</a>
+<span>
+<span class="vb__breadcrumbs__arrow"></span>
+<span>App</span>
+</span>
+<span>
+<span class="vb__breadcrumbs__arrow"></span>
+<strong class="vb__breadcrumbs__current">Lead</strong>
+</span>
+</div>
+</div>
+  <div class="vb__utils__content">
+    <div class="air__utils__heading">
+<h5>Lead</h5>
+</div>
+
+
+
+
+
+
+
+
 
 <!-- START: forms/basic-forms-elements -->
-<section class="card">
-  <div class="card-header">
-    <span class="cui-utils-title">
-      <strong> Lead</strong>
 
-    </span>
-  </div>
-  <div class="card-body">
-
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="mb-5">
 
           <!-- Vertical Form -->
           <form method="post" action="@if($type == 'add') {{route('NewLeadAction')}} @else /leads/edit/action/{{$lead->id}} @endif"  enctype="multipart/form-data">
@@ -25,137 +40,167 @@
             <!-- if not first item  -->
             <!-- if the same group -->
             @if($fields[$index-1]['extra']['group'] == $field['extra']['group'])
-            <div class="col-lg-3 px-2">
-              <div class="form-field">
-                  <div class="form-field__control form-field--is-active">
+            <div class="form-group col-md-4">
                       <label for="lead-{{$index+900}}" class="form-field__label">{{$field->label}}</label>
-                      @if($field->type == 'text' )
+                      @if($field->type == 'text' || $field->type == 'number' || $field->type == 'email' )
                       <input  name="{{$field->name}}" id="lead-{{$index+900}}" type="{{$field->type}}"                     class="form-control"
 
-                             placeholder="{{$field['label']}}" value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}">
-                          @elseif($field->type == 'date' || $field->type == 'time' || $field->type == 'datetime'|| $field->type == 'email'  || $field->type == 'number')
-                          <input value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" name="{{$field->name}}" id="lead-{{$index+900}}" type="{{$field->type}}"                     class="form-control"
+                             placeholder="{{$field['label']}}" value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach>
+                          @elseif($field->type == 'date' || $field->type == 'time' || $field->type == 'datetime'  )
+                          <input value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" name="{{$field->name}}" id="lead-{{$index+900}}"
+                            data-toggle="datetimepicker" data-target="#lead-{{$index+900}}"
+                            @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach                 class="form-control"
 
                                     placeholder="{{$field['label']}}"  >
+                                    <script>
+                                    $('#lead-{{$index+900}}').datetimepicker({
+                                      icons: {
+                                        time: 'fa fa-clock-o',
+                                        date: 'fa fa-calendar',
+                                        up: 'fa fa-arrow-up',
+                                        down: 'fa fa-arrow-down',
+                                        previous: 'fa fa-arrow-left',
+                                        next: 'fa fa-arrow-right',
+                                      },
+                                    })
+                                    </script>
                       @elseif($field->type = 'select')
-                          <select name="{{$field->name}}" id="lead-{{$index+900}}"                      class="form-control">
+                          <select name="{{$field->name}}" id="lead-{{$index+900}}"
+                            @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach             class="form-control">
                               <option value=""  >N/A</option>
                               @if(isset($field['extra']['options']))
                               @foreach($field['extra']['options'] as $option)
-                                  <option value="{{$option}}" @if(old($field->name,$lead->industry_id) == $option ) selected @endif>{{$option}}</option>
+                                  <option value="{{$option}}" @if(old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null) == $option ) selected @endif>{{$option}}</option>
                               @endforeach
                               @endif
                           </select>
 
                       @endif
-                  </div>
-              </div>
             </div>
               <!-- if end of row -->
 
               <!-- end if end of row -->
               @if($fields->count() == $index+1)
               <!-- closing previous group -->
-                          </div>
-                        </div>
-                          <div class="col-lg-auto col-sm-12  px-2">
-                              <div class="profile-box empty-box">
-                              </div>
-                          </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+
+
+
+
+        </div>
+      </div>
                 <!-- end closing previous group -->
                 @endif
               <!-- end if the same group -->
               <!-- if new group -->
             @else
             <!-- end previous group -->
-            </div>
           </div>
-            <div class="col-lg-auto col-sm-12  px-2">
-                <div class="profile-box empty-box">
-                </div>
-            </div>
-          </div>
+
+
+
+
       </div>
-  </div>
+    </div>
           <!-- end end prevours group -->
           <!-- start new group -->
-            <div class="card-box my-3 px-2 mt-4 py-3">
-                <div class="row setting-title-box px-2 mb-3">
-                    <div class="col">
-                      <h5 class="text-black"><strong>{{$field['extra']['group']}}</strong></h5>
-                    </div>
-                </div>
-                <div class="setting-form-box">
-                  <div class="row px-2">
-                    <div class="col px-2">
-                      <div class="row mx-0">
+          <div class="card">
+          <div class="card-body">
+          <h4 class="mb-4">
+          <strong>{{$field['extra']['group']}}</strong>
+          </h4>
+          <div class="form-row">
+
+
 
                         <!-- add field -->
-                        <div class="col-lg-3 px-2">
-                          <div class="form-field">
-                              <div class="form-field__control form-field--is-active">
+                        <div class="form-group col-md-4">
                                   <label for="lead-{{$index+900}}" class="form-field__label">{{$field->label}}</label>
-                                  @if($field->type == 'text' || $field->type == 'email' || $field->type == 'date' || $field->type == 'time' || $field->type == 'datetime' || $field->type == 'number')
+                                  @if($field->type == 'text' || $field->type == 'number' || $field->type == 'email' )
                                   <input  name="{{$field->name}}" id="lead-{{$index+900}}" type="{{$field->type}}"                     class="form-control"
 
-                                         placeholder="{{$field['label']}}" value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}">
-                                  @elseif($field->type = 'select')
-                                  <select name="{{$field->name}}" id="lead-{{$index+900}}"                      class="form-control"
->
-                                    <option value=""  >N/A</option>
-                                      @if(isset($field['extra']['options']))
-                                      @foreach($field['extra']['options'] as $option)
-                                      <option value="{{$option}}" @if(old($field->name,$lead->industry_id) == $option ) selected @endif>{{$option}}</option>
-                                        @endforeach
-                                      @endif
+                                         placeholder="{{$field['label']}}" value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach>
+                                      @elseif($field->type == 'date' || $field->type == 'time' || $field->type == 'datetime'  )
+                                      <input value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" name="{{$field->name}}" id="lead-{{$index+900}}"
+                                        data-toggle="datetimepicker" data-target="#lead-{{$index+900}}"
+                                        @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach                 class="form-control"
 
-                                  </select>
+                                                placeholder="{{$field['label']}}"  >
+                                                <script>
+                                                $('#lead-{{$index+900}}').datetimepicker({
+                                                  icons: {
+                                                    time: 'fa fa-clock-o',
+                                                    date: 'fa fa-calendar',
+                                                    up: 'fa fa-arrow-up',
+                                                    down: 'fa fa-arrow-down',
+                                                    previous: 'fa fa-arrow-left',
+                                                    next: 'fa fa-arrow-right',
+                                                  },
+                                                })
+                                                </script>
+                                  @elseif($field->type = 'select')
+                                      <select name="{{$field->name}}" id="lead-{{$index+900}}"
+                                        @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach             class="form-control">
+                                          <option value=""  >N/A</option>
+                                          @if(isset($field['extra']['options']))
+                                          @foreach($field['extra']['options'] as $option)
+                                              <option value="{{$option}}" @if(old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null) == $option ) selected @endif>{{$option}}</option>
+                                          @endforeach
+                                          @endif
+                                      </select>
 
                                   @endif
-                              </div>
-                          </div>
                         </div>
                   <!-- end start new group -->
             @endif
             <!-- end if not first item -->
             <!-- start first item -->
             @else
-            <div class="card-box my-3 px-2 mt-4 py-3">
-                <div class="row setting-title-box px-2 mb-3">
-                    <div class="col">
-                      <h5 class="text-black"><strong>{{$field['extra']['group']}}</strong></h5>
-                    </div>
-                </div>
-                <div class="setting-form-box">
-                    <div class="row px-2">
-                      <div class="col px-2">
-                        <div class="row mx-0">
-                          <div class="col-lg-3 px-2">
-                            <div class="form-field">
-                                <div class="form-field__control form-field--is-active">
-                                    <label for="lead-{{$index+900}}" class="form-field__label">{{$field->label}}</label>
-                                    @if($field->type == 'text' || $field->type == 'email' || $field->type == 'date' || $field->type == 'time' || $field->type == 'datetime' || $field->type == 'number')
-                                        <input  name="{{$field->name}}" id="lead-{{$index+900}}" type="{{$field->type}}"                     class="form-control"
+            <div class="card">
+            <div class="card-body">
+            <h4 class="mb-4">
+            <strong>{{$field['extra']['group']}}</strong>
+            </h4>
+            <div class="form-row">
 
-                                               placeholder="{{$field['label']}}" value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}">
-                                    @elseif($field->type = 'select')
-                                        <select name="{{$field->name}}" id="lead-{{$index+900}}"                      class="form-control"
->
-                                            <option value=""  >N/A</option>
 
-                                            @if(isset($field['extra']['options']))
-                                                @foreach($field['extra']['options'] as $option)
-                                                    <option value="{{$option}}" @if(old($field->name,$lead->industry_id) == $option ) selected @endif>{{$option}}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
+              <div class="form-group col-md-4">
+                        <label for="lead-{{$index+900}}" class="form-field__label">{{$field->label}}</label>
+                        @if($field->type == 'text' || $field->type == 'number' || $field->type == 'email' )
+                        <input  name="{{$field->name}}" id="lead-{{$index+900}}" type="{{$field->type}}"                     class="form-control"
 
-                                    @endif                                      </div>
-                            </div>
-                          </div>
+                               placeholder="{{$field['label']}}" value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach>
+                            @elseif($field->type == 'date' || $field->type == 'time' || $field->type == 'datetime'  )
+                            <input value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" name="{{$field->name}}" id="lead-{{$index+900}}"
+                              data-toggle="datetimepicker" data-target="#lead-{{$index+900}}"
+                              @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach                 class="form-control"
+
+                                      placeholder="{{$field['label']}}"  >
+                                      <script>
+                                      $('#lead-{{$index+900}}').datetimepicker({
+                                        icons: {
+                                          time: 'fa fa-clock-o',
+                                          date: 'fa fa-calendar',
+                                          up: 'fa fa-arrow-up',
+                                          down: 'fa fa-arrow-down',
+                                          previous: 'fa fa-arrow-left',
+                                          next: 'fa fa-arrow-right',
+                                        },
+                                      })
+                                      </script>
+                        @elseif($field->type = 'select')
+                            <select name="{{$field->name}}" id="lead-{{$index+900}}"
+                              @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach             class="form-control">
+                                <option value=""  >N/A</option>
+                                @if(isset($field['extra']['options']))
+                                @foreach($field['extra']['options'] as $option)
+                                    <option value="{{$option}}" @if(old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null) == $option ) selected @endif>{{$option}}</option>
+                                @endforeach
+                                @endif
+                            </select>
+
+                        @endif
+              </div>
             @endif
             <!-- end first item -->
               @endforeach
@@ -168,8 +213,8 @@
 
 
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <button type="button" class="btn btn-default">Cancel</button>
+              <button type="submit" class="btn btn-success px-5">Submit</button>
+              <button type="button" class="btn btn-default px-5">Cancel</button>
             </div>
           </form>
           <!-- End Vertical Form -->
@@ -239,6 +284,7 @@ $(document).ready(()=>{
   $("#image").click(()=>{
     $("#image_input").click();
   })
+
 })
 function readURL(input) {
         if (input.files && input.files[0]) {

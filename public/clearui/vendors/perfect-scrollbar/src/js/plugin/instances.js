@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('../lib/helper');
+var cls = require('../lib/class');
 var defaultSettings = require('./default-setting');
 var dom = require('../lib/dom');
 var EventManager = require('../lib/event-manager');
@@ -8,14 +9,10 @@ var guid = require('../lib/guid');
 
 var instances = {};
 
-function Instance(element, userSettings) {
+function Instance(element) {
   var i = this;
 
-  i.settings = defaultSettings();
-  for (var key in userSettings) {
-    i.settings[key] = userSettings[key];
-  }
-
+  i.settings = _.clone(defaultSettings);
   i.containerWidth = null;
   i.containerHeight = null;
   i.contentWidth = null;
@@ -35,15 +32,15 @@ function Instance(element, userSettings) {
   i.ownerDocument = element.ownerDocument || document;
 
   function focus() {
-    element.classList.add('ps--focus');
+    cls.add(element, 'ps-focus');
   }
 
   function blur() {
-    element.classList.remove('ps--focus');
+    cls.remove(element, 'ps-focus');
   }
 
-  i.scrollbarXRail = dom.appendTo(dom.create('div', 'ps__scrollbar-x-rail'), element);
-  i.scrollbarX = dom.appendTo(dom.create('div', 'ps__scrollbar-x'), i.scrollbarXRail);
+  i.scrollbarXRail = dom.appendTo(dom.e('div', 'ps-scrollbar-x-rail'), element);
+  i.scrollbarX = dom.appendTo(dom.e('div', 'ps-scrollbar-x'), i.scrollbarXRail);
   i.scrollbarX.setAttribute('tabindex', 0);
   i.event.bind(i.scrollbarX, 'focus', focus);
   i.event.bind(i.scrollbarX, 'blur', blur);
@@ -61,8 +58,8 @@ function Instance(element, userSettings) {
   i.railXWidth = null;
   i.railXRatio = null;
 
-  i.scrollbarYRail = dom.appendTo(dom.create('div', 'ps__scrollbar-y-rail'), element);
-  i.scrollbarY = dom.appendTo(dom.create('div', 'ps__scrollbar-y'), i.scrollbarYRail);
+  i.scrollbarYRail = dom.appendTo(dom.e('div', 'ps-scrollbar-y-rail'), element);
+  i.scrollbarY = dom.appendTo(dom.e('div', 'ps-scrollbar-y'), i.scrollbarYRail);
   i.scrollbarY.setAttribute('tabindex', 0);
   i.event.bind(i.scrollbarY, 'focus', focus);
   i.event.bind(i.scrollbarY, 'blur', blur);
@@ -93,10 +90,10 @@ function removeId(element) {
   element.removeAttribute('data-ps-id');
 }
 
-exports.add = function (element, userSettings) {
+exports.add = function (element) {
   var newId = guid();
   setId(element, newId);
-  instances[newId] = new Instance(element, userSettings);
+  instances[newId] = new Instance(element);
   return instances[newId];
 };
 

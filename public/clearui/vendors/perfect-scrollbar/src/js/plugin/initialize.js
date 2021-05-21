@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('../lib/helper');
+var cls = require('../lib/class');
 var instances = require('./instances');
 var updateGeometry = require('./update-geometry');
 
@@ -15,15 +17,15 @@ var handlers = {
 var nativeScrollHandler = require('./handler/native-scroll');
 
 module.exports = function (element, userSettings) {
-  element.classList.add('ps');
+  userSettings = typeof userSettings === 'object' ? userSettings : {};
+
+  cls.add(element, 'ps-container');
 
   // Create a plugin instance.
-  var i = instances.add(
-    element,
-    typeof userSettings === 'object' ? userSettings : {}
-  );
+  var i = instances.add(element);
 
-  element.classList.add('ps--theme_' + i.settings.theme);
+  i.settings = _.extend(i.settings, userSettings);
+  cls.add(element, 'ps-theme-' + i.settings.theme);
 
   i.settings.handlers.forEach(function (handlerName) {
     handlers[handlerName](element);
