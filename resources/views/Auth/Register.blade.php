@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>
-    Visual Builder Html
+    FBP
   </title>
   <link rel="icon" type="image/png" href="/clearui/components/css/img/favicon.png" />
   <link href="https://fonts.googleapis.com/css?family=Mukta:400,700,800&display=swap" rel="stylesheet">
@@ -502,7 +502,7 @@
       <script>
         document.write(new Date().getFullYear());
       </script>
-      <a href="#" target="_blank" rel="noopener noreferrer">ICIGAI</a> 
+      <a href="#" target="_blank" rel="noopener noreferrer">ICIGAI</a>
     </p>
   </div>
 </div>
