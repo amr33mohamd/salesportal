@@ -14,23 +14,28 @@ class ContactsController extends Controller
     public function index(Request $request){
         $user = Auth::user();
         $leads = $user->contacts;
-      return view('Agent.Sales.Members.Members',['leads'=>$leads]);
+        $fields = contacts::fields()->get();
+
+      return view('Agent.Sales.Members.Members',['leads'=>$leads,'fields'=>$fields]);
 
     }
     public function editScreen(Request $request){
-      $lead = contacts::query()->where('id',request('id'))->first();
+      $lead = contacts::query()->where('id',request('id'))->with('fieldsData.field')->first();
       $user = Auth::user();
+      $fields = contacts::fields()->get();
 
       $accounts = accounts::query()->where('user_id',$user->id)->get();
 
-      return view('Agent.Sales.Members.NewMembers',['lead'=>$lead,'type'=>'edit','accounts'=>$accounts,'account_id'=>$request->account_id]);
+      return view('Agent.Sales.Members.NewMembers',['lead'=>$lead,'fields'=>$fields,'type'=>'edit','accounts'=>$accounts,'account_id'=>$request->account_id]);
 
     }
     public function addScreen(Request $request){
       $lead =new contacts;
       $user = Auth::user();
+      $fields = contacts::fields()->get();
+
       $accounts = accounts::query()->where('user_id',$user->id)->get();
-      return view('Agent.Sales.Members.NewMembers',['lead'=>$lead,'type'=>'add','accounts'=>$accounts,'account_id'=>$request->account_id]);
+      return view('Agent.Sales.Members.NewMembers',['lead'=>$lead,'fields'=>$fields,'type'=>'add','accounts'=>$accounts,'account_id'=>$request->account_id]);
 
     }
 
@@ -38,8 +43,10 @@ class ContactsController extends Controller
       $leads = contacts::all();
       $data = $request->all();
       unset($data['_token']);
-
-      $edit = contacts::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
+      $contact= contacts::findOrFail(request('id'));
+      $contact->fields = array_merge(array_filter($data));
+      $contact->save();
+      // $edit = contacts::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
 
       return redirect('/members');
 
@@ -48,8 +55,15 @@ class ContactsController extends Controller
       $leads = contacts::all();
       $data = $request->all();
       $user = Auth::user();
+      unset($data['user_id']);
+      unset($data['account_id']);
+
+      $add = contacts::query()->create(['account_id'=>$request->account_id,'user_id'=>$user->id]);
+
+
+       $add->fields = array_merge(array_filter($data));
+       $add->save();
 // return $request->account_id;
-      $add = contacts::query()->create(array_merge(array_filter($data),['account_id'=>$request->account_id,'user_id'=>$user->id]));
       // return $add;
       return redirect('/members');
 

@@ -1,408 +1,300 @@
-@extends('Agent.Layout.App')
-@section('title', 'New Account')
+@extends('Agent.Layout.App3')
+@section('title', 'Accounts')
 
 @section('content')
-<!-- Page Body Start -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<style>
-.select2-container--default .select2-selection--single{
-  height: 45px !important;
-}
+<div class="vb__layout__content">
+  <div class="vb__breadcrumbs">
+<div class="vb__breadcrumbs__path">
+<a href="javascript: void(0);">Home</a>
+<span>
+<span class="vb__breadcrumbs__arrow"></span>
+<span>App</span>
+</span>
+<span>
+<span class="vb__breadcrumbs__arrow"></span>
+<strong class="vb__breadcrumbs__current">Member</strong>
+</span>
+</div>
+</div>
+  <div class="vb__utils__content">
+    <div class="air__utils__heading">
+<h5>Member</h5>
+</div>
 
 
-</style>
-<main class="pb-3">
-    <!-- Page Title and Breadcrumb Start -->
-    <div class="page-title-breadcrumb mt-3">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col">
-                    <div class="page-title">
-                        {{$type}} Member
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="breadcrumb-box">
-                        <ul>
-                            <li>Sales</li>
-                            <li>Accounts</li>
-                            <li><a href="/new-leads.html"> {{$type}} Member</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Page Title and Breadcrumb End -->
 
-    <!-- Form box Start -->
-    <div class="setting-box">
-        <div class="container-fluid">
-          <form method="post" action="@if($type == 'add') /member/new/action/{{$account_id}} @else /members/edit/action/{{$lead->id}} @endif" >
+
+
+
+
+
+
+<!-- START: forms/basic-forms-elements -->
+
+
+          <!-- Vertical Form -->
+          <form method="post" action="@if($type == 'add') /member/new/action/{{$account_id}} @else /members/edit/action/{{$lead->id}} @endif"  enctype="multipart/form-data">
             @csrf
-            <div class="row">
-                <div class="col-lg d-flex justify-content-end">
-                    <a href="/members" class="btn-admin-default">Cancel</a>
-                    <button type="submit" class="btn-admin-primary ml-3">Save</a>
-                </div>
+            @foreach($fields as $index => $field)
+            @if($index != 0)
+            <!-- if not first item  -->
+            <!-- if the same group -->
+            @if($fields[$index-1]['extra']['group'] == $field['extra']['group'])
+            <div class="form-group col-md-4">
+                      <label for="lead-{{$index+900}}" class="form-field__label">{{$field->label}}</label>
+                      @if($field->type == 'text' || $field->type == 'number' || $field->type == 'email' )
+                      <input  name="{{$field->name}}" id="lead-{{$index+900}}" type="{{$field->type}}"                     class="form-control"
+
+                             placeholder="{{$field['label']}}" value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach>
+                          @elseif($field->type == 'date' || $field->type == 'time' || $field->type == 'datetime'  )
+                          <input value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" name="{{$field->name}}" id="lead-{{$index+900}}"
+                            data-toggle="datetimepicker" data-target="#lead-{{$index+900}}"
+                            @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach                 class="form-control"
+
+                                    placeholder="{{$field['label']}}"  >
+                                    <script>
+                                    $('#lead-{{$index+900}}').datetimepicker({
+                                      icons: {
+                                        time: 'fa fa-clock-o',
+                                        date: 'fa fa-calendar',
+                                        up: 'fa fa-arrow-up',
+                                        down: 'fa fa-arrow-down',
+                                        previous: 'fa fa-arrow-left',
+                                        next: 'fa fa-arrow-right',
+                                      },
+                                    })
+                                    </script>
+                      @elseif($field->type = 'select')
+                          <select name="{{$field->name}}" id="lead-{{$index+900}}"
+                            @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach             class="form-control">
+                              <option value=""  >N/A</option>
+                              @if(isset($field['extra']['options']))
+                              @foreach($field['extra']['options'] as $option)
+                                  <option value="{{$option}}" @if(old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null) == $option ) selected @endif>{{$option}}</option>
+                              @endforeach
+                              @endif
+                          </select>
+
+                      @endif
             </div>
-            <div class="row">
+              <!-- if end of row -->
 
-                <div class="col-xl-12 col-lg-12">
-                    <div class="card-box my-3 px-2 py-3">
-                        <div class="row setting-title-box px-2 mb-3">
-                            <div class="col">
-                                <h2>Overview</h2>
-                            </div>
-                        </div>
-                        <div class="setting-form-box">
-                            <div class="row px-2">
-                                <div class="col px-2">
-                                    <div class="row mx-0">
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-1" class="form-field__label">First Name</label>
-                                                    <input id="contact-1" name="first_name" value="{{old('first_name',$lead->first_name)}}"  type="text"  class="form-field__input"
-                                                        placeholder="First Name" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-2" class="form-field__label">Last Name</label>
-                                                    <input id="contact-2" name="last_name" value="{{old('last_name',$lead->last_name)}}" type="text" class="form-field__input"
-                                                        placeholder="Last Name" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-3" class="form-field__label">Office Phone</label>
-                                                    <input id="contact-3" name="office_phone" value="{{old('office_phone',$lead->office_phone)}}" type="text" class="form-field__input"
-                                                        placeholder="Office Phone" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-4" class="form-field__label">Mobile</label>
-                                                    <input id="contact-4" name="mobile" value="{{old('mobile',$lead->mobile)}}" type="text" class="form-field__input"
-                                                        placeholder="Mobile" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-5" class="form-field__label">Job Title</label>
-                                                    <input id="contact-5" name="job_title" value="{{old('job_title',$lead->job_title)}}" type="text" class="form-field__input"
-                                                        placeholder="Job Title" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                          <div class="form-field">
-                                              <div class="form-field__control form-field--is-active">
-                                                  <label for="contact-9" class="form-field__label">Email Address</label>
-                                                  <input name="email" value="{{old('email',$lead->email)}}" id="contact-9" type="text" class="form-field__input"
-                                                      placeholder="Email Address" />
-                                              </div>
-                                          </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-0">
-
-
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                              <div class="form-field__control form-field--is-active">
-                                                  <label for="contact-9" class="form-field__label">Fax</label>
-                                                  <input name="fax" value="{{old('fax',$lead->fax)}}" id="contact-9" type="text" class="form-field__input"
-                                                      placeholder="Fax" />
-                                              </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-auto px-2">
-                                    <div class="profile-box empty-box">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-box my-3 px-2 py-3">
-                        <div class="row setting-title-box px-2 mb-3">
-                            <div class="col">
-                                <h2>Billing Address</h2>
-                            </div>
-                        </div>
-                        <div class="setting-form-box">
-                            <div class="row px-2">
-                                <div class="col px-2">
-                                    <div class="row mx-0">
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-13" class="form-field__label">Street</label>
-                                                    <input name="billing_street" value="{{old('billing_street',$lead->billing_street)}}" id="contact-13" type="text" class="form-field__input"
-                                                        placeholder="Street" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-14" class="form-field__label">City</label>
-                                                    <input name="billing_city" value="{{old('billing_city',$lead->billing_city)}}" id="contact-14" type="text" class="form-field__input"
-                                                        placeholder="City" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-15" class="form-field__label">State/Region</label>
-                                                    <input name="billing_state" value="{{old('billing_state',$lead->billing_state)}}" id="contact-15" type="text" class="form-field__input"
-                                                        placeholder="State/Region" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-16" class="form-field__label">Postal Code</label>
-                                                    <input name="billing_postal_code" value="{{old('billing_postal_code',$lead->billing_postal_code)}}" id="contact-16" type="text" class="form-field__input"
-                                                        placeholder="Postal Code" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-17" class="form-field__label">Country</label>
-                                                    <input  name="billing_country" value="{{old('billing_country',$lead->billing_country)}}" id="contact-17" type="text" class="form-field__input"
-                                                        placeholder="Country" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-auto col-sm-12  px-2">
-                                    <div class="profile-box empty-box">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-box my-3 px-2 py-3">
-                        <div class="row setting-title-box px-2 mb-3">
-                            <div class="col">
-                                <div class="d-flex justify-content-Start align-items-center">
-                                    <h2>Shipping Address</h2>
-                                    <div class="form-field other-field ml-3 mb-0">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="setting-form-box">
-                            <div class="row px-2">
-                                <div class="col px-2">
-                                    <div class="row mx-0">
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-18" class="form-field__label">Street</label>
-                                                    <input name="shipping_street" value="{{old('shipping_street',$lead->shipping_street)}}" id="contact-18" type="text" class="form-field__input"
-                                                        placeholder="Street" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-19" class="form-field__label">City</label>
-                                                    <input name="shipping_city" value="{{old('shipping_city',$lead->shipping_city)}}" id="contact-19" type="text" class="form-field__input"
-                                                        placeholder="City" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-20" class="form-field__label">State/Region</label>
-                                                    <input name="shipping_state" value="{{old('shipping_state',$lead->shipping_state)}}" id="contact-20" type="text" class="form-field__input"
-                                                        placeholder="State/Region" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-21" class="form-field__label">Postal Code</label>
-                                                    <input name="shipping_postal_code" value="{{old('shipping_postal_code',$lead->shipping_postal_code)}}" id="contact-21" type="text" class="form-field__input"
-                                                        placeholder="Postal Code" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control form-field--is-active">
-                                                    <label for="contact-22" class="form-field__label">Country</label>
-                                                    <input name="shipping_country" value="{{old('shipping_country',$lead->shipping_country)}}" id="contact-22" type="text" class="form-field__input"
-                                                        placeholder="Country" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-auto col-sm-12  px-2">
-                                    <div class="profile-box empty-box">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="card-box my-3 px-2 mt-4 py-3">
-                        <div class="row setting-title-box px-2 mb-3">
-                            <div class="col">
-                                <h2>More Information</h2>
-                            </div>
-                        </div>
-                        <div class="setting-form-box">
-                            <div class="row px-2">
-                                <div class="col px-2">
-                                    <div class="row mx-0">
-                                        <div class="col-lg-6 px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="contact-23" class="form-field__label">Description</label>
-                                                    <input name="last_name" value="{{old('last_name',$lead->last_name)}}" id="contact-23" type="text" class="form-field__input"
-                                                        placeholder="Description" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="contact-24" class="form-field__label">Assigned to</label>
-                                                    <select id="contact-24" name="country" class="form-field__input">
-                                                        <option value="">Assigned to</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                    </select>
-                                                    <div class="form-dropdown-icon">
-                                                        <img src="/assets/images/form-drop-down.svg" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto px-2">
-                                            <button class="btn-primary-admin mr-2"><img src="/assets/images/form-search-white.svg"></button>
-                                            <button class="btn-danger-admin"><img src="/assets/images/close-white.svg"></button>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="contact-25" class="form-field__label">Lead Source</label>
-                                                    <select id="contact-25" name="country" class="form-field__input">
-                                                        <option value="">Lead Source</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                    </select>
-                                                    <div class="form-dropdown-icon">
-                                                        <img src="/assets/images/form-drop-down.svg" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                        </div>
-                                    </div>
-                                    <div class="row mx-0">
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="contact-26" class="form-field__label">Reports To</label>
-                                                    <select id="contact-26" name="country" class="form-field__input">
-                                                        <option value="">Reports To</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                    </select>
-                                                    <div class="form-dropdown-icon">
-                                                        <img src="/assets/images/form-drop-down.svg" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto px-2">
-                                            <button class="btn-primary-admin mr-2"><img src="/assets/images/form-search-white.svg"></button>
-                                            <button class="btn-danger-admin"><img src="/assets/images/close-white.svg"></button>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="contact-27" class="form-field__label">Campaign</label>
-                                                    <select id="contact-27" name="country" class="form-field__input">
-                                                        <option value="">Campaign</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                    </select>
-                                                    <div class="form-dropdown-icon">
-                                                        <img src="/assets/images/form-drop-down.svg" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto px-2">
-                                            <button class="btn-primary-admin mr-2"><img src="/assets/images/form-search-white.svg"></button>
-                                            <button class="btn-danger-admin"><img src="/assets/images/close-white.svg"></button>
-                                        </div>
-                                        <div class="col-lg-6 px-2">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-auto col-sm-12  px-2">
-                                    <div class="profile-box empty-box">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
+              <!-- end if end of row -->
+              @if($fields->count() == $index+1)
+              <!-- closing previous group -->
             </div>
+
+
+
 
         </div>
+      </div>
+                <!-- end closing previous group -->
+                @endif
+              <!-- end if the same group -->
+              <!-- if new group -->
+            @else
+            <!-- end previous group -->
+          </div>
+
+
+
+
+      </div>
     </div>
-    <!-- Form box End -->
-</main>
+          <!-- end end prevours group -->
+          <!-- start new group -->
+          <div class="card">
+          <div class="card-body">
+          <h4 class="mb-4">
+          <strong>{{$field['extra']['group']}}</strong>
+          </h4>
+          <div class="form-row">
+
+
+
+                        <!-- add field -->
+                        <div class="form-group col-md-4">
+                                  <label for="lead-{{$index+900}}" class="form-field__label">{{$field->label}}</label>
+                                  @if($field->type == 'text' || $field->type == 'number' || $field->type == 'email' )
+                                  <input  name="{{$field->name}}" id="lead-{{$index+900}}" type="{{$field->type}}"                     class="form-control"
+
+                                         placeholder="{{$field['label']}}" value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach>
+                                      @elseif($field->type == 'date' || $field->type == 'time' || $field->type == 'datetime'  )
+                                      <input value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" name="{{$field->name}}" id="lead-{{$index+900}}"
+                                        data-toggle="datetimepicker" data-target="#lead-{{$index+900}}"
+                                        @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach                 class="form-control"
+
+                                                placeholder="{{$field['label']}}"  >
+                                                <script>
+                                                $('#lead-{{$index+900}}').datetimepicker({
+                                                  icons: {
+                                                    time: 'fa fa-clock-o',
+                                                    date: 'fa fa-calendar',
+                                                    up: 'fa fa-arrow-up',
+                                                    down: 'fa fa-arrow-down',
+                                                    previous: 'fa fa-arrow-left',
+                                                    next: 'fa fa-arrow-right',
+                                                  },
+                                                })
+                                                </script>
+                                  @elseif($field->type = 'select')
+                                      <select name="{{$field->name}}" id="lead-{{$index+900}}"
+                                        @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach             class="form-control">
+                                          <option value=""  >N/A</option>
+                                          @if(isset($field['extra']['options']))
+                                          @foreach($field['extra']['options'] as $option)
+                                              <option value="{{$option}}" @if(old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null) == $option ) selected @endif>{{$option}}</option>
+                                          @endforeach
+                                          @endif
+                                      </select>
+
+                                  @endif
+                        </div>
+                  <!-- end start new group -->
+            @endif
+            <!-- end if not first item -->
+            <!-- start first item -->
+            @else
+            <div class="card">
+            <div class="card-body">
+            <h4 class="mb-4">
+            <strong>{{$field['extra']['group']}}</strong>
+            </h4>
+            <div class="form-row">
+
+              <div class="form-group col-md-4">
+
+                        <label for="lead-{{$index+900}}" class="form-field__label">{{$field->label}}</label>
+                        @if($field->type == 'text' || $field->type == 'number' || $field->type == 'email' )
+                        <input  name="{{$field->name}}" id="lead-{{$index+900}}" type="{{$field->type}}"                     class="form-control"
+
+                               placeholder="{{$field['label']}}" value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach>
+                            @elseif($field->type == 'date' || $field->type == 'time' || $field->type == 'datetime'  )
+                            <input value="{{old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null)}}" name="{{$field->name}}" id="lead-{{$index+900}}"
+                              data-toggle="datetimepicker" data-target="#lead-{{$index+900}}"
+                              @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach                 class="form-control"
+
+                                      placeholder="{{$field['label']}}"  >
+                                      <script>
+                                      $('#lead-{{$index+900}}').datetimepicker({
+                                        icons: {
+                                          time: 'fa fa-clock-o',
+                                          date: 'fa fa-calendar',
+                                          up: 'fa fa-arrow-up',
+                                          down: 'fa fa-arrow-down',
+                                          previous: 'fa fa-arrow-left',
+                                          next: 'fa fa-arrow-right',
+                                        },
+                                      })
+                                      </script>
+                        @elseif($field->type = 'select')
+                            <select name="{{$field->name}}" id="lead-{{$index+900}}"
+                              @foreach($field->rules as $rule) @if($rule->rule == "required") required @endif @endforeach             class="form-control">
+                                <option value=""  >N/A</option>
+                                @if(isset($field['extra']['options']))
+                                @foreach($field['extra']['options'] as $option)
+                                    <option value="{{$option}}" @if(old($field->name,($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null) == $option ) selected @endif>{{$option}}</option>
+                                @endforeach
+                                @endif
+                            </select>
+
+                        @endif
+              </div>
+            @endif
+            <!-- end first item -->
+              @endforeach
+
+
+
+
+
+
+
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success px-5">Submit</button>
+              <button type="button" class="btn btn-default px-5">Cancel</button>
+            </div>
+          </form>
+          <!-- End Vertical Form -->
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</section>
+<!-- END: forms/basic-forms-elements -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js"></script>
+
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-$(document).ready(function() {
-    $('.js-example-basic-single').select2();
+  ; (function ($) {
+    'use strict'
+    $(function () {
+      $('.select2').select2()
+      $('.select2-tags').select2({
+        tags: true,
+        tokenSeparators: [',', ' '],
+      })
+    })
+  })(jQuery)
+const app = new Vue({
+    el: '#app',
+
+    data() {
+      return {
+        points:{{($lead->points) ? $lead->points:0}}  ,
+
+      }
+    },
+
+    created() {
+      // console.log(JSON.stringify(this.leads[0]))
+      // window.alert = function() {};
+
+      $(document).ready(function(){
+        $('.points').on('focus',  function() {
+        // Store the current value on focus and on change
+        previous = $('option:selected', this).attr('points');
+    }).change(function(){
+      // app.points =app.points+ 1;
+      app.points -= parseInt(previous);
+
+          var points = $('option:selected', this).attr('points');
+          previous = points;
+
+          $(this).attr('previous',points);
+             app.points += parseInt(points);
+
+        })
+      })
+
+    },
+
+    methods: {
+
+
+
+        addMessage() {
+          this.points ++;
+        },
+
+        sendMessage() {
+            this.addMessage(this.newMessage);
+            this.newMessage = '';
+        }
+    }
 });
+
 $(document).ready(()=>{
   $("#image").click(()=>{
     $("#image_input").click();
   })
+
 })
 function readURL(input) {
         if (input.files && input.files[0]) {

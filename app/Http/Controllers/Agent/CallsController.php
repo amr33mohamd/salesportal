@@ -17,17 +17,22 @@ class CallsController extends Controller
       $leads = calls::query()->with('callable')->get();
       $user = Auth::user();
       $stages = sales_stage::all();
+      $fields = calls::fields()->get();
 
       $accounts = accounts::query()->where('user_id',$user->id)->get();
       $userLeads = leads::query()->where('user_id',$user->id)->get();
 
-      return view('Agent.Activities.Calls.Calls',['leads'=>$leads,'stages'=>$stages,'accounts'=>$accounts,'userLeads'=>$userLeads]);
+      return view('Agent.Activities.Calls.Calls',['leads'=>$leads,'fields'=>$fields,'stages'=>$stages,'accounts'=>$accounts,'userLeads'=>$userLeads]);
 
     }
     public function editScreen(Request $request){
-      $lead = calls::query()->where('id',request('id'));
+      $lead = calls::query()->where('id',request('id'))->with('fieldsData.field')->first();
+      $user = Auth::user();
+      $fields = calls::fields()->get();
+      $userLeads = leads::query()->where('user_id',$user->id)->get();
 
-      return view('welcome',['lead'=>$lead]);
+      $accounts = accounts::query()->where('user_id',$user->id)->get();
+      return view('Agent.Activities.Calls.NewCall',['lead'=>$lead,'userLeads'=>$userLeads,'fields'=>$fields,'type'=>'edit','accounts'=>$accounts,'account_id'=>$request->account_id]);
 
     }
 
@@ -38,7 +43,10 @@ class CallsController extends Controller
       unset($data['_token']);
       unset($data['callable']);
 
-      $edit = calls::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
+      $edit= calls::findOrFail(request('id'));
+      $edit->fields = array_merge(array_filter($data));
+      $edit->save();
+
       $edit = calls::query()->where('id',request('id'))->first();
 
       $callable = explode(",",$request->callable);
@@ -52,7 +60,17 @@ class CallsController extends Controller
         $edit->callable()->associate($leadUser);
         $edit->save();
       }
-      return $edit;
+      return redirect('/calls');
+
+    }
+    public function addScreen(Request $request){
+      $lead =new calls;
+      $user = Auth::user();
+      $fields = calls::fields()->get();
+      $userLeads = leads::query()->where('user_id',$user->id)->get();
+
+      $accounts = accounts::query()->where('user_id',$user->id)->get();
+      return view('Agent.Activities.Calls.NewCall',['lead'=>$lead,'userLeads'=>$userLeads,'fields'=>$fields,'type'=>'add','accounts'=>$accounts,'account_id'=>$request->account_id]);
 
     }
 
@@ -61,9 +79,10 @@ class CallsController extends Controller
       $data = request()->all();
       unset($data['_token']);
       unset($data['callable']);
+
         $user = Auth::user();
 
-      $add = calls::query()->create(array_merge(array_filter($data),["user_id"=>$user->id]));
+      $add = calls::query()->create(array_merge(["user_id"=>$user->id]));
       $callable = explode(",",$request->callable);
       if($callable[0] == 'account'){
         $account = accounts::find($callable[1]);
@@ -76,11 +95,14 @@ class CallsController extends Controller
         $add->save();
       }
       // return $request;
+      $add->fields = array_merge(array_filter($data));
+      $add->save();
+
       if($request->form_back){
         return back();
       }
       else {
-        return $add;
+        return redirect('/calls');
       }
     }
     public function delete(Request $request){

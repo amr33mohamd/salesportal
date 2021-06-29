@@ -228,6 +228,12 @@
           <a href="/accounts/edit/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
             ><i class="fe fe-edit mr-2"></i> View
             </a>
+            <a href="/member/new/{{$lead->id}}" class="btn btn-sm btn-light">
+              <small
+                ><i class="fe fe-user mr-2"><!-- --></i></small
+              >
+              New Member</a
+            >
           <a href="/accounts/delete/{{$lead->id}}" class="btn btn-sm btn-light">
             <small
               ><i class="fe fe-trash mr-2"><!-- --></i></small

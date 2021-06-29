@@ -125,8 +125,16 @@ return view('Agent.Sales.Leads.NewLead',['lead'=>$lead,'sources'=>$sources,'medi
     }
     public function delete(Request $request){
        $auth = Auth::user();
-
-       $leads = leads::find($request->id)->delete();
+       foreach( leads::find($request->id)->calls as $call){
+         $call->delete();
+       }
+       foreach( leads::find($request->id)->meetings as $meetings){
+         $meetings->delete();
+       }
+       foreach( leads::find($request->id)->tasks as $tasks){
+         $tasks->delete();
+       }
+       leads::find($request->id)->delete();
 
 
        return redirect('/leads');

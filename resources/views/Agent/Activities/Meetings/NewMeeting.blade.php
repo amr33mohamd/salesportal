@@ -13,13 +13,13 @@
 </span>
 <span>
 <span class="vb__breadcrumbs__arrow"></span>
-<strong class="vb__breadcrumbs__current">Case</strong>
+<strong class="vb__breadcrumbs__current">Meeting</strong>
 </span>
 </div>
 </div>
   <div class="vb__utils__content">
     <div class="air__utils__heading">
-<h5>Case</h5>
+<h5>Meeting</h5>
 </div>
 
 
@@ -34,7 +34,7 @@
 
 
           <!-- Vertical Form -->
-          <form method="post" action="@if($type == 'add') {{route('NewOpportunityAction')}} @else /opportunities/edit/action/{{$lead->id}} @endif"  enctype="multipart/form-data">
+          <form method="post" action="@if($type == 'add') {{route('NewMeetingAction')}} @else /meetings/edit/action/{{$lead->id}} @endif"  enctype="multipart/form-data">
             @csrf
             @foreach($fields as $index => $field)
             @if($index != 0)
@@ -165,11 +165,14 @@
             <div class="form-row">
 
               <div class="form-group col-md-4">
-                <label>Account</label>
-                <select class="select2  " name="account_id" data-live-search="true" required>
+                <label>Account </label>
+                <select class="select2  " name="meetingable" data-live-search="true" required>
                   <!-- <option>NA</option> -->
                   @foreach($accounts as $account)
-                  <option value="{{$account->id}}">{{$account->getFieldByName('surname')->value}}</option>
+                  <option @if($lead->meetingable_type == 'App\Models\accounts' && $lead->meetingable_id == $account->id) selected @endif value="account,{{$account->id}}">{{$account->getFieldByName('surname')['value']}}</option>
+                  @endforeach
+                  @foreach($userLeads as $leadUser)
+                  <option @if($lead->meetingable_type == 'App\Models\leads' && $lead->meetingable_id == $leadUser->id) selected @endif value="lead,{{$leadUser->id}}">{{$leadUser->getFieldByName('surname')['value']}}</option>
                   @endforeach
                 </select>
               </div>

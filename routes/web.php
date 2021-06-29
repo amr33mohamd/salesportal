@@ -100,7 +100,7 @@ Route::get('/members', [App\Http\Controllers\Agent\ContactsController::class, 'i
 Route::get('/members/edit/{id}', [App\Http\Controllers\Agent\ContactsController::class, 'editScreen'])->name('EditMember');
 Route::post('/members/edit/action/{id}', [App\Http\Controllers\Agent\ContactsController::class, 'edit'])->name('EditMemberAction');
 
-Route::get('/member/new/{account_id}', [App\Http\Controllers\Agent\ContactsController::class, 'addScreen']);
+Route::get('/member/new/{account_id}', [App\Http\Controllers\Agent\ContactsController::class, 'addScreen'])->name('NewMember');
 Route::post('/member/new/action/{account_id}', [App\Http\Controllers\Agent\ContactsController::class, 'add'])->name('NewMemberAction');
 
 Route::get('/members/delete/{id}', [App\Http\Controllers\Agent\ContactsController::class, 'delete'])->name('DeleteMember');
@@ -126,8 +126,10 @@ Route::get('/opportunities/profile/{id}', [App\Http\Controllers\Agent\Opportunit
 ///////////////////
 Route::get('/calls', [App\Http\Controllers\Agent\CallsController::class, 'index'])->name('calls');
 
+Route::get('/calls/edit/{id}', [App\Http\Controllers\Agent\CallsController::class, 'editScreen'])->name('EditCall');
 Route::post('/calls/edit/action/{id}', [App\Http\Controllers\Agent\CallsController::class, 'edit'])->name('EditCallAction');
 
+Route::get('/calls/new', [App\Http\Controllers\Agent\CallsController::class, 'addScreen'])->name('NewCall');
 Route::post('/calls/new/action', [App\Http\Controllers\Agent\CallsController::class, 'add'])->name('NewCallAction');
 
 Route::get('/calls/delete/{id}', [App\Http\Controllers\Agent\CallsController::class, 'delete'])->name('DeleteCall');
@@ -136,8 +138,10 @@ Route::get('/calls/delete/{id}', [App\Http\Controllers\Agent\CallsController::cl
 ///////////////////
 Route::get('/meetings', [App\Http\Controllers\Agent\MeetingsController::class, 'index'])->name('meetings');
 
+Route::get('/meetings/edit/{id}', [App\Http\Controllers\Agent\MeetingsController::class, 'editScreen'])->name('EditMeeting');
 Route::post('/meetings/edit/action/{id}', [App\Http\Controllers\Agent\MeetingsController::class, 'edit'])->name('EditMeetingAction');
 
+Route::get('/meetings/new', [App\Http\Controllers\Agent\MeetingsController::class, 'addScreen'])->name('NewMeeting');
 Route::post('/meetings/new/action', [App\Http\Controllers\Agent\MeetingsController::class, 'add'])->name('NewMeetingAction');
 
 Route::get('/meetings/delete/{id}', [App\Http\Controllers\Agent\MeetingsController::class, 'delete'])->name('DeleteMeeting');
@@ -147,8 +151,10 @@ Route::get('/meetings/delete/{id}', [App\Http\Controllers\Agent\MeetingsControll
 ///////////////////
 Route::get('/tasks', [App\Http\Controllers\Agent\TasksController::class, 'index'])->name('tasks');
 
+Route::get('/tasks/edit/{id}', [App\Http\Controllers\Agent\TasksController::class, 'editScreen'])->name('EditTask');
 Route::post('/tasks/edit/action/{id}', [App\Http\Controllers\Agent\TasksController::class, 'edit'])->name('EditTaskAction');
 
+Route::get('/tasks/new', [App\Http\Controllers\Agent\TasksController::class, 'addScreen'])->name('NewTask');
 Route::post('/tasks/new/action', [App\Http\Controllers\Agent\TasksController::class, 'add'])->name('NewTaskAction');
 
 Route::get('/tasks/delete/{id}', [App\Http\Controllers\Agent\TasksController::class, 'delete'])->name('DeleteTask');
@@ -186,4 +192,3 @@ Route::post('/settingsAction', [App\Http\Controllers\Agent\SettingsController::c
 
 
 });
-

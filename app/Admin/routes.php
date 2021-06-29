@@ -14,6 +14,11 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->get('/builder-accounts', 'BuilderAccounts@index');
     $router->get('/builder-leads', 'BuilderLeads@index');
+    $router->get('/builder-members', 'BuilderMembers@index');
+    $router->get('/builder-cases', 'BuilderCases@index');
+    $router->get('/builder-calls', 'BuilderCases@calls');
+    $router->get('/builder-meetings', 'BuilderCases@meetings');
+    $router->get('/builder-tasks', 'BuilderCases@tasks');
 
     $router->resource('users', UserController::class);
     $router->resource('leads', leadsController::class);

@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Mukta:400,700,800&display=swap" rel="stylesheet">
 
   <!-- VENDORS -->
+
   <link rel="stylesheet" type="text/css" href="/clearui/vendors/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="/clearui/vendors/perfect-scrollbar/css/perfect-scrollbar.css">
   <link rel="stylesheet" type="text/css" href="/clearui/vendors/ladda/dist/ladda-themeless.min.css">
@@ -165,7 +166,7 @@
             <span class="badge badge-success ml-2">4</span>
             <i class="vb__menuTop__item__icon fe fe-home"></i>
           </span>
-          <ul class="vb__menuTop__navigation">
+          <!-- <ul class="vb__menuTop__navigation">
             <li class="vb__menuTop__item">
               <a class="vb__menuTop__item__link" href="dashboards-alpha.html">
                 <span class="vb__menuTop__item__title">Dashboard Alpha</span>
@@ -186,7 +187,7 @@
                 <span class="vb__menuTop__item__title">Dashboard Crypto</span>
               </a>
             </li>
-          </ul>
+          </ul> -->
         </li>
         <li class="vb__menuTop__item vb__menuTop__submenu">
           <span class="vb__menuTop__item__link">
@@ -210,14 +211,14 @@
               </a>
             </li>
             <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="advanced-form-examples.html">
+              <a class="vb__menuTop__item__link" href="/members">
                 <span class="vb__menuTop__item__title">Members</span>
                 <i class="vb__menuTop__item__icon fa fa-group"></i>
               </a>
             </li>
 
             <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="advanced-form-examples.html">
+              <a class="vb__menuTop__item__link" href="/opportunities">
                 <span class="vb__menuTop__item__title">Cases</span>
                 <i class="vb__menuTop__item__icon fa fa-shopping-bag"></i>
               </a>
@@ -236,19 +237,19 @@
 
 
             <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="advanced-form-examples.html">
+              <a class="vb__menuTop__item__link" href="/calls">
                 <span class="vb__menuTop__item__title">Calls</span>
                 <i class="vb__menuTop__item__icon fa fa-headphones"></i>
               </a>
             </li>
             <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="advanced-form-examples.html">
+              <a class="vb__menuTop__item__link" href="/meetings">
                 <span class="vb__menuTop__item__title">Meetings</span>
                 <i class="vb__menuTop__item__icon icmn-video-camera"></i>
               </a>
             </li>
             <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="advanced-form-examples.html">
+              <a class="vb__menuTop__item__link" href="/tasks">
                 <span class="vb__menuTop__item__title">Tasks</span>
                 <i class="vb__menuTop__item__icon icmn-file-text2"></i>
               </a>
@@ -259,7 +260,7 @@
         </li>
 
 
-        <li class="vb__menuTop__item vb__menuTop__submenu">
+        <!-- <li class="vb__menuTop__item vb__menuTop__submenu">
           <span class="vb__menuTop__item__link">
             <span class="vb__menuTop__item__title">Finance</span>
             <i class="vb__menuTop__item__icon fe fe-dollar-sign"></i>
@@ -268,21 +269,21 @@
 
 
             <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="advanced-form-examples.html">
+              <a class="vb__menuTop__item__link" href="/payments">
                 <span class="vb__menuTop__item__title">Commission</span>
                 <i class="vb__menuTop__item__icon fe fe-menu"></i>
               </a>
             </li>
 
             <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="advanced-form-examples.html">
+              <a class="vb__menuTop__item__link" href="/payments">
                 <span class="vb__menuTop__item__title">Invoives</span>
                 <i class="vb__menuTop__item__icon fe fe-menu"></i>
               </a>
             </li>
 
             <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="advanced-form-examples.html">
+              <a class="vb__menuTop__item__link" href="/payments">
                 <span class="vb__menuTop__item__title">Wallet</span>
                 <i class="vb__menuTop__item__icon fe fe-menu"></i>
               </a>
@@ -290,10 +291,10 @@
 
 
           </ul>
-        </li>
+        </li> -->
 
 
-        <li class="vb__menuTop__item vb__menuTop__submenu">
+        <!-- <li class="vb__menuTop__item vb__menuTop__submenu">
           <span class="vb__menuTop__item__link">
             <span class="vb__menuTop__item__title">Refeerals</span>
             <i class="vb__menuTop__item__icon fa fa-group"></i>
@@ -312,7 +313,7 @@
 
 
           </ul>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
@@ -693,7 +694,7 @@
         <span class="badge badge-success font-size-11 ml-2">25 New</span>
       </a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="javascript:void(0)">
+      <a class="dropdown-item" href="/logout">
         <i class="dropdown-icon fe fe-log-out"></i> Logout
       </a>
     </div>
@@ -713,6 +714,8 @@
     ;(function($) {
       'use strict'
       $(function() {
+        $('.select2').select2()
+
         /////////////////////////////////////////////////////////////////////////////////////////
         $('#example1').DataTable({
           scrollY:        "300px",

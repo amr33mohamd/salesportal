@@ -143,8 +143,16 @@ return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'fields'=>$fields,'
   public function delete(Request $request){
      $auth = Auth::user();
 
-     $leads = accounts::find($request->id)->delete();
-
+     foreach( accounts::find($request->id)->calls as $call){
+       $call->delete();
+     }
+     foreach( accounts::find($request->id)->meetings as $meetings){
+       $meetings->delete();
+     }
+     foreach( accounts::find($request->id)->tasks as $tasks){
+       $tasks->delete();
+     }
+     accounts::find($request->id)->delete();
 
      return redirect('/accounts');
  }

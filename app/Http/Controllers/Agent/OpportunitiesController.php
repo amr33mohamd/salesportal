@@ -19,7 +19,9 @@ class OpportunitiesController extends Controller
     public function index(Request $request){
         $user = Auth::user();
         $leads = $user->cases;
-      return view('Agent.Sales.Opportunities.Opportunities',['leads'=>$leads]);
+        $fields = opportunities::fields()->get();
+
+      return view('Agent.Sales.Opportunities.Opportunities',['leads'=>$leads,'fields'=>$fields]);
 
     }
     public function profile(Request $request){
@@ -55,18 +57,21 @@ class OpportunitiesController extends Controller
       $accounts = accounts::query()->where('user_id',$user->id)->get();
       $currancies = currencies::all();
       $stages = sales_stage::all();
-      return view('Agent.Sales.Opportunities.NewOpportunity',['lead'=>$lead,'stages'=>$stages,'type'=>'edit','accounts'=>$accounts,'currancies'=>$currancies]);
+      $fields = opportunities::fields()->get();
+
+      return view('Agent.Sales.Opportunities.NewOpportunity',['fields'=>$fields,'lead'=>$lead,'stages'=>$stages,'type'=>'edit','accounts'=>$accounts,'currancies'=>$currancies]);
 
     }
     public function addScreen(Request $request){
       $lead =new opportunities;
       $user = Auth::user();
       $currancies = currencies::all();
+      $fields = opportunities::fields()->get();
 
       $accounts = accounts::query()->where('user_id',$user->id)->get();
       $stages = sales_stage::all();
 
-      return view('Agent.Sales.Opportunities.NewOpportunity',['lead'=>$lead,'stages'=>$stages,'type'=>'add','accounts'=>$accounts,'currancies'=>$currancies]);
+      return view('Agent.Sales.Opportunities.NewOpportunity',['fields'=>$fields,'lead'=>$lead,'stages'=>$stages,'type'=>'add','accounts'=>$accounts,'currancies'=>$currancies,'account_id'=>$request->account_id]);
 
     }
 
@@ -74,8 +79,15 @@ class OpportunitiesController extends Controller
       $leads = opportunities::all();
       $data = $request->all();
       unset($data['_token']);
+      $edit = opportunities::query()->where('id',request('id'))->update([
+        "account_id"=>$data['account_id']
+      ]);
 
-      $edit = opportunities::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
+      unset($data['account_id']);
+
+      $opportunity= opportunities::findOrFail(request('id'));
+      $opportunity->fields = array_merge(array_filter($data));
+      $opportunity->save();
 
       return redirect('/opportunities');
 

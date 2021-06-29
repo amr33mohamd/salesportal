@@ -4,10 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use ICIGAILLC\LaravelModelFieldBuilder\Fieldable\HasFields;
+use ICIGAILLC\LaravelModelFieldBuilder\Fieldable\InteractsStaticallyWithFields;
 
-class opportunities extends Model
+class opportunities extends Model implements HasMedia, HasFields
 {
     use HasFactory;
+    use HasFactory;
+    use InteractsWithMedia;
+    use InteractsStaticallyWithFields;
+    protected $with= ["fieldsData"];
+
     protected $guarded = [
         'id',
 

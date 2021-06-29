@@ -1,142 +1,259 @@
-@extends('Agent.Layout.App')
-@section('title', 'Accounts')
+@extends('Agent.Layout.App3')
+@section('title', 'Members')
 
 @section('content')
 
-    <!-- Header End -->
 
-    <!-- Page Body Start -->
-    <main class="pb-3">
-        <!-- Page Title and Breadcrumb Start -->
-        <div class="page-title-breadcrumb my-3">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="page-title">
-                            Members
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="breadcrumb-box">
-                            <ul>
-                                <li>Sales</li>
-                                <li>Members</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+      <div class="vb__layout__content">
+        <div class="vb__breadcrumbs">
+  <div class="vb__breadcrumbs__path">
+    <a href="javascript: void(0);">Home</a>
+    <span>
+      <span class="vb__breadcrumbs__arrow"></span>
+      <span>Members</span>
+    </span>
+    <span>
+      <span class="vb__breadcrumbs__arrow"></span>
+    </span>
+  </div>
+</div>
+
+        <div class="vb__utils__content">
+          <div class="row">
+            <div class="col-xl-4">
+              <div class="card">
+                <div class="card-body position-relative overflow-hidden">
+        <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$leads->count()}}</div>
+        <div class="text-uppercase">Members</div>
+        <div class="vb__c11__chartContainer">
+          <div class="vb__c11__chart ct-hidden-points"></div>
         </div>
-        <!-- Page Title and Breadcrumb End -->
+      </div>
+      <script>
+        /////////////////////////////////////////////////////////////////////////////////////////
+        // "Chart Widget 11" module scripts
 
-        <!-- Table Section Start -->
-        <div class="admin-table">
-            <div class="container-fluid">
-                <div class="row admin-table-header">
-                    <div class="col-auto admin-table-header-box">
-                        <div class="row m-0">
-                            <div class="top-heading mb-1">
-                                <img src="./assets/images/user-outline.svg" class="mr-2">
-                                <h2>My Members</h2>
-                                <img src="assets/images/question-circle.svg" class="ml-2">
-                            </div>
-                        </div>
-                        <div class="row m-0">
-                            <ul class="admin-table-info">
+        ; (function ($) {
+          'use strict'
+          $(function () {
+            new Chartist.Line(
+              '.vb__c11__chart',
+              {
+                series: [
+                  {
+                    className: 'ct-series-a',
+                    data: [2, 11, 8, 14, 18, 20, 26],
+                  },
+                ],
+              },
+              {
+                width: '120px',
+                height: '107px',
 
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col admin-table-filter-box">
-                        <div class="admin-table-filter d-flex justify-content-end align-items-center">
-
-                            <button id="filter" class="admin-table-btn mr-3"><img class="mr-2"
-                                    src="./assets/images/table-filter.svg">Filter</button>
-                            <button class="admin-table-btn mr-3"><img class="mr-2"
-                                    src="./assets/images/table-export.svg">Export</button>
-
-                            <div class="table-search">
-                                <img src="./assets/images/table-search.svg">
-                                <input id="myInputTextField" value="" type="text" placeholder="Search …">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row admin-table-body mt-3">
-                    <div class="col">
-                        <div class="card-box p-2">
-                            <div class="table-responsive table-checkbox">
-                                <table class="table table-sm" id="example">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">
-                                                <div class="select-all">
-                                                    <input type="checkbox">
-                                                    <img src="./assets/images/table-arrow-down.svg">
-                                                </div>
-                                            </th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Billing City</th>
-                                            <th scope="col">Phone</th>
-                                            <th scope="col">Account</th>
-                                            <th scope="col">Email Address</th>
-
-                                            <th scope="col">Actions</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody class="height-300">
-                                          @foreach($leads as $lead)
-                                          <tr>
-
-                                            <td>
-                                                <div class="select">
-                                                    <input type="checkbox">
-                                                </div>
-                                            </td>
-                                            <td>{{$lead->first_name}} {{$lead->last_name}}</td>
-                                            <td >
-                                                {{$lead->billing_city}}
-
-                                            </td>
-                                            <td>{{$lead->mobile}}</td>
-
-                                            <td>{{$lead->account->first_name}} {{$lead->account->last_name}}</td>
-                                            <td>{{$lead->email}}</td>
-                                            <td>
-                                              <div class="row">
-                                                <div class="col-8">
-
-                                              <a href="/members/edit/{{$lead->id}}" style="display:inline-block;width:15%">  <button class="ml-1"><img src="./assets/images/table-edit.svg"/></button></a>
-                                            </div>
-                                            <div class="col-4">
-
-                                              <a  href="/members/delete/{{$lead->id}}" style="display:inline-block;width:15%;color:red">X</a>
-                                            </div>
-                                            </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-
-                                    </tbody>
-                                    @if($leads->count() == 0)
-                                    <p>There is no data yet</p>
-                                    @endif
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                showPoint: true,
+                showLine: true,
+                showArea: true,
+                fullWidth: true,
+                showLabel: false,
+                axisX: {
+                  showGrid: false,
+                  showLabel: false,
+                  offset: 0,
+                },
+                axisY: {
+                  showGrid: false,
+                  showLabel: false,
+                  offset: 0,
+                },
+                chartPadding: 0,
+                low: 0,
+                plugins: [Chartist.plugins.tooltip()],
+              },
+            )
+          })
+        })(jQuery)
+      </script>
+              </div>
             </div>
+            <div class="col-xl-4">
+              <div class="card">
+                <div class="card-body position-relative overflow-hidden">
+        <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$leads
+                  ->where('created_at', '>=', \Carbon\Carbon::today())->count()}}</div>
+        <div class="text-uppercase">Today Members</div>
+        <div class="vb__c11-1__chartContainer">
+          <div class="vb__c11-1__chart ct-hidden-points"></div>
         </div>
-        <!-- Table Section End -->
-    </main>
-    <!-- Page Body End -->
+      </div>
+      <script>
+        /////////////////////////////////////////////////////////////////////////////////////////
+        // "Chart Widget 11-1" module scripts
+
+        ; (function ($) {
+          'use strict'
+          $(function () {
+            new Chartist.Line(
+              '.vb__c11-1__chart',
+              {
+                series: [
+                  {
+                    className: 'ct-series-a',
+                    data: [20, 80, 67, 120, 132, 66, 97],
+                  },
+                ],
+              },
+              {
+                width: '120px',
+                height: '107px',
+
+                showPoint: true,
+                showLine: true,
+                showArea: true,
+                fullWidth: true,
+                showLabel: false,
+                axisX: {
+                  showGrid: false,
+                  showLabel: false,
+                  offset: 0,
+                },
+                axisY: {
+                  showGrid: false,
+                  showLabel: false,
+                  offset: 0,
+                },
+                chartPadding: 0,
+                low: 0,
+                plugins: [Chartist.plugins.tooltip()],
+              },
+            )
+          })
+        })(jQuery)
+      </script>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div class="card">
+                <div class="card-body position-relative overflow-hidden">
+        <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$leads
+                  ->where('created_at', '>=', \Carbon\Carbon::yesterday())->count()}}</div>
+        <div class="text-uppercase">Yesterday Members</div>
+        <div class="vb__c11-2__chartContainer">
+          <div class="vb__c11-2__chart ct-hidden-points"></div>
+        </div>
+      </div>
+      <script>
+        /////////////////////////////////////////////////////////////////////////////////////////
+        // "Chart Widget 11-2" module scripts
+
+        ; (function ($) {
+          'use strict'
+          $(function () {
+            new Chartist.Line(
+              '.vb__c11-2__chart',
+              {
+                series: [
+                  {
+                    className: 'ct-series-a',
+                    data: [42, 40, 80, 67, 84, 20, 97],
+                  },
+                ],
+              },
+              {
+                width: '120px',
+                height: '107px',
+
+                showPoint: true,
+                showLine: true,
+                showArea: true,
+                fullWidth: true,
+                showLabel: false,
+                axisX: {
+                  showGrid: false,
+                  showLabel: false,
+                  offset: 0,
+                },
+                axisY: {
+                  showGrid: false,
+                  showLabel: false,
+                  offset: 0,
+                },
+                chartPadding: 0,
+                low: 0,
+                plugins: [Chartist.plugins.tooltip()],
+              },
+            )
+          })
+        })(jQuery)
+      </script>
+              </div>
+            </div>
+          </div>
+                  <div class="card">
+  <div class="card-header card-header-flex">
+    <div class="d-flex flex-column justify-content-center mr-auto">
+      <h5 class="mb-0">Members</h5>
+    </div>
+
+  </div>
+  <div class="card-body">
+    <table class="table table-hover nowrap stripe row-border order-column" id="example1">
+      <thead class="thead-default">
+        <tr>
+          <th>ID</th>
+          @foreach($fields as $field)
+              <th scope="col">{{$field->label}}</th>
+
+          @endforeach
+
+
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+          @foreach($leads as $lead)
+          <tr>
 
 
 
+
+            <td style="Background-color:#f2f4f8"><a href="javascript: void(0);" style="width:100%" class="btn btn-sm btn-light">{{$lead->id}}</a></td>
+
+          @foreach($fields as $field)
+            <td>{{($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null}}</td>
+            @endforeach
+        <td style="Background-color:#f2f4f8">
+          <a href="/members/edit/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
+            ><i class="fe fe-edit mr-2"></i> View
+            </a>
+          <a href="/members/delete/{{$lead->id}}" class="btn btn-sm btn-light">
+            <small
+              ><i class="fe fe-trash mr-2"><!-- --></i></small
+            >
+            Remove</a
+          >
+        </td>
+      </tr>
+
+        @endforeach
+
+
+
+
+      </tbody>
+
+    </table>
+  </div>
+</div>
 @endsection
 @push('scripts')
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+
 <script>
 $(document).ready(function() {
 
@@ -178,7 +295,16 @@ $('.filter').toggle(
 var table = $('#example').DataTable( {
     orderCellsTop: true,
     fixedHeader: false,
-    searching:true
+    searching:true,
+    dom: 'Bfrtip',
+       buttons: [
+           'copy',
+           'csv',
+           'excel',
+           'pdf',
+
+       ],
+
 } );
 
 } );
