@@ -16,14 +16,22 @@ class SocialController extends Controller
       $Image = $auth->documents->where('type','Image');
       $Template = $auth->documents->where('type','Template');
 
-      $leads = documents::query();
-      return view('Agent.Marketing.Marketing',['leads'=>$leads,'Social'=>$Social,'Image'=>$Image,'Template'=>$Template]);
+      $leads = documents::all();
+      if($request->type == 'social'  || $request->type == 'Social'){
+        $leads = $Social;
+      }
+      else if($request->type == 'image' || $request->type == 'Image'){
+        $leads = $Image;
+      }
+      else if($request->type == 'templates' || $request->type == 'Template'){
+        $leads = $Template;
+      }
+      return view('Agent.Marketing.Marketing',['leads'=>$leads,'type'=>$request->type,'Social'=>$Social,'Image'=>$Image,'Template'=>$Template]);
 
     }
-    public function editScreen(Request $request){
-      $lead = tasks::query()->where('id',request('id'));
+    public function addScreen(Request $request){
 
-      return view('Agent.Marketing.Marketing',['lead'=>$lead]);
+      return view('Agent.Marketing.NewMarketing');
 
     }
 
@@ -50,7 +58,7 @@ class SocialController extends Controller
       $add = documents::query()->create(array_merge(array_filter($data),['user_id' => $auth->id]));
 
       $add->addMedia($request->file)->toMediaCollection();
-      return back();
+      return redirect('/marketing/'.$request->type);
 
     }
     public function delete(Request $request){

@@ -20,12 +20,34 @@ class PaymentsController extends Controller
       $commissions = $user->commissions;
       $designed_milestones = DesignedMilestones::query()->with('milestones')->get();
       $accounts = $user->accounts;
-      return view('Agent.Payments.Payments',['accounts'=>$accounts,'payments'=>$payments,'milestones'=>$milestones,'commissions'=>$commissions,'designed_milestones'=>$designed_milestones]);
+      if($request->type == 'milestones'){
+        $leads = $milestones;
+      }
+      elseif ($request->type == 'wallet') {
+        $leads = $milestones->where('status','done');
+      }
+      elseif ($request->type == 'invoices') {
+        $leads = $payments;
+      }
+      elseif ($request->type == 'commissions') {
+        $leads = $commissions;
+      }
+      return view('Agent.Payments.Payments',['accounts'=>$accounts,'leads'=>$leads,'type'=>$request->type,'payments'=>$payments,'milestones'=>$milestones,'commissions'=>$commissions,'designed_milestones'=>$designed_milestones]);
 
   }
   public function invoice(Request $request){
     // $leads = Payments::get();
     return view('Agent.Payments.Invoice');
+
+  }
+  public function addPaymentScreen(Request $request){
+    // $leads = Payments::get();
+    $designed_milestones = DesignedMilestones::query()->with('milestones')->get();
+    $user = Auth::user();
+
+    $accounts = $user->accounts;
+
+    return view('Agent.Payments.NewPayment',['designed_milestones'=>$designed_milestones,'accounts'=>$accounts,'user'=>$user]);
 
   }
     public function add_payment(Request $request){
@@ -51,6 +73,6 @@ class PaymentsController extends Controller
                 ]);
             }
         }
-        return back();
+        return redirect('/payments/milestones');
     }
 }

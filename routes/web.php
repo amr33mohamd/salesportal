@@ -162,15 +162,19 @@ Route::get('/tasks/delete/{id}', [App\Http\Controllers\Agent\TasksController::cl
 
 
 ////////////////////
-Route::get('/marketing', [App\Http\Controllers\Agent\SocialController::class, 'index'])->name('marketing');
+Route::get('/marketing/{type}', [App\Http\Controllers\Agent\SocialController::class, 'index'])->name('marketing');
+Route::get('/marketing/new/create', [App\Http\Controllers\Agent\SocialController::class, 'addScreen'])->name('newMarketing');
+
 Route::post('/marketing/new/action', [App\Http\Controllers\Agent\SocialController::class, 'add'])->name('AddMarketing');
 
 
 
 
 ////////////////////
-Route::get('/payments', [App\Http\Controllers\Agent\PaymentsController::class, 'index'])->name('payments');
-Route::post('/payments/add', [App\Http\Controllers\Agent\PaymentsController::class, 'add_payment'])->name('add_payment');
+
+Route::get('/payments/add', [App\Http\Controllers\Agent\PaymentsController::class, 'addPaymentScreen'])->name('AddPayment');
+Route::get('/payments/{type}', [App\Http\Controllers\Agent\PaymentsController::class, 'index'])->name('payments');
+Route::post('/payments/add/action', [App\Http\Controllers\Agent\PaymentsController::class, 'add_payment'])->name('add_payment');
 
 Route::get('/invoice/{id}', [App\Http\Controllers\Agent\PaymentsController::class, 'invoice'])->name('invoice');
 

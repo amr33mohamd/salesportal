@@ -155,17 +155,16 @@
           </g>
         </svg>
         <div class="vb__menuTop__logo__name">FBP</div>
-        <div class="vb__menuTop__logo__descr">Html</div>
       </div>
     </div>
     <div class="vb__menuTop__scroll">
       <ul class="vb__menuTop__navigation vb__menuTop__navigation--root">
-        <li class="vb__menuTop__item vb__menuTop__submenu">
+        <!-- <li class="vb__menuTop__item vb__menuTop__submenu">
           <span class="vb__menuTop__item__link">
             <span class="vb__menuTop__item__title">Dashboards</span>
             <span class="badge badge-success ml-2">4</span>
             <i class="vb__menuTop__item__icon fe fe-home"></i>
-          </span>
+          </span> -->
           <!-- <ul class="vb__menuTop__navigation">
             <li class="vb__menuTop__item">
               <a class="vb__menuTop__item__link" href="dashboards-alpha.html">
@@ -188,7 +187,8 @@
               </a>
             </li>
           </ul> -->
-        </li>
+        <!-- </li> -->
+
         <li class="vb__menuTop__item vb__menuTop__submenu">
           <span class="vb__menuTop__item__link">
             <span class="vb__menuTop__item__title">Sales</span>
@@ -258,9 +258,38 @@
 
           </ul>
         </li>
+        <li class="vb__menuTop__item vb__menuTop__submenu">
+          <span class="vb__menuTop__item__link">
+            <span class="vb__menuTop__item__title">Marketing</span>
+            <i class="vb__menuTop__item__icon fa fa-calendar-check-o"></i>
+          </span>
+          <ul class="vb__menuTop__navigation">
 
 
-        <!-- <li class="vb__menuTop__item vb__menuTop__submenu">
+            <li class="vb__menuTop__item">
+              <a class="vb__menuTop__item__link" href="/marketing/social">
+                <span class="vb__menuTop__item__title">Social</span>
+                <i class="vb__menuTop__item__icon fa fa-headphones"></i>
+              </a>
+            </li>
+            <li class="vb__menuTop__item">
+              <a class="vb__menuTop__item__link" href="/marketing/templates">
+                <span class="vb__menuTop__item__title">Templates</span>
+                <i class="vb__menuTop__item__icon icmn-video-camera"></i>
+              </a>
+            </li>
+            <li class="vb__menuTop__item">
+              <a class="vb__menuTop__item__link" href="/marketing/image">
+                <span class="vb__menuTop__item__title">Image Library</span>
+                <i class="vb__menuTop__item__icon icmn-file-text2"></i>
+              </a>
+            </li>
+
+
+          </ul>
+        </li>
+
+        <li class="vb__menuTop__item vb__menuTop__submenu">
           <span class="vb__menuTop__item__link">
             <span class="vb__menuTop__item__title">Finance</span>
             <i class="vb__menuTop__item__icon fe fe-dollar-sign"></i>
@@ -269,32 +298,38 @@
 
 
             <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="/payments">
-                <span class="vb__menuTop__item__title">Commission</span>
+              <a class="vb__menuTop__item__link" href="/payments/milestones">
+                <span class="vb__menuTop__item__title">Milestones</span>
                 <i class="vb__menuTop__item__icon fe fe-menu"></i>
               </a>
             </li>
 
             <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="/payments">
-                <span class="vb__menuTop__item__title">Invoives</span>
-                <i class="vb__menuTop__item__icon fe fe-menu"></i>
-              </a>
-            </li>
-
-            <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="/payments">
+              <a class="vb__menuTop__item__link" href="/payments/wallet">
                 <span class="vb__menuTop__item__title">Wallet</span>
+                <i class="vb__menuTop__item__icon fe fe-menu"></i>
+              </a>
+            </li>
+
+            <li class="vb__menuTop__item">
+              <a class="vb__menuTop__item__link" href="/payments/invoices">
+                <span class="vb__menuTop__item__title">Invoices</span>
+                <i class="vb__menuTop__item__icon fe fe-menu"></i>
+              </a>
+            </li>
+            <li class="vb__menuTop__item">
+              <a class="vb__menuTop__item__link" href="/payments/commissions">
+                <span class="vb__menuTop__item__title">Commissions</span>
                 <i class="vb__menuTop__item__icon fe fe-menu"></i>
               </a>
             </li>
 
 
           </ul>
-        </li> -->
+        </li>
 
 
-        <!-- <li class="vb__menuTop__item vb__menuTop__submenu">
+        <li class="vb__menuTop__item vb__menuTop__submenu">
           <span class="vb__menuTop__item__link">
             <span class="vb__menuTop__item__title">Refeerals</span>
             <i class="vb__menuTop__item__icon fa fa-group"></i>
@@ -303,7 +338,7 @@
 
 
             <li class="vb__menuTop__item">
-              <a class="vb__menuTop__item__link" href="advanced-form-examples.html">
+              <a class="vb__menuTop__item__link" href="/affiliate">
                 <span class="vb__menuTop__item__title">My Refeerals</span>
                 <i class="vb__menuTop__item__icon fe fe-menu"></i>
               </a>
@@ -313,7 +348,7 @@
 
 
           </ul>
-        </li> -->
+        </li>
       </ul>
     </div>
   </div>

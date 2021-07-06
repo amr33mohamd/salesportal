@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 class AffiliateController extends Controller
 {
   public function index(Request $request){
-    $leads = Auth::user()->with('followers.followers')->get();
+    $leads = Auth::user()->with('followers.followers')->first();
+    // return $leads;
     return view('Agent.Affiliate.Affiliate',['leads'=>$leads]);
   }
 
