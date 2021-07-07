@@ -358,14 +358,11 @@
       <div class="vb__layout__header">
         <div class="vb__topbar">
   <div class="mr-4">
-    <a href="javascript: void(0);" class="mr-2">
+    <a href="/leads" class="mr-2">
       <i class="dropdown-toggle-icon fe fe-home" data-toggle="tooltip" data-placement="bottom"
-        title="Dashboard Alpha"></i>
+        title="Sales"></i>
     </a>
-    <a href="javascript: void(0);" class="mr-2">
-      <i class="dropdown-toggle-icon fe fe-home" data-toggle="tooltip" data-placement="bottom"
-        title="Dashboard Beta"></i>
-    </a>
+
     <span class="dropdown">
       <a href="" class="dropdown-toggle text-nowrap" data-toggle="dropdown" aria-expanded="false" data-offset="0,15">
         <i class="dropdown-toggle-icon fe fe-star" data-toggle="tooltip" data-placement="bottom" title="Bookmarks"></i>
@@ -377,43 +374,52 @@
           </div>
           <div class="vb__customScroll height-200">
             <div class="px-2 pb-2">
-              <a href="./dashboards-alpha.html" class="vb__topbar__favs__link">
+              <a href="/leads" class="vb__topbar__favs__link">
                 <div class="vb__topbar__favs__setIcon vb__topbar__favs__setIconActive">
                   <i class="fe fe-star"></i>
                 </div>
                 <span>
                   <i class="mr-2 fe fe-home"></i>
-                  Dashboard Alpha
+                  Sales
                 </span>
               </a>
-              <a href="./dashboards-beta.html" class="vb__topbar__favs__link">
+              <a href="/calls" class="vb__topbar__favs__link">
                 <div class="vb__topbar__favs__setIcon vb__topbar__favs__setIconActive">
                   <i class="fe fe-star"></i>
                 </div>
                 <span>
                   <i class="mr-2 fe fe-home"></i>
-                  Dashboard Beta
+                  Activities
                 </span>
               </a>
-              <a href="./dashboards-gamma.html" class="vb__topbar__favs__link">
+              <a href="/marketing/social" class="vb__topbar__favs__link">
                 <div class="vb__topbar__favs__setIcon">
                   <i class="fe fe-star"></i>
                 </div>
                 <span>
                   <i class="mr-2 fe fe-home"></i>
-                  Dashboard Gamma
+                  Marketing
                 </span>
               </a>
-              <a href="./dashboards-crypto.html" class="vb__topbar__favs__link">
+              <a href="/payments/milestones" class="vb__topbar__favs__link">
                 <div class="vb__topbar__favs__setIcon">
                   <i class="fe fe-star"></i>
                 </div>
                 <span>
                   <i class="mr-2 fe fe-home"></i>
-                  Dashboard Crypto
+                  Finance
                 </span>
               </a>
-              <a href="./apps-profile.html" class="vb__topbar__favs__link">
+              <a href="/affiliate" class="vb__topbar__favs__link">
+                <div class="vb__topbar__favs__setIcon">
+                  <i class="fe fe-star"></i>
+                </div>
+                <span>
+                  <i class="mr-2 fe fe-database"></i>
+                  Refeerals
+                </span>
+              </a>
+              <a href="/settings" class="vb__topbar__favs__link">
                 <div class="vb__topbar__favs__setIcon">
                   <i class="fe fe-star"></i>
                 </div>
@@ -422,42 +428,17 @@
                   Profile
                 </span>
               </a>
-              <a href="./apps-calendar.html" class="vb__topbar__favs__link">
+              <a href="/employees" class="vb__topbar__favs__link">
                 <div class="vb__topbar__favs__setIcon">
                   <i class="fe fe-star"></i>
                 </div>
                 <span>
                   <i class="mr-2 fe fe-database"></i>
-                  Calendar
+                  Employees
                 </span>
               </a>
-              <a href="./apps-gallery.html" class="vb__topbar__favs__link">
-                <div class="vb__topbar__favs__setIcon">
-                  <i class="fe fe-star"></i>
-                </div>
-                <span>
-                  <i class="mr-2 fe fe-database"></i>
-                  Gallery
-                </span>
-              </a>
-              <a href="./apps-messaging.html" class="vb__topbar__favs__link">
-                <div class="vb__topbar__favs__setIcon">
-                  <i class="fe fe-star"></i>
-                </div>
-                <span>
-                  <i class="mr-2 fe fe-database"></i>
-                  Messaging
-                </span>
-              </a>
-              <a href="./apps-mail.html" class="vb__topbar__favs__link">
-                <div class="vb__topbar__favs__setIcon">
-                  <i class="fe fe-star"></i>
-                </div>
-                <span>
-                  <i class="mr-2 fe fe-database"></i>
-                  Mail
-                </span>
-              </a>
+
+
             </div>
           </div>
         </div>
@@ -465,12 +446,11 @@
     </span>
   </div>
   <div class="mr-auto">
-    <div class="vb__topbar__search">
+    <!-- <div class="vb__topbar__search">
       <i class="fe fe-search">
-        <!-- -->
       </i>
       <input type="text" id="livesearch__input" placeholder="Type to search..." />
-    </div>
+    </div> -->
     <div class="vb__topbar__livesearch">
       <button class="vb__topbar__livesearch__close" type="button">
         <i class="icmn-cross"></i>
@@ -583,9 +563,9 @@
 
 
   <div class="vb__topbar__actionsDropdown dropdown mr-4 d-none d-sm-block">
-    <a href="" class="dropdown-toggle text-nowrap" data-toggle="dropdown" aria-expanded="false" data-offset="0,15">
+    <!-- <a href="" class="dropdown-toggle text-nowrap" data-toggle="dropdown" aria-expanded="false" data-offset="0,15">
       <i class="dropdown-toggle-icon fe fe-bell"></i>
-    </a>
+    </a> -->
     <div class="vb__topbar__actionsDropdownMenu dropdown-menu dropdown-menu-right" role="menu">
       <div style="width: 350px;">
         <div class="card-header card-header-flex">
@@ -707,26 +687,13 @@
       <img class="dropdown-toggle-avatar" src="/clearui/components/css/img/avatars/avatar-2.png" alt="User avatar" />
     </a>
     <div class="dropdown-menu dropdown-menu-right" role="menu">
-      <a class="dropdown-item" href="javascript:void(0)">
+      <a class="dropdown-item" href="/settings">
         <i class="dropdown-icon fe fe-user"></i>
         Profile
       </a>
-      <div class="dropdown-divider"></div>
-      <div class="dropdown-header">
-        Home
-      </div>
-      <a class="dropdown-item" href="javascript:void(0)">
-        <i class="dropdown-icon fe fe-chevron-right"></i>
-        System Dashboard
-      </a>
-      <a class="dropdown-item" href="javascript:void(0)">
-        <i class="dropdown-icon fe fe-chevron-right"></i>
-        User Boards
-      </a>
-      <a class="dropdown-item" href="javascript:void(0)">
-        <i class="dropdown-icon fe fe-chevron-right"></i>
-        Issue Navigator
-        <span class="badge badge-success font-size-11 ml-2">25 New</span>
+      <a class="dropdown-item" href="/employees">
+        <i class="dropdown-icon fe fe-users"></i>
+        Employees
       </a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="/logout">

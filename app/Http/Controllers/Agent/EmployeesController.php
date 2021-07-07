@@ -13,22 +13,28 @@ use Illuminate\Support\Facades\Auth;
 
 class EmployeesController extends Component
 {
-  public $employees;
 
-  public function render()
+  public function index()
   {
     $user = Auth::user();
 
-    $this->employees = $user->employees;
+    $employees = $user->employees;
 
-    $leads = tasks::all();
-    return view('Agent.Employees.Employees')->extends('Agent.Layout.App')->section('centent');
+    return view('Agent.Employees.Employees',['leads'=>$employees]);
   }
 
     public function editScreen(Request $request){
-      $lead = tasks::query()->where('id',request('id'));
+      $lead = user::query()->where('id',$request->id)->first();
+      $user = Auth::user();
 
-      return view('Agent.Marketing.Marketing',['lead'=>$lead]);
+      return view('Agent.Employees.NewEmployee',['lead'=>$lead,'type'=>'edit','user'=>$user]);
+
+    }
+    public function addScreen(Request $request){
+      // $lead = user::query()->where('id',request('id'));
+      $lead = new user;
+      $user = Auth::user();
+      return view('Agent.Employees.NewEmployee',['lead'=>$lead,'type'=>'add','user'=>$user]);
 
     }
     public function add(Request $request){
@@ -37,7 +43,7 @@ class EmployeesController extends Component
       $add = user::query()->create(array_merge(array_filter($data)));
 
 
-      $this->reset();
+      return redirect('/employees');
     }
 
     public function edit(Request $request){
@@ -46,7 +52,7 @@ class EmployeesController extends Component
 
       $edit = tasks::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
 
-      return Redirect::back();
+      return redirect('/employees');
 
     }
 

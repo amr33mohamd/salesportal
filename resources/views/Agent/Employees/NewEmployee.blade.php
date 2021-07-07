@@ -13,7 +13,7 @@
 </span>
 <span>
 <span class="vb__breadcrumbs__arrow"></span>
-<strong class="vb__breadcrumbs__current">Profile</strong>
+<strong class="vb__breadcrumbs__current">Employees</strong>
 </span>
 </div>
 </div>
@@ -33,13 +33,13 @@
 
 
           <!-- Vertical Form -->
-          <form id="marketingForm"  enctype="multipart/form-data" action="{{route('settingsAction')}}" method="post" >
+          <form id="marketingForm" method="get" enctype="multipart/form-data" action="@if($type == 'add') /employees/add/action @else /employees/edit/action/{{$lead->id}} @endif" >
             @csrf
 
             <div class="card">
             <div class="card-body">
             <h4 class="mb-4">
-            <strong>Edit Profile</strong>
+            <strong>Add Employee</strong>
             </h4>
             <div class="form-row">
 
@@ -62,19 +62,13 @@
         <div class="form-group col-md-4">
           <label for="sub_category" class="form-field__label">Password</label>
 
-        <input type="password" name="password" class="form-control"  placeholder="Password" required/>
+        <input type="password" name="password" class="form-control" value="{{old('password',($lead->password) ? $lead->password :null)}}" placeholder="Password" required/>
       </div>
       <div class="form-group col-md-4">
         <label for="sub_category" class="form-field__label">Description</label>
 
       <input type="text" name="description" class="form-control" value="{{old('description',($lead->description) ? $lead->description :null)}}" placeholder="Description"/>
     </div>
-    <div class="form-group col-md-4">
-      <label for="sub_category" class="form-field__label">Photo</label>
-
-    <input type="file" name="image" class="form-control" />
-  </div>
-
 
 
           </div>

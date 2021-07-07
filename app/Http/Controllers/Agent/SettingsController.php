@@ -22,7 +22,7 @@ class SettingsController extends Controller
 
         $leads = documents::query();
 
-        return view('Agent.Settings.Settings',['user'=>$user,'leads'=>$leads,'Social'=>$Social,'Image'=>$Image,'Template'=>$Template]);
+        return view('Agent.Settings.Settings',['lead'=>$user,'user'=>$user,'leads'=>$leads,'Social'=>$Social,'Image'=>$Image,'Template'=>$Template]);
 
     }
     public function editScreen(Request $request){

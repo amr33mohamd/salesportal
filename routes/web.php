@@ -184,7 +184,10 @@ Route::get('/affiliate', [App\Http\Controllers\Agent\AffiliateController::class,
 
 
 ////////////////////
-Route::get('/employees', App\Http\Controllers\Agent\EmployeesController::class)->name('employees');
+Route::get('/employees', [App\Http\Controllers\Agent\EmployeesController::class,'index'])->name('employees');
+Route::get('/employees/add', [App\Http\Controllers\Agent\EmployeesController::class,'addScreen'])->name('NewEmployee');
+Route::get('/employee/edit/{id}', [App\Http\Controllers\Agent\EmployeesController::class,'editScreen'])->name('EditEmployee');
+
 Route::get('/employees/add/action', [App\Http\Controllers\Agent\EmployeesController::class,'add'])->name('NewEmployeeAction');
 Route::get('/employee/delete/{id}', [App\Http\Controllers\Agent\EmployeesController::class,'delete']);
 
