@@ -73,6 +73,21 @@ Route::get('/leads/convert/{id}', [App\Http\Controllers\Agent\LeadsController::c
 
 
 ////////////////////
+
+Route::get('/items', [App\Http\Controllers\Agent\ItemsController::class, 'index'])->name('leads');
+
+Route::get('/items/edit/{id}', [App\Http\Controllers\Agent\ItemsController::class, 'editScreen'])->name('EditItem');
+Route::post('/items/edit/action/{id}', [App\Http\Controllers\Agent\ItemsController::class, 'edit'])->name('EditItemAction');
+
+
+Route::get('/item/new', [App\Http\Controllers\Agent\ItemsController::class, 'addScreen'])->name('NewItem');
+Route::post('/item/new/action', [App\Http\Controllers\Agent\ItemsController::class, 'add'])->name('NewItemAction');
+
+Route::get('/items/delete/{id}', [App\Http\Controllers\Agent\ItemsController::class, 'delete'])->name('DeleteItem');
+
+
+
+///////////////////
 Route::get('/accounts', [App\Http\Controllers\Agent\AccountsController::class, 'index'])->name('accounts');
 
 Route::get('/accounts/profile/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'profile'])->name('profile');

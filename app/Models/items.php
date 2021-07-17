@@ -12,4 +12,8 @@ class items extends Model implements  HasFields
     use HasFactory;
     use InteractsStaticallyWithFields;
     protected $with= ["fieldsData"];
+    protected $guarded = [
+        'id',
+
+    ];
 }

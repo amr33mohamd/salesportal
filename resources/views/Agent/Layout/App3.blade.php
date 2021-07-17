@@ -370,6 +370,28 @@
 
           </ul>
         </li>
+
+
+                <li class="vb__menuTop__item vb__menuTop__submenu">
+                  <span class="vb__menuTop__item__link">
+                    <span class="vb__menuTop__item__title">Items</span>
+                    <i class="vb__menuTop__item__icon fa fa-shopping-bag"></i>
+                  </span>
+                  <ul class="vb__menuTop__navigation">
+
+
+                    <li class="vb__menuTop__item">
+                      <a class="vb__menuTop__item__link" href="/items">
+                        <span class="vb__menuTop__item__title">Items Control</span>
+                        <i class="vb__menuTop__item__icon fe fe-shopping-bag"></i>
+                      </a>
+                    </li>
+
+
+
+
+                  </ul>
+                </li>
       </ul>
     </div>
   </div>

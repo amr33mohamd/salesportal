@@ -25,7 +25,7 @@
               <div class="card">
                 <div class="card-body position-relative overflow-hidden">
         <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$leads->count()}}</div>
-        <div class="text-uppercase">Leads</div>
+        <div class="text-uppercase">Items</div>
         <div class="vb__c11__chartContainer">
           <div class="vb__c11__chart ct-hidden-points"></div>
         </div>
@@ -81,7 +81,7 @@
                 <div class="card-body position-relative overflow-hidden">
         <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$leads
                   ->where('created_at', '>=', \Carbon\Carbon::today())->count()}}</div>
-        <div class="text-uppercase">Today Leads</div>
+        <div class="text-uppercase">Today Items</div>
         <div class="vb__c11-1__chartContainer">
           <div class="vb__c11-1__chart ct-hidden-points"></div>
         </div>
@@ -137,7 +137,7 @@
                 <div class="card-body position-relative overflow-hidden">
         <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$leads
                   ->where('created_at', '>=', \Carbon\Carbon::yesterday())->count()}}</div>
-        <div class="text-uppercase">Yesterday Leads</div>
+        <div class="text-uppercase">Yesterday Items</div>
         <div class="vb__c11-2__chartContainer">
           <div class="vb__c11-2__chart ct-hidden-points"></div>
         </div>
@@ -192,10 +192,10 @@
                   <div class="card">
   <div class="card-header card-header-flex">
     <div class="d-flex flex-column justify-content-center mr-auto">
-      <h5 class="mb-0">Accounts</h5>
+      <h5 class="mb-0">Items</h5>
     </div>
     <div class="d-flex flex-column justify-content-center">
-      <a class="btn btn-primary" href="{{route('NewLead')}}">New Lead</a>
+      <a class="btn btn-primary" href="{{route('NewItem')}}">New Item</a>
     </div>
   </div>
   <div class="card-body">
@@ -207,6 +207,7 @@
               <th scope="col">{{$field->label}}</th>
 
           @endforeach
+          <th scope="col">Price</th>
 
 
           <th>Action</th>
@@ -224,16 +225,12 @@
           @foreach($fields as $field)
             <td>{{($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null}}</td>
             @endforeach
+            <td>{{$lead->price}}</td>
         <td style="Background-color:#f2f4f8">
-          <a href="/leads/edit/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
+          <a href="/items/edit/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
             ><i class="fe fe-edit mr-2"></i> View
             </a>
-            <a href="/leads/convert/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
-              ><i class="fe fe-edit mr-2"></i> Convert to account
-              </a>
-
-
-          <a href="/leads/delete/{{$lead->id}}" class="btn btn-sm btn-light">
+          <a href="/items/delete/{{$lead->id}}" class="btn btn-sm btn-light">
             <small
               ><i class="fe fe-trash mr-2"><!-- --></i></small
             >

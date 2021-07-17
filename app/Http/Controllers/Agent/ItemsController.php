@@ -83,6 +83,7 @@ return view('Agent.Sales.Items.NewItem',['lead'=>$lead,'sources'=>$sources,'medi
       $leads = items::all();
       $data = $request->all();
       $data['user_id'] = Auth::user()->id;
+      unset($data['_token']);
       $add = items::query()->create(array_merge(array_filter($data)));
       unset($data['file']);
         $add->fields = array_merge(array_filter($data));

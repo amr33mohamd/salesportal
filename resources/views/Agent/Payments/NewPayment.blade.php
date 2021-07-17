@@ -91,7 +91,7 @@
 
                          @foreach($user->items as $item)
 
-                              <option   value="{{$item->id}}/{{$item->price}}" >{{$item->price}}</option>
+                              <option   value="{{$item->id}}/{{$item->price}}" >{{$item->getFieldByName('name')->value}}</option>
 
                           @endforeach
 
