@@ -194,7 +194,7 @@
                   <div class="card">
   <div class="card-header card-header-flex">
     <div class="d-flex flex-column justify-content-center mr-auto">
-      <h5 class="mb-0">Cases</h5>
+      <h5 class="mb-0">Callls</h5>
     </div>
     <div class="d-flex flex-column justify-content-center">
       <a class="btn btn-primary" href="{{route('NewCall')}}">New Call</a>

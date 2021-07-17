@@ -21,6 +21,8 @@ class CreateMilestonesTable extends Migration
             $table->enum('status', ["Waiting","done", "Due Date"]);
             $table->DateTime('due_date')->nullable();
             $table->string('note')->nullable();
+            $table->string('method')->nullable();
+
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 

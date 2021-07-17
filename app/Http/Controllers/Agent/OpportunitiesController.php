@@ -88,7 +88,9 @@ class OpportunitiesController extends Controller
       $opportunity= opportunities::findOrFail(request('id'));
       $opportunity->fields = array_merge(array_filter($data));
       $opportunity->save();
-
+      if($request->back_url){
+        return redirect($request->back_url);
+      }
       return redirect('/opportunities');
 
     }
@@ -98,6 +100,9 @@ class OpportunitiesController extends Controller
       unset($data['_token']);
 
       $add = opportunities::query()->create(array_merge(array_filter($data)));
+      if($request->back_url){
+        return redirect($request->back_url);
+      }
       return redirect('/opportunities');
 
 

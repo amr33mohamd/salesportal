@@ -71,6 +71,10 @@ class accounts extends Model implements HasMedia, HasFields
                 {
                    return $this->belongsTo(education_qualifications::class,'education_qualification_id','id');
                  }
+                 public function cases()
+                  {
+                     return $this->hasMany(opportunities::class,'account_id','id');
+                   }
                  public function traffic_medium()
                   {
                      return $this->belongsTo(traffic_mediums::class,'traffic_medium_id','id');

@@ -20,4 +20,8 @@ class Payments extends Model
        {
           return $this->hasMany(Milestones::class,'payment_id','id');
         }
+        public function items()
+         {
+            return $this->hasMany(PaymentItem::class,'payment_id','id');
+          }
 }

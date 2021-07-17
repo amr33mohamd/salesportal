@@ -36,6 +36,9 @@
           <!-- Vertical Form -->
           <form method="post" action="@if($type == 'add') {{route('NewOpportunityAction')}} @else /opportunities/edit/action/{{$lead->id}} @endif"  enctype="multipart/form-data">
             @csrf
+            @if (strpos(url()->previous(), 'profile') !== false)
+                <input type="hidden" name="back_url" value="{{url()->previous()}}"/>
+            @endif
             @foreach($fields as $index => $field)
             @if($index != 0)
             <!-- if not first item  -->

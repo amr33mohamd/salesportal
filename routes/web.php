@@ -89,6 +89,7 @@ Route::get('/accounts/delete/{id}', [App\Http\Controllers\Agent\AccountsControll
 Route::get('/account/edit/attachment/{id}/{status}', [App\Http\Controllers\Agent\AccountsController::class, 'change_attachment_status']);
 Route::post('/account/add/attachment/{account_id}', [App\Http\Controllers\Agent\AccountsController::class, 'assin_attachment']);
 Route::get('/account/edit/assign-attachment/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'delete_assin_attachment']);
+Route::get('/account/assign/attachment/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'assignScreen']);
 
 
 
@@ -190,6 +191,32 @@ Route::get('/employee/edit/{id}', [App\Http\Controllers\Agent\EmployeesControlle
 
 Route::get('/employees/add/action', [App\Http\Controllers\Agent\EmployeesController::class,'add'])->name('NewEmployeeAction');
 Route::get('/employee/delete/{id}', [App\Http\Controllers\Agent\EmployeesController::class,'delete']);
+
+
+////////////////////
+
+
+Route::get('/groups', [App\Http\Controllers\Agent\GroupsController::class,'index'])->name('groups');
+Route::get('/groups/add', [App\Http\Controllers\Agent\GroupsController::class,'addScreen'])->name('NewGroup');
+Route::get('/groups/edit/{id}', [App\Http\Controllers\Agent\GroupsController::class,'editScreen'])->name('EditGroup');
+Route::get('/groups/edit/action/{id}', [App\Http\Controllers\Agent\GroupsController::class,'edit'])->name('EditGroup');
+
+Route::get('/groups/add/action', [App\Http\Controllers\Agent\GroupsController::class,'add'])->name('NewGroupAction');
+Route::get('/groups/delete/{id}', [App\Http\Controllers\Agent\GroupsController::class,'delete']);
+
+
+
+/////////////////////
+
+Route::get('/group/attachments/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'index'])->name('attachments');
+Route::get('/attachments/add/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'addScreen'])->name('NewAttachment');
+Route::get('/attachments/edit/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'editScreen'])->name('EditAttachment');
+Route::get('/attachments/edit/action/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'edit'])->name('EditAttachment');
+
+Route::post('/attachments/add/action/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'add'])->name('NewAttachmentAction');
+Route::get('/attachments/delete/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'delete']);
+
+
 
 
 ////////////////////

@@ -61,6 +61,9 @@ class TasksController extends Controller
       $edit->taskable()->associate($leadUser);
       $edit->save();
     }
+    if($request->back_url){
+      return redirect($request->back_url);
+    }
     return redirect('/tasks');
 
   }
@@ -99,8 +102,8 @@ class TasksController extends Controller
     $add->fields = array_merge(array_filter($data));
     $add->save();
 
-    if($request->form_back){
-      return back();
+    if($request->back_url){
+      return redirect($request->back_url);
     }
     else {
       return redirect('/tasks');
@@ -110,7 +113,9 @@ class TasksController extends Controller
        $auth = Auth::user();
 
        $leads = tasks::find($request->id)->delete();
-
+       if($request->back_url){
+         return redirect($request->back_url);
+       }
 
        return Redirect::back();
    }

@@ -1,5 +1,7 @@
+
+
 @extends('Agent.Layout.App3')
-@section('title', 'Accounts')
+  @section('title', 'Payments')
 
 @section('content')
 
@@ -11,10 +13,12 @@
     <a href="javascript: void(0);">Home</a>
     <span>
       <span class="vb__breadcrumbs__arrow"></span>
-      <span>Accounts</span>
+      <span>Attachments</span>
     </span>
     <span>
-      <span class="vb__breadcrumbs__arrow"></span>
+      <span class="vb__breadcrumbs__arrow">
+
+      </span>
     </span>
   </div>
 </div>
@@ -25,7 +29,7 @@
               <div class="card">
                 <div class="card-body position-relative overflow-hidden">
         <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$leads->count()}}</div>
-        <div class="text-uppercase">Accounts</div>
+        <div class="text-uppercase">Attachments</div>
         <div class="vb__c11__chartContainer">
           <div class="vb__c11__chart ct-hidden-points"></div>
         </div>
@@ -81,7 +85,7 @@
                 <div class="card-body position-relative overflow-hidden">
         <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$leads
                   ->where('created_at', '>=', \Carbon\Carbon::today())->count()}}</div>
-        <div class="text-uppercase">Today Accounts</div>
+        <div class="text-uppercase">Today Attachments</div>
         <div class="vb__c11-1__chartContainer">
           <div class="vb__c11-1__chart ct-hidden-points"></div>
         </div>
@@ -137,7 +141,7 @@
                 <div class="card-body position-relative overflow-hidden">
         <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$leads
                   ->where('created_at', '>=', \Carbon\Carbon::yesterday())->count()}}</div>
-        <div class="text-uppercase">Yesterday Accounts</div>
+        <div class="text-uppercase">Yesterday Attachments</div>
         <div class="vb__c11-2__chartContainer">
           <div class="vb__c11-2__chart ct-hidden-points"></div>
         </div>
@@ -192,64 +196,60 @@
                   <div class="card">
   <div class="card-header card-header-flex">
     <div class="d-flex flex-column justify-content-center mr-auto">
-      <h5 class="mb-0">Accounts</h5>
+      <h5 class="mb-0">Attachments</h5>
     </div>
     <div class="d-flex flex-column justify-content-center">
-      <a class="btn btn-primary" href="{{route('NewAccount')}}">New Account</a>
+      <a class="btn btn-primary" href="/attachments/add/{{$id}}">New Attachment</a>
     </div>
+
   </div>
   <div class="card-body">
     <table class="table table-hover nowrap stripe row-border order-column" id="example1">
       <thead class="thead-default">
         <tr>
-          <th>ID</th>
-          @foreach($fields as $field)
-              <th scope="col">{{$field->label}}</th>
+          <th scope="col">Name</th>
+          <th scope="col">File</th>
+          <th scope="col">exp date</th>
+          <th scope="col">Group</th>
+          <th scope="col">Action</th>
 
-          @endforeach
 
 
-          <th>Action</th>
+
+
         </tr>
       </thead>
       <tbody>
-          @foreach($leads as $lead)
-          <tr>
 
 
 
 
-            <td style="Background-color:#f2f4f8"><a href="javascript: void(0);" style="width:100%" class="btn btn-sm btn-light">{{$lead->id}}</a></td>
 
-          @foreach($fields as $field)
-            <td>{{($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null}}</td>
+            @foreach($leads as $lead)
+            <tr>
+            <td>{{$lead->name}}</td>
+            <td><img src="{{$lead->getFirstMediaUrl()}}" height="50" width="50" /></td>
+            <td>{{$lead->exp_date}}</td>
+            <td>{{$lead->group->name}}</td>
+
+
+            <td style="Background-color:#f2f4f8">
+              <a href="/attachments/edit/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
+                ><i class="fe fe-edit mr-2"></i> View
+                </a>
+              <a href="/attachments/delete/{{$lead->id}}" class="btn btn-sm btn-light">
+                <small
+                  ><i class="fe fe-trash mr-2"><!-- --></i></small
+                >
+                Remove</a
+              >
+            </td>
+</tr>
+
             @endforeach
-        <td style="Background-color:#f2f4f8">
-          <a href="/accounts/edit/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
-            ><i class="fe fe-edit mr-2"></i> View
-            </a>
-            <a href="/member/new/{{$lead->id}}" class="btn btn-sm btn-light">
-              <small
-                ><i class="fe fe-user mr-2"><!-- --></i></small
-              >
-              New Member</a
-            >
-            <a href="accounts/profile/{{$lead->id}}" class="btn btn-sm btn-light">
-              <small
-                ><i class="fe fe-user mr-2"><!-- --></i></small
-              >
-              Profile</a
-            >
-          <a href="/accounts/delete/{{$lead->id}}" class="btn btn-sm btn-light">
-            <small
-              ><i class="fe fe-trash mr-2"><!-- --></i></small
-            >
-            Remove</a
-          >
-        </td>
-      </tr>
 
-        @endforeach
+
+
 
 
 

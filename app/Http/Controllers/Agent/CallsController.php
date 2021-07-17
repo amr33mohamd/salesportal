@@ -60,6 +60,9 @@ class CallsController extends Controller
         $edit->callable()->associate($leadUser);
         $edit->save();
       }
+      if($request->back_url){
+        return redirect($request->back_url);
+      }
       return redirect('/calls');
 
     }
@@ -98,8 +101,8 @@ class CallsController extends Controller
       $add->fields = array_merge(array_filter($data));
       $add->save();
 
-      if($request->form_back){
-        return back();
+      if($request->back_url){
+        return redirect($request->back_url);
       }
       else {
         return redirect('/calls');
@@ -109,7 +112,9 @@ class CallsController extends Controller
        $auth = Auth::user();
 
        $leads = calls::find($request->id)->delete();
-
+       if($request->back_url){
+         return redirect($request->back_url);
+       }
 
        return redirect('/calls');
    }

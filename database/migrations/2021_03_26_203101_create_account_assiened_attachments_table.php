@@ -16,7 +16,7 @@ class CreateAccountAssienedAttachmentsTable extends Migration
         Schema::create('account_assiened_attachments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('document_id')->unsigned()->nullable();
-            $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
+            $table->foreign('document_id')->references('id')->on('attachments')->onDelete('cascade');
             $table->unsignedBigInteger('account_id')->unsigned()->nullable();
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
 

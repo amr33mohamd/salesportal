@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class account_assiened_attachments extends Model
+class AttachmentsGroup extends Model
 {
     use HasFactory;
     protected $guarded = [
         'id',
-
     ];
-    public function attachment()
-    {
-       return $this->hasOne(attachments::class,'id','document_id');
-     }
+    public function attachments()
+     {
+        return $this->hasMany(attachments::class,'group_id','id');
+      }
 }

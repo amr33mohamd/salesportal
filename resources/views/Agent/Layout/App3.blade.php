@@ -349,6 +349,27 @@
 
           </ul>
         </li>
+
+        <li class="vb__menuTop__item vb__menuTop__submenu">
+          <span class="vb__menuTop__item__link">
+            <span class="vb__menuTop__item__title">Attachments</span>
+            <i class="vb__menuTop__item__icon fa fa-book"></i>
+          </span>
+          <ul class="vb__menuTop__navigation">
+
+
+            <li class="vb__menuTop__item">
+              <a class="vb__menuTop__item__link" href="/groups">
+                <span class="vb__menuTop__item__title">Groups</span>
+                <i class="vb__menuTop__item__icon fe fe-book"></i>
+              </a>
+            </li>
+
+
+
+
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
@@ -719,7 +740,7 @@
         $('.select2').select2()
 
         /////////////////////////////////////////////////////////////////////////////////////////
-        $('#example1').DataTable({
+        $("#example1").DataTable({
           scrollY:        "300px",
           scrollX:        true,
           scrollCollapse: true,
@@ -729,6 +750,7 @@
               rightColumns: 1
           }
         })
+
         /////////////////////////////////////////////////////////////////////////////////////////
       })
     })(jQuery)

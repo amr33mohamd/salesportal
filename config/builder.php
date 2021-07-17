@@ -7,6 +7,7 @@ return [
     "cases"=> \App\Models\opportunities::class,
     "calls"=> \App\Models\calls::class,
     "meetings"=> \App\Models\meetings::class,
-    "tasks"=> \App\Models\tasks::class
+    "tasks"=> \App\Models\tasks::class,
+    "items"=> \App\Models\items::class,
 
 ];

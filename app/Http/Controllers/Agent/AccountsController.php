@@ -19,6 +19,11 @@ use App\Models\traffic_source;
 use App\Models\traffic_mediums;
 use App\Models\account_attachments;
 use App\Models\account_assiened_attachments;
+use App\Models\calls;
+use App\Models\tasks;
+use App\Models\meetings;
+use App\Models\opportunities;
+
 class AccountsController extends Controller
 {
   public function index(Request $request){
@@ -40,8 +45,14 @@ class AccountsController extends Controller
     else{
       $documents = user::find($user->follow_id)->first()->documents;
     }
+    $callsf = calls::fields()->get();
+    $tasksf = tasks::fields()->get();
+    $meetingsf = meetings::fields()->get();
+    $accountsf = accounts::fields()->get();
+    $casesf = opportunities::fields()->get();
+
     // return $account;
-    return view('Agent.Sales.Accounts.Profile',['account'=>$account,'documents'=>$documents]);
+    return view('Agent.Sales.Accounts.Profile',['account'=>$account,'casesf'=>$casesf,'type'=>'edit','accountsf'=>$accountsf,'callsf'=>$callsf,'tasksf'=>$tasksf,'meetingsf'=>$meetingsf,'documents'=>$documents]);
 
 
   }
@@ -54,7 +65,7 @@ class AccountsController extends Controller
   public function assin_attachment(Request $request){
     $user = Auth::user();
     $documents = account_assiened_attachments::create(['account_id'=>$request->account_id,'document_id'=>$request->document_id]);
-    return back();
+    return redirect($request->back_url);
   }
   public function delete_assin_attachment(Request $request){
     $user = Auth::user();
@@ -112,6 +123,9 @@ return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'fields'=>$fields,'
      $account= accounts::findOrFail(request('id'));
      $account->fields = array_merge(array_filter($data));
      $account->save();
+     if($request->back_url){
+       return redirect($request->back_url);
+     }
     return redirect('/accounts');
 
   }
@@ -140,6 +154,12 @@ return view('Agent.Sales.Accounts.NewAccount',['lead'=>$lead,'fields'=>$fields,'
     // echo $add;
     return redirect('/accounts');
   }
+  public function assignScreen(Request $request){
+    $user = Auth::user();
+    $groups = $user->groups;
+    return view('Agent.Sales.Accounts.AssignAttachment',['groups'=>$groups,'id'=>$request->id]);
+  }
+
   public function delete(Request $request){
      $auth = Auth::user();
 

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Payments;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\PaymentItem;
 class PaymentsController extends Controller
 {
 
@@ -44,7 +44,6 @@ class PaymentsController extends Controller
     // $leads = Payments::get();
     $designed_milestones = DesignedMilestones::query()->with('milestones')->get();
     $user = Auth::user();
-
     $accounts = $user->accounts;
 
     return view('Agent.Payments.NewPayment',['designed_milestones'=>$designed_milestones,'accounts'=>$accounts,'user'=>$user]);
@@ -52,14 +51,35 @@ class PaymentsController extends Controller
   }
     public function add_payment(Request $request){
         $user = Auth::user();
-        $payment = Payments::create([
-            "designed_milestone_id"=>$request->designed_milestone,
-            "amount"=>$request->total,
-            "type"=>$request->type,
-            "user_id"=>$user->id,
-            "account_id"=>$request->account_id,
+        if($request->designed_milestone == 'cash'){
+          $payment = Payments::create([
+              "amount"=>$request->total,
+              "type"=>$request->type,
+              "user_id"=>$user->id,
+              "account_id"=>$request->account_id,
 
-        ]);
+          ]);
+        }
+        else {
+          $payment = Payments::create([
+              "designed_milestone_id"=>$request->designed_milestone,
+              "amount"=>$request->total,
+              "type"=>$request->type,
+              "user_id"=>$user->id,
+              "account_id"=>$request->account_id,
+
+          ]);
+        }
+
+        if($request->type == 'items'){
+          foreach($request->items as $item){
+
+            PaymentItem::create([
+              'payment_id'=>$payment->id,
+              'item_id'=>explode('/',$item)[0]
+            ]);
+          }
+        }
         $designed_milestone = DesignedMilestones::find($request->designed_milestone);
         if($request->designed_milestone != 'cash') {
             foreach ($designed_milestone->milestones as $key => $milestone) {
@@ -69,7 +89,9 @@ class PaymentsController extends Controller
                     'amount' => $request->$amount,
                     'due_date' => $request->{"date" . $key},
                     'payment_id' => $payment->id,
-                    'user_id' => $user->id
+                    'user_id' => $user->id,
+                    'note'=>$request->{"description" . $key},
+                    'method'=>$request->{"method" . $key},
                 ]);
             }
         }

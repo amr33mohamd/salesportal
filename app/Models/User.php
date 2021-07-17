@@ -61,6 +61,14 @@ class User extends Authenticatable
      {
         return $this->hasMany(User::class,'follow_id','id');
       }
+      public function groups()
+      {
+         return $this->hasMany(AttachmentsGroup::class,'user_id','id');
+       }
+       public function items()
+       {
+          return $this->hasMany(items::class,'user_id','id');
+        }
     public function contacts()
     {
         return $this->hasManyThrough(

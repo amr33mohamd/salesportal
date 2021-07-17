@@ -44,10 +44,14 @@
     <form method="post" action="/payments/add/action"  />
     @csrf
                 <div class="row col-12">
-
+                  <div class="form-group col-md-3">
+                                <label for="milestone-table-Total " class="form-field__label">Total 100%</label>
+                                <input id="milestone-table-Total " type="text" name="total" value="@{{ total }}" class="form-control"
+                                       placeholder="Total" disabled />
+                            </div>
                             <div class="form-group col-md-3">
                                 <label for="milestone-1" class="form-field__label">Program Type</label>
-                                <select id="milestone-1" v-model="choice" name="type" class="form-control">
+                                <select id="milestone-1" v-model="choice" v-on:change="select()" name="type" class="form-control">
                                     <option value="fixed">Fixed Price</option>
                                     <option value="hourly">Hourly</option>
                                     <option value="items">Items</option>
@@ -78,22 +82,26 @@
 
 
                     </span>
-                    <span v-if="choice == 'items'" class="col-lg-6 row">
-                      <div class="form-group col-md-6">
+                      <div v-if="choice == 'items'" class="form-group col-lg-3">
 
-                                <label for="milestone-2" class="form-field__label">Item Price</label>
-                                <input id="milestone-2" v-model="i_price"  v-on:keyup="calculate()" name="i_price" type="number" class="form-control"
-                                       placeholder="Item Price" required/>
-                            </div>
+                        <label  class="">Items</label>
 
-                            <div class="form-group col-md-6">
+                      <select  id="items" name="items[]" onchange="calculate()" onclick="calculate()"   v-model="items" class="form-control select2 " multiple  required>
+                          <option  value="" >Select items</option>
 
-                                <label for="milestone-3" class="form-field__label">No. of Items</label>
-                                <input id="milestone-3" v-model="n_items"  v-on:keyup="calculate()" type="number" name="n_items" class="form-control"
-                                       placeholder="No. of Items" required />
-                            </div>
+                         @foreach($user->items as $item)
 
-                    </span>
+                              <option   value="{{$item->id}}/{{$item->price}}" >{{$item->price}}</option>
+
+                          @endforeach
+
+
+                     </select>
+
+
+
+                          </div>
+
                     <div class="form-group col-md-3">
 
                                 <label for="milestone-4" class="form-field__label">Select Milestone Type</label>
@@ -111,7 +119,7 @@
 
                       <label  class="">Account</label>
 
-                     <select id="contact-7" name="account_id" class="form-control" required>
+                     <select id="contact-7" name="account_id" class="form-control select2" required>
     <option  value="" >Select Account Name</option>
 
                         @foreach($accounts as $account)
@@ -145,6 +153,10 @@
 
                                         <th scope="col">Payment %</th>
                                         <th scope="col">Payment Amount</th>
+                                        <th scope="col">Description</th>
+
+                                        <th scope="col">Payment Method</th>
+
                                         <th scope="col">Payment Due Date</th>
                                     </tr>
                                     </thead>
@@ -167,13 +179,33 @@
                                                            placeholder="Payment Amount" readonly />
                                                 </div>
                                         </td>
+                                        <td>
+                                          <div class="form-group">
 
+                                                    <label for="description-@{{milestone.id }}" class="form-field__label">Description</label>
+                                                    <input id="description-@{{milestone.id }}" value=" " name="description@{{ index }}" type="text" class="form-control"
+                                                           placeholder="Description"  />
+                                                </div>
+                                        </td>
+                                        <td>
+                                          <div class="form-group">
+
+                                                    <label for="method-@{{milestone.id }}" class="form-field__label">Payment Method</label>
+                                                    <select  name="method@{{ index }}"  class="form-control">
+                                                      <option value="cash">Cash</option>
+                                                      <option value="visa">Visa</option>
+                                                      <option value="mastercard">Mastercard</option>
+
+                                                    </select>
+
+                                                </div>
+                                        </td>
 
                                         <td>
                                           <div class="form-group ">
                                                     <label for="date@{{milestone.id }}" class="form-field__label">Payment Due Date</label>
                                                     <input id="date@{{milestone.id }}"  name="date@{{ index }}" type="date" class="form-control"
-                                                            required/>
+                                                            />
 
                                                 </div>
                                         </td>
@@ -252,6 +284,14 @@
 
 
 <script>
+
+function calculate(){
+  $('#items').on("change",function(){
+    app.items = $(this).val();
+    app.calculate();
+});
+}
+
     const app = new Vue({
         el: '#app',
 
@@ -266,7 +306,8 @@
                 n_items:0,
                 h_price:0,
                 n_hours:0,
-                total:0
+                total:0,
+                items:[]
             }
         },
 
@@ -300,11 +341,19 @@
                 console.log(this.selected_data)
             },
             calculate(){
+              console.log('kkk')
                 if(this.choice == 'fixed'){
                     this.total = this.f_price;
                 }
                 else if(this.choice == 'items'){
-                    this.total = this.i_price * this.n_items;
+                    // this.total = this.i_price * this.n_items;
+                    this.total = 0;
+                    this.items.map((value,i)=>{
+                      this.total += parseFloat(value.split('/')[1])
+
+                    })
+
+                    console.log(this.total);
                 }
                 else if(this.choice == 'hourly'){
                     this.total = this.h_price * this.n_hours;
@@ -314,6 +363,10 @@
             addMessage() {
                 this.points++;
             },
+            select(){
+              $('.select2').select2()
+
+            },
 
             sendMessage() {
                 this.addMessage(this.newMessage);
@@ -321,6 +374,9 @@
             }
         }
     });
+
+
+
 </script>
 
 
