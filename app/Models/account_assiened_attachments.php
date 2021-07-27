@@ -14,6 +14,6 @@ class account_assiened_attachments extends Model
     ];
     public function attachment()
     {
-       return $this->hasOne(attachments::class,'id','document_id');
+       return $this->hasOne(Attachments::class,'id','document_id');
      }
 }
