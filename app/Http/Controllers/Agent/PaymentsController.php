@@ -36,8 +36,8 @@ class PaymentsController extends Controller
 
   }
   public function invoice(Request $request){
-    // $leads = Payments::get();
-    return view('Agent.Payments.Invoice');
+    $lead = Payments::find($request->id);
+    return view('Agent.Payments.Invoice',['lead'=>$lead]);
 
   }
   public function addPaymentScreen(Request $request){

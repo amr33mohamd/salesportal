@@ -44,7 +44,7 @@
           <a href="{{$lead->getFirstMediaUrl()}}" type="button" class="btn">
             <i class="fe fe-download"></i>
           </a>
-          <a type="button" class="btn">
+          <a type="button" href="/marketing/delete/{{$lead->id}}" class="btn">
             <i class="fe fe-trash"></i>
           </a>
         </div>

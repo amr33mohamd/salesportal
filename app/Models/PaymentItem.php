@@ -12,4 +12,8 @@ class PaymentItem extends Model
         'id',
 
     ];
+    public function item()
+     {
+        return $this->hasOne(items::class,'id','item_id');
+      }
 }

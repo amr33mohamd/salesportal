@@ -182,6 +182,7 @@ Route::get('/marketing/{type}', [App\Http\Controllers\Agent\SocialController::cl
 Route::get('/marketing/new/create', [App\Http\Controllers\Agent\SocialController::class, 'addScreen'])->name('newMarketing');
 
 Route::post('/marketing/new/action', [App\Http\Controllers\Agent\SocialController::class, 'add'])->name('AddMarketing');
+Route::get('/marketing/delete/{id}', [App\Http\Controllers\Agent\SocialController::class, 'delete']);
 
 
 

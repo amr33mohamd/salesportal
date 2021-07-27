@@ -67,6 +67,6 @@ class SocialController extends Controller
        $leads = documents::find($request->id)->delete();
 
 
-       return redirect('/marketing');
+       return back();
    }
 }
