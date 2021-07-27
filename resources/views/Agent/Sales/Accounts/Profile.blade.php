@@ -31,17 +31,17 @@
     <div class="text-center">
       <div class="text-dark font-weight-bold font-size-18">{{$account->getFieldByName('surname')->value}}</div>
       <div class="text-uppercase font-size-12 mb-3">Account</div>
-      <button class="btn btn-primary btn-with-addon">
+      <!-- <button class="btn btn-primary btn-with-addon">
         <span class="btn-addon">
           <i class="btn-addon-icon fe fe-plus-circle"></i>
         </span>
         Request Access
-      </button>
+      </button> -->
     </div>
   </div>
 </div>
 </div>
-<div class="card text-white bg-primary">
+<!-- <div class="card text-white bg-primary">
 <div class="card-body">
   <div class="d-flex mb-1">
     <div class="text-uppercase font-weight-bold mr-auto">
@@ -60,8 +60,8 @@
       aria-valuemin="0" aria-valuemax="100"></div>
   </div>
 </div>
-</div>
-<div class="card">
+</div> -->
+<!-- <div class="card">
 <div class="card-body">
   <p class="text-dark font-size-48 font-weight-bold mb-2">
     $29,931
@@ -75,8 +75,8 @@
   </p>
   <a href="javascript: void(0);" class="btn btn-outline-primary mb-1">View history</a>
 </div>
-</div>
-<div class="card">
+</div> -->
+<!-- <div class="card">
 <div class="card-body">
   <ul class="list-unstyled">
     <li class="vb__l19__item">
@@ -119,7 +119,7 @@
     </li>
   </ul>
 </div>
-</div>
+</div> -->
 </div>
 <div class="col-xl-8 col-lg-12">
 <div class="card">
@@ -745,6 +745,7 @@ Remove</a
 function correct_table(){
   setTimeout(()=>$.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust().draw(),200)
   setTimeout(()=>$.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust().draw(),300)
+  setTimeout(()=>$.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust().draw(),500)
 
 }
 

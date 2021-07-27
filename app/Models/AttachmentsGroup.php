@@ -13,6 +13,6 @@ class AttachmentsGroup extends Model
     ];
     public function attachments()
      {
-        return $this->hasMany(attachments::class,'group_id','id');
+        return $this->hasMany(Attachments::class,'group_id','id');
       }
 }
