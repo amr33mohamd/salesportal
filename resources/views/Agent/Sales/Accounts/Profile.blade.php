@@ -750,6 +750,7 @@ function correct_table(){
 }
 
 $(document).ready(function() {
+  setTimeout(()=>$.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust().draw(),200)
 
 // Setup - add a text input to each footer cell
 $('#example thead tr').clone(true).appendTo( '#example thead' );

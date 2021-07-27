@@ -773,6 +773,30 @@
           }
         })
 
+
+        $("#calls").DataTable({
+          scrollY:        "300px",
+          scrollX:        true,
+          scrollCollapse: true,
+          paging:         true,
+          fixedColumns:   {
+              leftColumns: 1,
+              rightColumns: 1
+          }
+        })
+
+
+        $("#meetings").DataTable({
+          scrollY:        "300px",
+          scrollX:        true,
+          scrollCollapse: true,
+          paging:         true,
+          fixedColumns:   {
+              leftColumns: 1,
+              rightColumns: 1
+          }
+        })
+
         /////////////////////////////////////////////////////////////////////////////////////////
       })
     })(jQuery)
