@@ -23,7 +23,7 @@ use App\Models\calls;
 use App\Models\tasks;
 use App\Models\meetings;
 use App\Models\opportunities;
-
+use App\Models\AttachmentsGroup;
 class AccountsController extends Controller
 {
   public function index(Request $request){
@@ -52,7 +52,14 @@ class AccountsController extends Controller
     $casesf = opportunities::fields()->get();
 
     // return $account;
-    return view('Agent.Sales.Accounts.Profile',['account'=>$account,'casesf'=>$casesf,'type'=>'edit','accountsf'=>$accountsf,'callsf'=>$callsf,'tasksf'=>$tasksf,'meetingsf'=>$meetingsf,'documents'=>$documents]);
+    if($request->group_id){
+      $group = AttachmentsGroup::find($request->group_id);
+      return view('Agent.Sales.Accounts.Profile',['group_id'=>$request->group_id,'group'=>$group,'account'=>$account,'casesf'=>$casesf,'type'=>'edit','accountsf'=>$accountsf,'callsf'=>$callsf,'tasksf'=>$tasksf,'meetingsf'=>$meetingsf,'documents'=>$documents]);
+    }
+    else {
+      return view('Agent.Sales.Accounts.Profile',['group_id'=>null,'account'=>$account,'casesf'=>$casesf,'type'=>'edit','accountsf'=>$accountsf,'callsf'=>$callsf,'tasksf'=>$tasksf,'meetingsf'=>$meetingsf,'documents'=>$documents]);
+
+    }
 
 
   }

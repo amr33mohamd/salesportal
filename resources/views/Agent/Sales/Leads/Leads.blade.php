@@ -231,7 +231,12 @@
             <a href="/leads/convert/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
               ><i class="fe fe-edit mr-2"></i> Convert to account
               </a>
-
+              <a href="leads/profile/{{$lead->id}}" class="btn btn-sm btn-light">
+                <small
+                  ><i class="fe fe-user mr-2"><!-- --></i></small
+                >
+                Profile</a
+              >
 
           <a href="/leads/delete/{{$lead->id}}" class="btn btn-sm btn-light">
             <small

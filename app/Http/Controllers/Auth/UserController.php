@@ -11,7 +11,13 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function register(Request $request){
-      return view('Auth.Register');
+      if($request->id){
+      return view('Auth.Register',['id'=>$request->id]);
+      }
+      else {
+        return view('Auth.Register',['id'=>null]);
+      }
+
     }
 
     public function register_user(Request $request){
@@ -20,15 +26,31 @@ class UserController extends Controller
         'password' => 'required|min:6',
     ]);
 
-
-
+if($request->id != ''){
+  $follow = User::query()->where('code',$request->id)->first();
+    $user = User::create([
+         'email'    => $request->email,
+         'password' => $request->password,
+         'username'=>$request->name,
+         'follow_id'=>$follow->id,
+         'code'=>random_int(100000, 999999)
+       ]);
+}
+else {
     $user = User::create([
          'email'    => $request->email,
          'password' => $request->password,
          'username'=>$request->name
      ]);
-  //      $user->sendEmailVerificationNotification();
-
+}
+  //
+  //   $user = User::create([
+  //        'email'    => $request->email,
+  //        'password' => $request->password,
+  //        'username'=>$request->name
+  //    ]);
+  // //      $user->sendEmailVerificationNotification();
+  //
   return redirect()->route('home');
     }
     public  function Login(Request $request)

@@ -70,6 +70,7 @@ Route::post('/lead/new/action', [App\Http\Controllers\Agent\LeadsController::cla
 
 Route::get('/leads/delete/{id}', [App\Http\Controllers\Agent\LeadsController::class, 'delete'])->name('DeleteLead');
 Route::get('/leads/convert/{id}', [App\Http\Controllers\Agent\LeadsController::class, 'convert'])->name('ConvertLead');
+Route::get('/leads/profile/{id}', [App\Http\Controllers\Agent\LeadsController::class, 'profile']);
 
 
 ////////////////////

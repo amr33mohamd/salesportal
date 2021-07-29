@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="vb__layout__content">
+<div class="vb__layout__content" id="app">
   <div class="vb__breadcrumbs">
 <div class="vb__breadcrumbs__path">
 <a href="javascript: void(0);">Home</a>
@@ -47,8 +47,37 @@
                 <label for="name" class="form-field__label"> Name</label>
 
               <input type="text" name="username" value="{{old('username',($lead->username) ? $lead->username :null)}}" id="name" class="form-control" placeholder=" Name" required>
-<input type="hidden" value="{{$user->id}}" name="follow_id"/>
+<!-- <input type="hidden" value="{{$user->id}}" name="follow_id"/> -->
             </div>
+
+            <div class="form-group col-md-4">
+              <label for="category" class="form-field__label">Invite Code</label>
+
+            <input type="text" readonly name="code" value="{{$user->code}}" class="form-control" placeholder="Email" required/>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="category" class="form-field__label"> ID</label>
+
+          <input type="text" readonly name="id" value="{{$user->id}}" class="form-control" placeholder="Email" required/>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="category" class="form-field__label"> Mobile Number</label>
+
+        <input type="number"  name="mobile" value="{{$user->mobile}}" class="form-control" placeholder="Mobile Number" />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="category" class="form-field__label"> address country</label>
+
+      <input type="number"  name="address_country" value="{{$user->address_country}}" class="form-control" placeholder="address country" />
+    </div>
+    <div class="form-group col-md-4">
+      <label for="category" class="form-field__label"> address </label>
+
+    <input type="number"  name="address_street" value="{{$user->address_street}}" class="form-control" placeholder="address" />
+  </div>
+
+
             <div class="form-group col-md-4">
               <label for="category" class="form-field__label">Email</label>
 
@@ -59,6 +88,11 @@
 
           <input type="text" name="job_title" class="form-control" value="{{old('job_title',($lead->job_title) ? $lead->job_title :null)}}" placeholder="Job title"/>
         </div>
+        <div class="form-group col-md-4">
+          <label for="referral" class="form-field__label">Refferal Link</label>
+
+        <input type="text"  class="form-control" value="{{ url('/')}}/register?id={{$lead->code}}" placeholder="referral"/>
+      </div>
         <div class="form-group col-md-4">
           <label for="sub_category" class="form-field__label">Password</label>
 
@@ -80,6 +114,8 @@
           </div>
         </div>
       </div>
+
+
 
 
 
@@ -113,7 +149,7 @@ const app = new Vue({
 
     data() {
       return {
-        points:  ,
+        programs:{{$user->CommissionPrograms->count()}}  ,
 
       }
     },
@@ -144,6 +180,11 @@ const app = new Vue({
     methods: {
 
 
+        add_program(){
+          this.programs += 1;
+            $("#new_programs").append('<div class="form-row"><div class="form-group col-md-4"><label for="name" class="form-field__label"> Name</label><input type="text" name="name,'. this.programs .'" value="" id="name" class="form-control" placeholder=" Name" required></div><div class="form-group col-md-4"><label for="name" class="form-field__label"> Percent</label><input type="text" name="percent,'. this.programs .'" value="" id="name" class="form-control" placeholder=" Percent" required></div><div class="form-group col-md-4"><label for="name" class="form-field__label"> Level</label><input type="text" name="level,'. this.programs .'" value="" id="name" class="form-control" placeholder=" Name" required></div></div>');
+          alert(this.programs);
+        },
 
         addMessage() {
           this.points ++;

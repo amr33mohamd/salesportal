@@ -17,6 +17,12 @@ use App\Models\industry;
 use App\Models\currencies;
 use App\Models\traffic_source;
 use App\Models\traffic_mediums;
+use App\Models\account_attachments;
+use App\Models\account_assiened_attachments;
+use App\Models\calls;
+use App\Models\tasks;
+use App\Models\meetings;
+use App\Models\opportunities;
 
 class LeadsController extends Controller
 {
@@ -122,6 +128,27 @@ return view('Agent.Sales.Leads.NewLead',['lead'=>$lead,'sources'=>$sources,'medi
         $leads = leads::find($request->id)->delete();
 
        return redirect('/accounts/edit/'.$account->id);
+    }
+
+    public function profile(Request $request){
+      $user = Auth::user();
+      $account = leads::find($request->id);
+      if($user->follow_id ==null){
+        $documents = $user->documents;
+      }
+      else{
+        $documents = user::find($user->follow_id)->first()->documents;
+      }
+      $callsf = calls::fields()->get();
+      $tasksf = tasks::fields()->get();
+      $meetingsf = meetings::fields()->get();
+      $accountsf = accounts::fields()->get();
+      $casesf = opportunities::fields()->get();
+
+      // return $account;
+      return view('Agent.Sales.Leads.Profile',['account'=>$account,'casesf'=>$casesf,'type'=>'edit','accountsf'=>$accountsf,'callsf'=>$callsf,'tasksf'=>$tasksf,'meetingsf'=>$meetingsf,'documents'=>$documents]);
+
+
     }
     public function delete(Request $request){
        $auth = Auth::user();

@@ -183,7 +183,17 @@
                             </span>
                         @enderror
                     </div>
-
+@if($id != null)
+<!-- <input type="hidden" name="id" value="{{$id}}"/> -->
+@endif
+<div class="form-group mb-4">
+              <input name="id" id="code" value="{{ old('code',$id) }}" type="text" class="form-control" placeholder="Refferal Code" />
+              @error('code')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+          </div>
 
           <div class="form-group mb-4">
                           <input id="email" type="email" placeholder="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">

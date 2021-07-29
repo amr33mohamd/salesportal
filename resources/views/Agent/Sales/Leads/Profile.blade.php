@@ -11,7 +11,7 @@
 <a href="javascript: void(0);">Home</a>
 <span>
 <span class="vb__breadcrumbs__arrow"></span>
-<span>Accounts</span>
+<span>Leads</span>
 </span>
 <span>
 <span class="vb__breadcrumbs__arrow"></span>
@@ -30,7 +30,7 @@
     </div>
     <div class="text-center">
       <div class="text-dark font-weight-bold font-size-18">{{$account->getFieldByName('surname')->value}}</div>
-      <div class="text-uppercase font-size-12 mb-3">Account</div>
+      <div class="text-uppercase font-size-12 mb-3">Lead</div>
       <!-- <button class="btn btn-primary btn-with-addon">
         <span class="btn-addon">
           <i class="btn-addon-icon fe fe-plus-circle"></i>
@@ -141,16 +141,12 @@
       <div class="text-dark font-size-21 font-weight-bold">{{$account->tasks->count()}}</div>
       <div class="text-gray-6">Tasks</div>
     </div>
-    <div class="mr-5 text-center">
-      <div class="text-dark font-size-21 font-weight-bold">{{$account->assiegned_attachments->count()}}</div>
-      <div class="text-gray-6">Attachments</div>
-    </div>
+
   </div>
   <div class="d-flex align-items-stretch mt-auto">
     <ul class="nav nav-tabs nav-tabs-line nav-tabs-line-bold nav-tabs-noborder nav-tabs-stretched">
-
       <li class="nav-item">
-        <a class="nav-link @if($group_id == null) active @endif"  href="#tab-activities-content" data-toggle="tab" aria-selected="true"
+        <a class="nav-link active"  href="#tab-activities-content" data-toggle="tab" aria-selected="true"
           id="tab-activities">Activities</a>
       </li>
       <li class="nav-item">
@@ -167,24 +163,15 @@
       <li class="nav-item">
         <a class="nav-link" href="#tab-info-content" onclick="correct_table()" data-toggle="tab" id="tab-info">Info</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#tab-assigned-attachments-content" onclick="correct_table()" data-toggle="tab" id="tab-assigned-attachments">Assigned Attachments</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#tab-uploaded-attachments-content" onclick="correct_table()" data-toggle="tab" id="tab-uploaded-attachments">Uploaded Attachments</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#tab-cases-content" onclick="correct_table()" data-toggle="tab" id="tab-cases">Cases</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link @if($group_id != null) active @endif" href="#tab-attachments-content" onclick="correct_table()" data-toggle="tab" id="tab-attachments">Attachments</a>
-      </li>
+
+
+
     </ul>
   </div>
 </div>
 <div class="card-body">
   <div class="tab-content">
-    <div class="tab-pane fade show @if($group_id == null) active @endif" id="tab-activities-content" role="tabpanel"
+    <div class="tab-pane fade show active" id="tab-activities-content" role="tabpanel"
       aria-labelledby="tab-activities-content">
 
       <div class="row">
@@ -193,7 +180,9 @@
             <h3 class="font-weight-bold text-dark font-size-18 mb-3">Calls</h3>
             <div class="vb__customScroll">
               <ul class="vb__jira__agile__boardCards">
-
+                @if($account->calls->count() == 0)
+                  <p class="text-center mt-10"> No Calls</p>
+                @endif
                 @foreach($account->calls as $kcalls)
 
                 <li class="vb__jira__agile__card">
@@ -232,7 +221,9 @@
             <h3 class="font-weight-bold text-dark font-size-18 mb-3">Meetings</h3>
             <div class="vb__customScroll">
               <ul class="vb__jira__agile__boardCards vb__customScroll">
-
+                @if($account->meetings->count() == 0)
+                  <p class="text-center mt-10"> No Meetings</p>
+                @endif
                 @foreach($account->meetings as $kmeetings)
 
                 <li class="vb__jira__agile__card">
@@ -274,7 +265,9 @@
             <h3 class="font-weight-bold text-dark font-size-18 mb-3">Tasks</h3>
             <div class="vb__customScroll">
               <ul class="vb__jira__agile__boardCards">
-
+                @if($account->tasks->count() == 0)
+                  <p class="text-center mt-10"> No Tasks</p>
+                @endif
 
                 @foreach($account->tasks as $ktasks)
 
@@ -719,200 +712,11 @@ Remove</a
   </div>
 
 
-  <div class="tab-pane fade" id="tab-assigned-attachments-content" role="tabpanel" aria-labelledby="tab-assigned-attachments-content">
-
-    <div class="card">
-    <div class="card-header card-header-flex">
-    <div class="d-flex flex-column justify-content-center mr-auto">
-    <h5 class="mb-0">Assigned Attachments</h5>
-    </div>
-    <div class="d-flex flex-column justify-content-center">
-    <a class="btn btn-primary" href="/account/assign/attachment/{{$account->id}}">New Assign</a>
-    </div>
-
-    </div>
-    <div class="card-body">
-    <table class="table table-hover nowrap stripe row-border order-column" id="example1">
-    <thead class="thead-default">
-    <tr>
-    <th scope="col">Name</th>
-    <th scope="col">group</th>
-    <th scope="col">file</th>
-    <th scope="col">status</th>
-    <th scope="col">Action</th>
 
 
 
 
 
-    </tr>
-    </thead>
-    <tbody>
-
-
-
-
-
-    @foreach($account->assiegned_attachments as $lead)
-    <tr>
-    <td>{{$lead->attachment->name}}</td>
-    <td>{{$lead->attachment->group->name}}</td>
-    <td><img src="{{$lead->attachment->getFirstMediaUrl()}}" height="50" width="50" /></td>
-    <td>{{$lead->attachment->status}}</td>
-
-
-    <td style="Background-color:#f2f4f8">
-
-    <a href="/account/edit/assign-attachment/{{$lead->id}}" class="btn btn-sm btn-light">
-    <small
-    ><i class="fe fe-trash mr-2"><!-- --></i></small
-    >
-    Remove</a
-    >
-    </td>
-    </tr>
-
-    @endforeach
-
-
-
-
-
-
-
-    </tbody>
-
-    </table>
-    </div>
-    </div>
-
-  </div>
-
-  <div class="tab-pane fade" id="tab-uploaded-attachments-content" role="tabpanel" aria-labelledby="tab-uploaded-attachments-content">
-
-
-</div>
-
-
-<div class="tab-pane fade" id="tab-cases-content" role="tabpanel" aria-labelledby="tab-cases-content">
-
-
-  <div class="card">
-  <div class="card-header card-header-flex">
-  <div class="d-flex flex-column justify-content-center mr-auto">
-  <h5 class="mb-0">Cases</h5>
-  </div>
-  <div class="d-flex flex-column justify-content-center">
-  <a class="btn btn-primary" href="{{route('NewOpportunity')}}">New Case</a>
-  </div>
-
-  </div>
-  <div class="card-body">
-  <table class="table table-hover nowrap stripe row-border order-column" id="example1">
-  <thead class="thead-default">
-  <tr>
-  <th>ID</th>
-  @foreach($casesf as $field)
-  <th scope="col">{{$field->label}}</th>
-
-  @endforeach
-
-
-  <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  @foreach($account->cases as $lead)
-  <tr>
-
-
-
-
-  <td style="Background-color:#f2f4f8"><a href="javascript: void(0);" style="width:100%" class="btn btn-sm btn-light">{{$lead->id}}</a></td>
-
-  @foreach($casesf as $field)
-  <td>{{($lead->getFieldById($field->id)) ? $lead->getFieldById($field->id)->value :null}}</td>
-  @endforeach
-  <td style="Background-color:#f2f4f8">
-  <a href="/opportunities/edit/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
-  ><i class="fe fe-edit mr-2"></i> View
-  </a>
-  <a href="/opportunities/delete/{{$lead->id}}" class="btn btn-sm btn-light">
-  <small
-  ><i class="fe fe-trash mr-2"><!-- --></i></small
-  >
-  Remove</a
-  >
-  </td>
-  </tr>
-
-  @endforeach
-
-
-
-
-  </tbody>
-
-  </table>
-  </div>
-  </div>
-
-</div>
-@if($group_id == null)
-<div class="tab-pane fade show @if($group_id != null) active @endif " id="tab-attachments-content" role="tabpanel"
-  aria-labelledby="tab-attachments-content">
-
-  <div class="card">
-  <div class="card-header card-header-flex">
-  <div class="d-flex flex-column justify-content-center mr-auto">
-  <h5 class="mb-0">Groups</h5>
-  </div>
-  <div class="d-flex flex-column justify-content-center mr-2">
-  <a class="btn btn-primary" href="{{route('NewOpportunity')}}">New Group</a>
-  </div>
-  <div class="d-flex flex-column justify-content-center">
-  <a class="btn btn-primary" href="{{route('NewOpportunity')}}">Assign Groups</a>
-  </div>
-
-  </div>
-
-  <div class="card-body">
-  <div class="vb__gallery">
-
-  <div class="vb__gallery__items d-flex flex-wrap">
-
-    @if($account->assiegned_groups->count() == 0)
-    <p>No Data</p>
-    @else
-    @foreach($account->assiegned_groups as $lead)
-    <div class="vb__gallery__item">
-      <div class="vb__gallery__itemContent">
-        <div class="vb__gallery__itemControl">
-          <div class="btn-group vb__gallery__itemControlContainer">
-            <a href="?group_id={{$lead->id}}" type="button" class="btn">
-              <i class="fe fe-download"></i>
-            </a>
-            <a type="button" href="/marketing/delete/{{$lead->id}}" class="btn">
-              <i class="fe fe-trash"></i>
-            </a>
-          </div>
-        </div>
-        <img src="https://www.tenforums.com/geek/gars/images/2/types/thumb_14486407500Folder.png"/>
-      </div>
-      <div class="text-gray-6">
-        <p class="text-center">{{$lead->group->name}}</p>
-
-      </div>
-    </div>
-    @endforeach
-    @endif
-
-  </div>
-  </div>
-  </div>
-
-
-</div>
 
 
 
@@ -922,99 +726,6 @@ Remove</a
 
 
   </div>
-
-  @else
-
-  <div class="tab-pane fade show @if($group_id != null) active @endif " id="tab-attachments-content" role="tabpanel"
-    aria-labelledby="tab-attachments-content">
-
-      <div class="card">
-      <div class="card-header card-header-flex">
-      <div class="d-flex flex-column justify-content-center mr-auto">
-      <h5 class="mb-0">Group Attachments</h5>
-      </div>
-      <div class="d-flex flex-column justify-content-center">
-      <a class="btn btn-primary" href="/account/assign/attachment/{{$account->id}}">New Attachment</a>
-      </div>
-
-      </div>
-      <div class="card-body">
-      <table class="table table-hover nowrap stripe row-border order-column" id="example1">
-      <thead class="thead-default">
-      <tr>
-      <th scope="col">Name</th>
-      <th scope="col">group</th>
-      <th scope="col">uploaded file</th>
-
-      <th scope="col">status</th>
-      <th scope="col">Action</th>
-
-
-
-
-
-      </tr>
-      </thead>
-      <tbody>
-
-
-
-
-
-      @foreach($group->attachments as $lead)
-      <tr>
-      <td>{{$lead->name}}</td>
-      <td>{{$group->name}}</td>
-      <td>@if($account->uploaded_attachments->where('attachment_id',$lead->id)->count() == 0) not uploaded yet @else <a href="{{$account->uploaded_attachments->where('attachment_id',$lead->id)->first()}}"/> @endif </td>
-      <td>@if($account->uploaded_attachments->where('attachment_id',$lead->id)->count() == 0) not uploaded yet @else <p>{{$account->uploaded_attachments->where('attachment_id',$lead->id)->first()->status}}<p>@endif </td>
-
-
-      <td style="Background-color:#f2f4f8">
-
-      <a href="/account/edit/assign-attachment/{{$lead->id}}" class="btn btn-sm btn-light">
-      <small
-      ><i class="fe fe-trash mr-2"><!-- --></i></small
-      >
-      </a
-      >
-      <a href="/account/edit/assign-attachment/{{$lead->id}}" class="btn btn-sm btn-light">
-      <small
-      ><i class="fe fe-check mr-2"><!-- --></i></small
-      >
-      </a
-      >
-      <a href="/account/edit/assign-attachment/{{$lead->id}}" class="btn btn-sm btn-light">
-      <small
-      ><i class="fa fa-times mr-2"><!-- --></i></small
-      >
-      </a
-      >
-      <a href="/account/edit/assign-attachment/{{$lead->id}}" class="btn btn-sm btn-light">
-      <small
-      ><i class="fa fa-refresh mr-2"><!-- --></i></small
-      >
-      </a
-      >
-      </td>
-      </tr>
-
-      @endforeach
-
-
-
-
-
-
-
-      </tbody>
-
-      </table>
-      </div>
-      </div>
-
-    </div>
-
-  @endif
 </div>
 </div>
 </div>

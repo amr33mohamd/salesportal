@@ -66,6 +66,14 @@ class accounts extends Model implements HasMedia, HasFields
                     {
                        return $this->hasMany(account_assiened_attachments::class,'account_id','id');
                      }
+                     public function assiegned_groups()
+                      {
+                         return $this->hasMany(assignedGroup::class,'account_id','id');
+                       }
+                       public function uploaded_attachments()
+                        {
+                           return $this->hasMany(uploadedAttachment::class,'account_id','id');
+                         }
 
                public function education_qualification()
                 {
