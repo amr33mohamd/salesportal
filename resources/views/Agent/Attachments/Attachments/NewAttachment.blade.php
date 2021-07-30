@@ -81,10 +81,10 @@
         <div class="form-group col-md-4">
           <label for="status" class="form-field__label">Type</label>
 
-        <select  name="status" value="{{old('status',($lead->status) ? $lead->status :null)}}" class="form-control" >
+        <select  name="type" value="{{old('type',($lead->type) ? $lead->type :null)}}" class="form-control" >
           <option value=""></option>
-          <option value="1">PDF</option>
-        <option value="2">ZIP</option>
+          <option value="PDF">PDF</option>
+        <option value="ZIP">ZIP</option>
              </select>
       </div>
     @if($account_id != null)
