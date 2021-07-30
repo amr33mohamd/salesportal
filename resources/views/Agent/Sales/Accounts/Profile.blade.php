@@ -1110,7 +1110,7 @@ Remove</a
       <th scope="col">Name</th>
       <th scope="col">group</th>
       <th scope="col">uploaded file</th>
-
+      <th scope="col">Description</th>
       <th scope="col">status</th>
       <th scope="col">Action</th>
 
@@ -1131,6 +1131,7 @@ Remove</a
       <td>{{$lead->name}}</td>
       <td>{{$group->name}}</td>
       <td>@if($account->uploaded_attachments->where('attachment_id',$lead->id)->count() == 0) not uploaded yet @else <a href="{{$account->uploaded_attachments->where('attachment_id',$lead->id)->first()->getFirstMediaUrl()}}">download</a> @endif </td>
+      <td>{{$lead->description}}</td>
       <td>@if($account->uploaded_attachments->where('attachment_id',$lead->id)->count() == 0) not uploaded yet @else <p>{{$account->uploaded_attachments->where('attachment_id',$lead->id)->first()->status}}<p>@endif </td>
 
 

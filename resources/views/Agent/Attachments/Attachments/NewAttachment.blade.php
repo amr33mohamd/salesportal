@@ -44,7 +44,7 @@
             <div class="form-row">
               @if($account != null)
               <div class="form-group col-md-4">
-                <label for="name" class="form-field__label">File </label>
+                <label for="name" class="form-field__label">Attachment </label>
 
               <input  type="file" name="file"  id="name" class="form-control" placeholder="File">
 
@@ -53,11 +53,17 @@
 
               @endif
               <div class="form-group col-md-4">
-                <label for="name" class="form-field__label">File Name</label>
+                <label for="name" class="form-field__label">Attachment Name</label>
 
               <input required type="text" name="name" value="{{old('name',($lead->name) ? $lead->name :null)}}" id="name" class="form-control" placeholder="File Name">
 
             </div>
+            <div class="form-group col-md-4">
+              <label for="name" class="form-field__label">Description</label>
+
+            <input  type="text" name="description" value="{{old('description',($lead->description) ? $lead->name :null)}}" id="name" class="form-control" placeholder="description">
+
+          </div>
             <div class="form-group col-md-4">
               <label for="name" class="form-field__label">Exp Date</label>
 
