@@ -167,7 +167,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#tab-info-content" onclick="correct_table()" data-toggle="tab" id="tab-info">Info</a>
       </li>
-      
+
       <li class="nav-item">
         <a class="nav-link" href="#tab-cases-content" onclick="correct_table()" data-toggle="tab" id="tab-cases">Cases</a>
       </li>
@@ -885,9 +885,9 @@ Remove</a
         <div class="vb__gallery__itemControl">
           <div class="btn-group vb__gallery__itemControlContainer">
             <a href="?group_id={{$lead->id}}" type="button" class="btn">
-              <i class="fe fe-download"></i>
+              <i class="fe fe-file"></i>
             </a>
-            <a type="button" href="/marketing/delete/{{$lead->id}}" class="btn">
+            <a type="button" href="/account/edit/assign-attachment/{{$lead->id}}" class="btn">
               <i class="fe fe-trash"></i>
             </a>
           </div>

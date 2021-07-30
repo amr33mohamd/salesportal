@@ -85,7 +85,7 @@ class AccountsController extends Controller
   }
   public function delete_assin_attachment(Request $request){
     $user = Auth::user();
-    $documents = account_assiened_attachments::query()->where('id',$request->id)->delete();
+    $documents = assignedGroup::query()->where('id',$request->id)->delete();
     return back();
   }
 
