@@ -39,7 +39,7 @@
             <div class="card">
             <div class="card-body">
             <h4 class="mb-4">
-            <strong>Add Attachment</strong>
+            <strong>@if($type == 'add') Add @else Edit @endif Attachment</strong>
             </h4>
             <div class="form-row">
               @if($account != null)
@@ -83,8 +83,8 @@
 
         <select  name="type" value="{{old('type',($lead->type) ? $lead->type :null)}}" class="form-control" >
           <option value=""></option>
-          <option value="PDF">PDF</option>
-        <option value="ZIP">ZIP</option>
+          <option @if($lead->type == 'PDF') selected @endif value="PDF">PDF</option>
+        <option @if($lead->type == 'ZIP') selected @endif value="ZIP">ZIP</option>
              </select>
       </div>
     @if($account_id != null)
