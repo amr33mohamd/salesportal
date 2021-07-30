@@ -192,7 +192,7 @@
                   <div class="card">
   <div class="card-header card-header-flex">
     <div class="d-flex flex-column justify-content-center mr-auto">
-      <h5 class="mb-0">Accounts</h5>
+      <h5 class="mb-0">Leads</h5>
     </div>
     <div class="d-flex flex-column justify-content-center">
       <a class="btn btn-primary" href="{{route('NewLead')}}">New Lead</a>
@@ -226,23 +226,23 @@
             @endforeach
         <td style="Background-color:#f2f4f8">
           <a href="/leads/edit/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
-            ><i class="fe fe-edit mr-2"></i> View
+            ><i class="fe fe-edit mr-2"></i>
             </a>
             <a href="/leads/convert/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
-              ><i class="fe fe-edit mr-2"></i> Convert to account
+              ><i class="fa fa-refresh mr-2"></i>
               </a>
               <a href="leads/profile/{{$lead->id}}" class="btn btn-sm btn-light">
                 <small
                   ><i class="fe fe-user mr-2"><!-- --></i></small
                 >
-                Profile</a
+                </a
               >
 
           <a href="/leads/delete/{{$lead->id}}" class="btn btn-sm btn-light">
             <small
               ><i class="fe fe-trash mr-2"><!-- --></i></small
             >
-            Remove</a
+            </a
           >
         </td>
       </tr>

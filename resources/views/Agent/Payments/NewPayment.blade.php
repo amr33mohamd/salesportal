@@ -45,11 +45,36 @@
     @csrf
                 <div class="row col-12">
                   <div class="form-group col-md-3">
-                                <label for="milestone-table-Total " class="form-field__label">Total 100%</label>
-                                <input id="milestone-table-Total " type="text" name="total" value="@{{ total }}" class="form-control"
+                                <label for="milestone-table-Total " class="form-field__label">Invoice #</label>
+                                <input id="milestone-table-Total " type="text" name="code" value="@{{code}}" class="form-control"
                                        placeholder="Total" disabled />
                             </div>
                             <div class="form-group col-md-3">
+                                          <label for="milestone-table-Total " class="form-field__label">Invoice Date </label>
+                                          <input id="milestone-table-Total " type="date" name="date" value="" class="form-control"
+                                                 placeholder="date"  />
+                                      </div>
+                                      <div class="form-group col-md-3">
+                                          <label for="milestone-1" class="form-field__label">Currency</label>
+                                          <select id="milestone-1"  v name="currency" class="form-control">
+                                              <option value="USD">USD</option>
+                                              <option value="AED">AED</option>
+                                              <option value="CAD">CAD</option>
+                                              <option value="GBP">GBP</option>
+                                              <option value="AUD">AUD</option>
+                                              <option value="EUR">EUR</option>
+                                              <option value="INR">INR</option>
+                                              <option value="CNY">CNY</option>
+
+                                          </select>
+
+                                      </div>
+                                      <div class="form-group col-md-3">
+                                                    <label for="milestone-table-Total " class="form-field__label">Due Date </label>
+                                                    <input id="milestone-table-Total " type="date" name="due_date"  class="form-control"
+                                                           placeholder="date"  />
+                                                </div>
+                            <!-- <div class="form-group col-md-3">
                                 <label for="milestone-1" class="form-field__label">Program Type</label>
                                 <select id="milestone-1" v-model="choice" v-on:change="select()" name="type" class="form-control">
                                     <option value="fixed">Fixed Price</option>
@@ -57,9 +82,9 @@
                                     <option value="items">Items</option>
                                 </select>
 
-                            </div>
+                            </div> -->
 
-                    <span v-if="choice == 'hourly'" class="col-lg-6 row">
+                    <!-- <span v-if="choice == 'hourly'" class="col-lg-6 row">
                       <div class="form-group col-md-6">
                                 <label for="milestone-2" class="form-field__label">Hour Price</label>
                                 <input id="milestone-2" v-model="h_price"  v-on:keyup="calculate()" name="h_price" type="number" class="form-control"
@@ -72,8 +97,8 @@
                                        placeholder="No. of Hours" required/>
                             </div>
 
-                    </span>
-                    <span v-if="choice == 'fixed'" class="col-lg-3">
+                    </span> -->
+                    <!-- <span v-if="choice == 'fixed'" class="col-lg-3">
                       <div class="form-group">
                                 <label for="milestone-2" class="form-field__label"> Price</label>
                                 <input id="milestone-2" v-model="f_price"  v-on:keyup="calculate()" name="f_price" type="number" class="form-control"
@@ -81,8 +106,8 @@
                             </div>
 
 
-                    </span>
-                      <div v-if="choice == 'items'" class="form-group col-lg-3">
+                    </span> -->
+                      <!-- <div v-if="choice == 'items'" class="form-group col-lg-3">
 
                         <label  class="">Items</label>
 
@@ -100,7 +125,7 @@
 
 
 
-                          </div>
+                          </div> -->
 
                     <div class="form-group col-md-3">
 
@@ -138,26 +163,147 @@
                 </div>
 
 
+
+
+
         <div class="row m-0" >
             <div class="col px-2">
+
+              <!-- Table Section Start -->
+              <div class="admin-table add-milestone-table col-12">
+                  <div class="row admin-table-body">
+                      <div class="col">
+                          <div class="table-responsive table-checkbox">
+                                                                                                          <span v-show="designed_milestone != 'cash'">
+
+                              <table class="table table-sm">
+                                  <thead>
+                                  <tr>
+
+                                      <th scope="col">Payment %</th>
+                                      <th scope="col">Payment Amount</th>
+                                      <th scope="col">Type</th>
+
+                                      <th scope="col">Payment Method</th>
+
+                                      <th scope="col">Payment Due Date</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody class="height-300">
+                                  <tr v-for="(index,milestone) in selected_data.milestones ">
+
+                                      <td>
+                                        <div class="form-group ">
+
+                                                  <label for="payment-@{{milestone.id }}" class="form-field__label">Payment</label>
+                                                  <input id="paymenet-@{{milestone.id }}" value="@{{ milestone.percent }} %"  type="text" class="form-control"
+                                                         placeholder="Payment" disabled />
+                                          </div>
+                                      </td>
+                                      <td>
+                                        <div class="form-group">
+
+                                                  <label for="amount-@{{milestone.id }}" class="form-field__label">Payment Amount</label>
+                                                  <input id="amount-@{{milestone.id }}" value="@{{ milestone.percent/100 *total }} " name="amount@{{ index }}" type="text" class="form-control"
+                                                         placeholder="Payment Amount" readonly />
+                                              </div>
+                                      </td>
+                                      <td>
+                                        <div class="form-group">
+
+                                                  <label for="type-@{{milestone.id }}" class="form-field__label">Type</label>
+                                                  <select  name="type@{{ index }}"  class="form-control">
+                                                    <option value="cash">Before Deliver</option>
+                                                    <option value="visa">After Deliver</option>
+
+                                                  </select>                                                </div>
+                                      </td>
+                                      <td>
+                                        <div class="form-group">
+
+                                                  <label for="method-@{{milestone.id }}" class="form-field__label">Payment Method</label>
+                                                  <select  name="method@{{ index }}"  class="form-control">
+                                                    <option value="cash">Cash</option>
+                                                    <option value="visa">Visa</option>
+                                                    <option value="mastercard">Mastercard</option>
+
+                                                  </select>
+
+                                              </div>
+                                      </td>
+
+                                      <td>
+                                        <div class="form-group ">
+                                                  <label for="date@{{milestone.id }}" class="form-field__label">Payment Due Date</label>
+                                                  <input id="date@{{milestone.id }}"  name="date@{{ index }}" type="date" class="form-control"
+                                                          />
+
+                                              </div>
+                                      </td>
+                                  </tr>
+
+
+                                  </tbody>
+                                   </span>
+
+                                  <tfoot>
+                                  <tr>
+                                      <td>
+
+                                      </td>
+                                      <td>
+                                        <div class="form-group">
+                                                      <label for="milestone-table-Total " class="form-field__label">Total %</label>
+                                                      <input id="milestone-table-Total " type="text" name="total" value="@{{ total }}" class="form-control"
+                                                             placeholder="Total" />
+                                                  </div>
+
+                                          </div>
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                      <td>
+
+                                      </td>
+                                  </tr>
+                                  </tfoot>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Table Section End -->
+
+
+
+
+
                 <!-- Table Section Start -->
-                <div class="admin-table add-milestone-table">
+                <div class="admin-table add-milestone-table col-12">
                     <div class="row admin-table-body">
                         <div class="col">
                             <div class="table-responsive table-checkbox">
-                                                                                                            <span v-show="designed_milestone != 'cash'">
+                                      <h1>Items</h1>                                                                      <span v-show="designed_milestone != 'cash'">
 
                                 <table class="table table-sm">
                                     <thead>
                                     <tr>
 
-                                        <th scope="col">Payment %</th>
-                                        <th scope="col">Payment Amount</th>
-                                        <th scope="col">Description</th>
+                                        <th scope="col">Item </th>
+                                        <th scope="col">Part number</th>
+                                        <th scope="col">Rate</th>
 
-                                        <th scope="col">Payment Method</th>
+                                        <th scope="col">Tax</th>
 
-                                        <th scope="col">Payment Due Date</th>
+                                        <th scope="col">Amount</th>
                                     </tr>
                                     </thead>
                                     <tbody class="height-300">
@@ -182,10 +328,12 @@
                                         <td>
                                           <div class="form-group">
 
-                                                    <label for="description-@{{milestone.id }}" class="form-field__label">Description</label>
-                                                    <input id="description-@{{milestone.id }}" value=" " name="description@{{ index }}" type="text" class="form-control"
-                                                           placeholder="Description"  />
-                                                </div>
+                                                    <label for="type-@{{milestone.id }}" class="form-field__label">Type</label>
+                                                    <select  name="type@{{ index }}"  class="form-control">
+                                                      <option value="cash">Before Deliver</option>
+                                                      <option value="visa">After Deliver</option>
+
+                                                    </select>                                                </div>
                                         </td>
                                         <td>
                                           <div class="form-group">
@@ -250,6 +398,16 @@
                 </div>
             </div>
             <!-- Table Section End -->
+
+
+
+
+
+
+
+
+
+
         </div>
       </div>
 
@@ -265,7 +423,7 @@
 
             <div class="form-actions">
               <button type="submit" class="btn btn-success px-5">Submit</button>
-              <button type="button" class="btn btn-default px-5">Cancel</button>
+              <a type="button" href="{{url()->previous()}}" class="btn btn-default px-5">Cancel</a>
             </div>
           </form>
           <!-- End Vertical Form -->
@@ -307,7 +465,8 @@ function calculate(){
                 h_price:0,
                 n_hours:0,
                 total:0,
-                items:[]
+                items:[],
+                code:Math.floor(100000 + Math.random() * 900000)
             }
         },
 

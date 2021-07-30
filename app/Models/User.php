@@ -70,8 +70,9 @@ class User extends Authenticatable
           return $this->hasMany(items::class,'user_id','id');
         }
         public function CommissionPrograms(){
-          return $this->hasMany(CommissionProgram::class,'user_id','id');
+          return $this->hasMany(CommissionProgram::class,'user_id');
         }
+
     public function contacts()
     {
         return $this->hasManyThrough(

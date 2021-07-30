@@ -234,7 +234,7 @@
 
 
             <td style="Background-color:#f2f4f8">
-              <a href="/attachments/edit/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
+              <a href="/attachments/edit/{{$lead->id}}/0" class="btn btn-sm btn-light mr-2"
                 ><i class="fe fe-edit mr-2"></i> View
                 </a>
               <a href="/attachments/delete/{{$lead->id}}" class="btn btn-sm btn-light">

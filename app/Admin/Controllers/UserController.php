@@ -112,6 +112,8 @@ class UserController extends AdminController
     protected function form()
     {
         $form = new Form(new User());
+        $form->tab('basic info', function($form) {
+
           $form->text('username', __('Username'));
           $form->text('first_name', __('First name'));
           $form->text('last_name', __('Last name'));
@@ -137,7 +139,22 @@ class UserController extends AdminController
           $form->email('email', __('Email'));
           // $form->datetime('email_verified_at', __('Email verified at'))->default(date('Y-m-d H:i:s'));
           $form->password('password', __('Password'));
-          // $form->text('remember_token', __('Remember token'));
+          // $form->hasMany('CommissionPrograms', function (Form\NestedForm $form) {
+          //       $form->text('name');
+          //       $form->number('percent');
+          //       $form->number('level');
+          //   });
+          $form->text('remember_token', __('Remember token'));
+
+        });
+          $form->tab('commission', function($form) {
+
+            $form->hasMany('CommissionPrograms', function (Form\NestedForm $form) {
+                $form->text('name');
+                $form->number('percent');
+                $form->number('level');
+            });
+          });
 
         return $form;
     }

@@ -706,7 +706,7 @@ Remove</a
 
       <div class="form-actions">
         <button type="submit" class="btn btn-success px-5">Submit</button>
-        <button type="button" class="btn btn-default px-5">Cancel</button>
+        <a type="button" href="{{url()->previous()}}" class="btn btn-default px-5">Cancel</a>
       </div>
     </form>
   </div>

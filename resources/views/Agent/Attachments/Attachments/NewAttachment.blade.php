@@ -33,7 +33,7 @@
 
 
           <!-- Vertical Form -->
-          <form id="marketingForm" method="post" enctype="multipart/form-data" action="/attachments/add/action/{{$id}}">
+          <form id="marketingForm" method="post" enctype="multipart/form-data" action="@if($type == 'add') /attachments/add/action/{{$id}} @else /attachments/edit/action/{{$id}} @endif">
             @csrf
 
             <div class="card">
@@ -42,11 +42,16 @@
             <strong>Add Attachment</strong>
             </h4>
             <div class="form-row">
+              @if($account != null)
               <div class="form-group col-md-4">
-                <label for="file" class="form-field__label">File</label>
+                <label for="name" class="form-field__label">File </label>
 
-              <input type="file" name="file" class="form-control"/>
-            </div>
+              <input  type="file" name="file"  id="name" class="form-control" placeholder="File">
+
+              </div>
+              <input type="hidden" name="account_id" value="{{$account->id}}"/>
+
+              @endif
               <div class="form-group col-md-4">
                 <label for="name" class="form-field__label">File Name</label>
 
@@ -74,16 +79,23 @@
           </div>
 
         <div class="form-group col-md-4">
-          <label for="status" class="form-field__label">status</label>
+          <label for="status" class="form-field__label">Type</label>
 
         <select  name="status" value="{{old('status',($lead->status) ? $lead->status :null)}}" class="form-control" >
-          <option value="">Aprroval Stauts</option>
-          <option value="1">Approved</option>
-        <option value="2">declined</option>
+          <option value=""></option>
+          <option value="1">PDF</option>
+        <option value="2">ZIP</option>
              </select>
       </div>
+    @if($account_id != null)
+    <input type="hidden" name="account_id" value="{{$account_id}}"/>
+    @endif
+      @if($type == 'edit')
+      <input type="hidden" name="group_id" value="{{$lead->group_id}}"/>
+      @else
       <input type="hidden" name="group_id" value="{{$id}}"/>
 
+      @endif
           </div>
         </div>
       </div>
@@ -97,7 +109,7 @@
 
             <div class="form-actions">
               <button type="submit" class="btn btn-success px-5">Submit</button>
-              <button type="button" class="btn btn-default px-5">Cancel</button>
+              <a type="button" href="{{url()->previous()}}" class="btn btn-default px-5">Cancel</a>
             </div>
           </form>
           <!-- End Vertical Form -->

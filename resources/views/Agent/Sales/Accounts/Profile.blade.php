@@ -713,7 +713,7 @@ Remove</a
 
       <div class="form-actions">
         <button type="submit" class="btn btn-success px-5">Submit</button>
-        <button type="button" class="btn btn-default px-5">Cancel</button>
+        <a type="button" href="{{url()->previous()}}" class="btn btn-default px-5">Cancel</a>
       </div>
     </form>
   </div>
@@ -868,10 +868,10 @@ Remove</a
   <h5 class="mb-0">Groups</h5>
   </div>
   <div class="d-flex flex-column justify-content-center mr-2">
-  <a class="btn btn-primary" href="{{route('NewOpportunity')}}">New Group</a>
+  <a class="btn btn-primary" href="/groups/add?account_id={{$account->id}}">New Group</a>
   </div>
   <div class="d-flex flex-column justify-content-center">
-  <a class="btn btn-primary" href="{{route('NewOpportunity')}}">Assign Groups</a>
+  <a class="btn btn-primary" href="/account/assign/attachment/{{$account->id}}">Assign Groups</a>
   </div>
 
   </div>
@@ -934,7 +934,7 @@ Remove</a
       <h5 class="mb-0">Group Attachments</h5>
       </div>
       <div class="d-flex flex-column justify-content-center">
-      <a class="btn btn-primary" href="/account/assign/attachment/{{$account->id}}">New Attachment</a>
+      <a class="btn btn-primary" href="/attachments/add/{{$group_id}}?account_id={{$account->id}}">New Attachment</a>
       </div>
 
       </div>
@@ -965,36 +965,44 @@ Remove</a
       <tr>
       <td>{{$lead->name}}</td>
       <td>{{$group->name}}</td>
-      <td>@if($account->uploaded_attachments->where('attachment_id',$lead->id)->count() == 0) not uploaded yet @else <a href="{{$account->uploaded_attachments->where('attachment_id',$lead->id)->first()}}"/> @endif </td>
+      <td>@if($account->uploaded_attachments->where('attachment_id',$lead->id)->count() == 0) not uploaded yet @else <a href="{{$account->uploaded_attachments->where('attachment_id',$lead->id)->first()->getFirstMediaUrl()}}">download</a> @endif </td>
       <td>@if($account->uploaded_attachments->where('attachment_id',$lead->id)->count() == 0) not uploaded yet @else <p>{{$account->uploaded_attachments->where('attachment_id',$lead->id)->first()->status}}<p>@endif </td>
 
 
       <td style="Background-color:#f2f4f8">
 
-      <a href="/account/edit/assign-attachment/{{$lead->id}}" class="btn btn-sm btn-light">
+      <a href="/attachments/delete/{{$lead->id}}" class="btn btn-sm btn-light">
       <small
       ><i class="fe fe-trash mr-2"><!-- --></i></small
       >
       </a
       >
-      <a href="/account/edit/assign-attachment/{{$lead->id}}" class="btn btn-sm btn-light">
+      <a href="/attachments/edit/{{$lead->id}}/{{$account->id}}" class="btn btn-sm btn-light">
+      <small
+      ><i class="fe fe-edit mr-2"><!-- --></i></small
+      >
+      </a
+      >
+      @if($account->uploaded_attachments->where('attachment_id',$lead->id)->count() != 0)
+      <a href="/uploadedAttachment/editStatus/{{$account->uploaded_attachments->where('attachment_id',$lead->id)->first()->id}}/approved" class="btn btn-sm btn-light">
       <small
       ><i class="fe fe-check mr-2"><!-- --></i></small
       >
       </a
       >
-      <a href="/account/edit/assign-attachment/{{$lead->id}}" class="btn btn-sm btn-light">
+      <a href="/uploadedAttachment/editStatus/{{$account->uploaded_attachments->where('attachment_id',$lead->id)->first()->id}}/declined" class="btn btn-sm btn-light">
       <small
       ><i class="fa fa-times mr-2"><!-- --></i></small
       >
       </a
       >
-      <a href="/account/edit/assign-attachment/{{$lead->id}}" class="btn btn-sm btn-light">
+      <a href="/uploadedAttachment/editStatus/{{$account->uploaded_attachments->where('attachment_id',$lead->id)->first()->id}}/reupload" class="btn btn-sm btn-light">
       <small
       ><i class="fa fa-refresh mr-2"><!-- --></i></small
       >
       </a
       >
+      @endif
       </td>
       </tr>
 

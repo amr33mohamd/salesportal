@@ -39,19 +39,17 @@
             <div class="card">
             <div class="card-body">
             <h4 class="mb-4">
-            <strong>Assign Attachment</strong>
+            <strong>Assign Group</strong>
             </h4>
             <div class="form-row">
 
 
               <div class="form-group col-md-12">
-                <label>Attachment </label>
+                <label>Group </label>
                 <select class="select2  " name="document_id" data-live-search="true" required>
                   <!-- <option>NA</option> -->
                   @foreach($groups as $group)
-                    @foreach($group->attachments as $attachment)
-                      <option value="{{$attachment->id}}">{{$attachment->group->name}} -> {{$attachment->name}} </option>
-                    @endforeach
+                      <option value="{{$group->id}}">{{$group->name}}  </option>
                   @endforeach
 
                 </select>
@@ -73,7 +71,7 @@
 
             <div class="form-actions">
               <button type="submit" class="btn btn-success px-5">Submit</button>
-              <button type="button" class="btn btn-default px-5">Cancel</button>
+              <a type="button" href="{{url()->previous()}}" class="btn btn-default px-5">Cancel</a>
             </div>
           </form>
           <!-- End Vertical Form -->

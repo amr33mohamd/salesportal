@@ -96,6 +96,8 @@ Route::get('/accounts/profile/{id}', [App\Http\Controllers\Agent\AccountsControl
 Route::get('/accounts/edit/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'editScreen'])->name('EditAccount');
     Route::post('/accounts/edit/points/action/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'editPoints'])->name('EditAccount');
 
+Route::get('/uploadedAttachment/editStatus/{id}/{status}', [App\Http\Controllers\Agent\AccountsController::class, 'editUploaded'])->name('EditAccount');
+
 Route::post('/accounts/edit/action/{id}', [App\Http\Controllers\Agent\AccountsController::class, 'edit'])->name('EditAccountAction');
 
 Route::get('/account/new', [App\Http\Controllers\Agent\AccountsController::class, 'addScreen'])->name('NewAccount');
@@ -227,8 +229,8 @@ Route::get('/groups/delete/{id}', [App\Http\Controllers\Agent\GroupsController::
 
 Route::get('/group/attachments/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'index'])->name('attachments');
 Route::get('/attachments/add/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'addScreen'])->name('NewAttachment');
-Route::get('/attachments/edit/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'editScreen'])->name('EditAttachment');
-Route::get('/attachments/edit/action/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'edit'])->name('EditAttachment');
+Route::get('/attachments/edit/{id}/{account_id}', [App\Http\Controllers\Agent\AttachmentsController::class,'editScreen'])->name('EditAttachment');
+Route::post('/attachments/edit/action/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'edit'])->name('EditAttachment');
 
 Route::post('/attachments/add/action/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'add'])->name('NewAttachmentAction');
 Route::get('/attachments/delete/{id}', [App\Http\Controllers\Agent\AttachmentsController::class,'delete']);

@@ -50,7 +50,9 @@
 <input type="hidden" value="{{$user->id}}" name="user_id"/>
             </div>
 
-
+@if($account != null)
+<input type="hidden" name="account_id" value="{{$account->id}}" />
+@endif
 
           </div>
         </div>
@@ -65,7 +67,7 @@
 
             <div class="form-actions">
               <button type="submit" class="btn btn-success px-5">Submit</button>
-              <button type="button" class="btn btn-default px-5">Cancel</button>
+              <a type="button" href="{{url()->previous()}}" class="btn btn-default px-5">Cancel</a>
             </div>
           </form>
           <!-- End Vertical Form -->

@@ -10,7 +10,7 @@ use App\Models\user;
 use Livewire\Component;
 use App\Models\AttachmentsGroup;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\accounts;
 class GroupsController extends Component
 {
 
@@ -34,7 +34,14 @@ class GroupsController extends Component
       // $lead = user::query()->where('id',request('id'));
       $lead = new user;
       $user = Auth::user();
-      return view('Agent.Attachments.Groups.NewGroup',['lead'=>$lead,'type'=>'add','user'=>$user]);
+      if($request->account_id){
+        $account = accounts::find($request->account_id);
+      }
+      else {
+        $account = null;
+      }
+
+      return view('Agent.Attachments.Groups.NewGroup',['lead'=>$lead,'account'=>$account,'type'=>'add','user'=>$user]);
 
     }
     public function add(Request $request){
@@ -44,8 +51,12 @@ class GroupsController extends Component
       $add = AttachmentsGroup::query()->create(array_merge(array_filter($data)));
       unset($data['_token']);
 
-
-      return redirect('/groups');
+      if($request->account_id){
+        return redirect('/accounts/profile/'.$request->account_id);
+      }
+      else {
+        return redirect('/groups');
+      }
     }
 
     public function edit(Request $request){

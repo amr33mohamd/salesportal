@@ -11,4 +11,8 @@ class uploadedAttachment extends Model implements HasMedia
 {
   use HasFactory;
   use InteractsWithMedia;
+  protected $guarded = [
+      'id',
+
+  ];
 }

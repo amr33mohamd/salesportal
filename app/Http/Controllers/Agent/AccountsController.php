@@ -24,6 +24,8 @@ use App\Models\tasks;
 use App\Models\meetings;
 use App\Models\opportunities;
 use App\Models\AttachmentsGroup;
+use App\Models\uploadedAttachment;
+use App\Models\assignedGroup;
 class AccountsController extends Controller
 {
   public function index(Request $request){
@@ -63,6 +65,13 @@ class AccountsController extends Controller
 
 
   }
+  public function editUploaded(Request $request){
+    $attachment = uploadedAttachment::find($request->id)->update([
+      'status'=>$request->status
+    ]);
+    return back();
+
+  }
 
   public function change_attachment_status(Request $request){
     $user = Auth::user();
@@ -71,7 +80,7 @@ class AccountsController extends Controller
   }
   public function assin_attachment(Request $request){
     $user = Auth::user();
-    $documents = account_assiened_attachments::create(['account_id'=>$request->account_id,'document_id'=>$request->document_id]);
+    $documents = assignedGroup::create(['account_id'=>$request->account_id,'group_id'=>$request->document_id]);
     return redirect($request->back_url);
   }
   public function delete_assin_attachment(Request $request){
