@@ -167,12 +167,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#tab-info-content" onclick="correct_table()" data-toggle="tab" id="tab-info">Info</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#tab-assigned-attachments-content" onclick="correct_table()" data-toggle="tab" id="tab-assigned-attachments">Assigned Attachments</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#tab-uploaded-attachments-content" onclick="correct_table()" data-toggle="tab" id="tab-uploaded-attachments">Uploaded Attachments</a>
-      </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="#tab-cases-content" onclick="correct_table()" data-toggle="tab" id="tab-cases">Cases</a>
       </li>
