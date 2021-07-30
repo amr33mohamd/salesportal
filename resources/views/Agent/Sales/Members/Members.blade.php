@@ -224,13 +224,13 @@
             @endforeach
         <td style="Background-color:#f2f4f8">
           <a href="/members/edit/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
-            ><i class="fe fe-edit mr-2"></i> View
+            ><i class="fe fe-edit mr-2"></i>
             </a>
           <a href="/members/delete/{{$lead->id}}" class="btn btn-sm btn-light">
             <small
               ><i class="fe fe-trash mr-2"><!-- --></i></small
             >
-            Remove</a
+            </a
           >
         </td>
       </tr>

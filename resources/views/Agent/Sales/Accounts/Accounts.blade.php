@@ -226,25 +226,25 @@
             @endforeach
         <td style="Background-color:#f2f4f8">
           <a href="/accounts/edit/{{$lead->id}}" class="btn btn-sm btn-light mr-2"
-            ><i class="fe fe-edit mr-2"></i> View
+            ><i class="fe fe-edit mr-2"></i> 
             </a>
             <a href="/member/new/{{$lead->id}}" class="btn btn-sm btn-light">
               <small
-                ><i class="fe fe-user mr-2"><!-- --></i></small
+                ><i class="fe fe-users mr-2"><!-- --></i></small
               >
-              New Member</a
+              </a
             >
             <a href="accounts/profile/{{$lead->id}}" class="btn btn-sm btn-light">
               <small
                 ><i class="fe fe-user mr-2"><!-- --></i></small
               >
-              Profile</a
+              </a
             >
           <a href="/accounts/delete/{{$lead->id}}" class="btn btn-sm btn-light">
             <small
               ><i class="fe fe-trash mr-2"><!-- --></i></small
             >
-            Remove</a
+            </a
           >
         </td>
       </tr>
