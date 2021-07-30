@@ -922,7 +922,177 @@ Remove</a
 
   <div class="tab-pane fade show @if($group_id != null) active @endif " id="tab-attachments-content" role="tabpanel"
     aria-labelledby="tab-attachments-content">
+    <div class="vb__utils__content">
+      <div class="row">
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-body position-relative overflow-hidden">
+              <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$account->uploaded_attachments
+                        ->where('status', 'reupload')->count()}}</div>
+              <div class="text-uppercase">reupload Attachments</div>
+    <div class="vb__c11__chartContainer">
+      <div class="vb__c11__chart ct-hidden-points"></div>
+    </div>
+    </div>
+    <script>
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // "Chart Widget 11" module scripts
 
+    ; (function ($) {
+      'use strict'
+      $(function () {
+        new Chartist.Line(
+          '.vb__c11__chart',
+          {
+            series: [
+              {
+                className: 'ct-series-a',
+                data: [2, 11, 8, 14, 18, 20, 26],
+              },
+            ],
+          },
+          {
+            width: '120px',
+            height: '107px',
+
+            showPoint: true,
+            showLine: true,
+            showArea: true,
+            fullWidth: true,
+            showLabel: false,
+            axisX: {
+              showGrid: false,
+              showLabel: false,
+              offset: 0,
+            },
+            axisY: {
+              showGrid: false,
+              showLabel: false,
+              offset: 0,
+            },
+            chartPadding: 0,
+            low: 0,
+            plugins: [Chartist.plugins.tooltip()],
+          },
+        )
+      })
+    })(jQuery)
+    </script>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-body position-relative overflow-hidden">
+              <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$account->uploaded_attachments
+                        ->where('status', 'rejected')->count()}}</div>
+              <div class="text-uppercase">rejected Attachments</div>
+    <div class="vb__c11-1__chartContainer">
+      <div class="vb__c11-1__chart ct-hidden-points"></div>
+    </div>
+    </div>
+    <script>
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // "Chart Widget 11-1" module scripts
+
+    ; (function ($) {
+      'use strict'
+      $(function () {
+        new Chartist.Line(
+          '.vb__c11-1__chart',
+          {
+            series: [
+              {
+                className: 'ct-series-a',
+                data: [20, 80, 67, 120, 132, 66, 97],
+              },
+            ],
+          },
+          {
+            width: '120px',
+            height: '107px',
+
+            showPoint: true,
+            showLine: true,
+            showArea: true,
+            fullWidth: true,
+            showLabel: false,
+            axisX: {
+              showGrid: false,
+              showLabel: false,
+              offset: 0,
+            },
+            axisY: {
+              showGrid: false,
+              showLabel: false,
+              offset: 0,
+            },
+            chartPadding: 0,
+            low: 0,
+            plugins: [Chartist.plugins.tooltip()],
+          },
+        )
+      })
+    })(jQuery)
+    </script>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-body position-relative overflow-hidden">
+    <div class="font-size-36 font-weight-bold text-dark mb-n2">{{$account->uploaded_attachments
+              ->where('status', 'approved')->count()}}</div>
+    <div class="text-uppercase">Approved Attachments</div>
+    <div class="vb__c11-2__chartContainer">
+      <div class="vb__c11-2__chart ct-hidden-points"></div>
+    </div>
+    </div>
+    <script>
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // "Chart Widget 11-2" module scripts
+
+    ; (function ($) {
+      'use strict'
+      $(function () {
+        new Chartist.Line(
+          '.vb__c11-2__chart',
+          {
+            series: [
+              {
+                className: 'ct-series-a',
+                data: [42, 40, 80, 67, 84, 20, 97],
+              },
+            ],
+          },
+          {
+            width: '120px',
+            height: '107px',
+
+            showPoint: true,
+            showLine: true,
+            showArea: true,
+            fullWidth: true,
+            showLabel: false,
+            axisX: {
+              showGrid: false,
+              showLabel: false,
+              offset: 0,
+            },
+            axisY: {
+              showGrid: false,
+              showLabel: false,
+              offset: 0,
+            },
+            chartPadding: 0,
+            low: 0,
+            plugins: [Chartist.plugins.tooltip()],
+          },
+        )
+      })
+    })(jQuery)
+    </script>
+          </div>
+        </div>
+      </div>
       <div class="card">
       <div class="card-header card-header-flex">
       <div class="d-flex flex-column justify-content-center mr-auto">
