@@ -125,7 +125,7 @@ class User extends Authenticatable
                }
                public function employees()
                {
-                  return $this->hasMany(User::class,'follow_id','id');
+                  return $this->hasMany(User::class,'follow_id','id')->with('employees');
                 }
 
 
